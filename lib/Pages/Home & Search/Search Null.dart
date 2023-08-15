@@ -23,21 +23,21 @@ class _Search_NullState extends State<Search_Null> {
                 ),
                 width: MediaQuery.of(context).size.width*1,
                 height: MediaQuery.of(context).size.width*0.09,
-                child: Row(
+                child: const Row(
                   children: [Padding(padding: EdgeInsets.only(left: 20),
                     child: Text("Recent Searches",style: TextStyle(color: Colors.grey , fontWeight: FontWeight.bold)),)],
                 )
             ),
-            Container(height: MediaQuery.of(context).size.height * 0.35,
+            SizedBox(height: MediaQuery.of(context).size.height * 0.35,
               child: ListView.builder(itemCount: 10,itemBuilder: (context, index) {
                 return Column(
                   children: [
-                    Container(
+                    SizedBox(
                       height:MediaQuery.of(context).size.height * 0.06,
                       child: ListTile(
-                        leading: Icon(Icons.access_time_rounded,),
-                        title: Text("Title ${index+1}",style: TextStyle(fontSize: 20),),
-                        trailing:RotationTransition(
+                        leading: const Icon(Icons.access_time_rounded,),
+                        title: Text("Title ${index+1}",style: const TextStyle(fontSize: 20),),
+                        trailing:const RotationTransition(
                             turns: AlwaysStoppedAnimation(45/360),
                             child: Icon(Icons.add_circle_outline,color: Colors.red)),
                       ),
@@ -54,21 +54,21 @@ class _Search_NullState extends State<Search_Null> {
               ),
               width: MediaQuery.of(context).size.width*1,
               height: MediaQuery.of(context).size.width*0.09,
-              child: Row(
+              child: const Row(
                 children: [Padding(padding: EdgeInsets.only(left: 20),
                   child: Text("Popular Searches",style: TextStyle(color: Colors.grey , fontWeight: FontWeight.bold)),)],
               ),
             ),
-            Container(height: MediaQuery.of(context).size.height * 0.35,
+            SizedBox(height: MediaQuery.of(context).size.height * 0.35,
               child: ListView.builder(itemCount: 5,itemBuilder: (context, index) {
                 return Column(
                   children: [
-                    Container(
+                    SizedBox(
                       height:MediaQuery.of(context).size.height * 0.06,
                       child: ListTile(
-                        leading: Icon(Icons.access_time_rounded,),
-                        title: Text("Title ${index+1}",style: TextStyle(fontSize: 20),),
-                        trailing: Icon(Icons.arrow_circle_right_outlined,color: Colors.blueAccent),
+                        leading: const Icon(Icons.access_time_rounded,),
+                        title: Text("Title ${index+1}",style: const TextStyle(fontSize: 20),),
+                        trailing: const Icon(Icons.arrow_circle_right_outlined,color: Colors.blueAccent),
                       ),
                     ),
                   ],

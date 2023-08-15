@@ -32,7 +32,7 @@ class _Search_Bottom_SheetState extends State<Search_Bottom_Sheet> {
       appBar: AppBar(
         scrolledUnderElevation: 0,
         centerTitle: true,
-        title: Text("Set Filter"),
+        title: const Text("Set Filter"),
         actions: [MaterialButton(
           onPressed: (){
             setState(() {
@@ -42,7 +42,7 @@ class _Search_Bottom_SheetState extends State<Search_Bottom_Sheet> {
 
             });
           },
-          child: Text("Reset",style: TextStyle(fontSize: 15,color: Colors.blue),),
+          child: const Text("Reset",style: TextStyle(fontSize: 15,color: Colors.blue),),
         ),
     ]
     ),
@@ -53,7 +53,7 @@ class _Search_Bottom_SheetState extends State<Search_Bottom_Sheet> {
           crossAxisAlignment: CrossAxisAlignment.start,
 
           children: [
-            Text("Job Title"),
+            const Text("Job Title"),
             TextFormField(
               controller: _jobtitlecontroler,
               decoration: const InputDecoration(
@@ -81,7 +81,7 @@ class _Search_Bottom_SheetState extends State<Search_Bottom_Sheet> {
               },
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.02),
-            Text("Location"),
+            const Text("Location"),
             TextFormField(
               controller: _locationcontroler,
               decoration: const InputDecoration(
@@ -109,7 +109,7 @@ class _Search_Bottom_SheetState extends State<Search_Bottom_Sheet> {
               },
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.02),
-            Text("Salary"),
+            const Text("Salary"),
             TextFormField(
               controller: _salarycontroler,
               decoration: const InputDecoration(
@@ -137,8 +137,8 @@ class _Search_Bottom_SheetState extends State<Search_Bottom_Sheet> {
               },
             ),
             SizedBox(height: MediaQuery.of(context).size.height*0.02),
-            Text("Job Type"),
-            Container(
+            const Text("Job Type"),
+            SizedBox(
               width: MediaQuery.of(context).size.width*0.8,
               child: MultiSelectChipField(
                 items: _items,
@@ -151,9 +151,9 @@ class _Search_Bottom_SheetState extends State<Search_Bottom_Sheet> {
                   _selected_jobs == false ||
                       _selected_jobs.isEmpty
                       ? Container(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(10),
                       alignment: Alignment.centerLeft,
-                      child: Text(
+                      child: const Text(
                         "None selected",
                         style:
                         TextStyle(color: Colors.black54),

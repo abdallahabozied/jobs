@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:jobsque/Pages/Applied%20Job/Applied%20Jobs.dart';
 import 'package:jobsque/Pages/Home%20&%20Search/Home Feeds .dart';
+import 'package:jobsque/Pages/Saved%20Jobs/saved%20jobs.dart';
 
 
 class Home extends StatefulWidget {
@@ -11,24 +13,26 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int myindex=0;
-  List <Widget> widgetlist = const [
+  List <Widget> widgetlist =  [
     Home_Screen(),
     Text("Messages"),
-    Text("Applied"),
-    Text("Saved"),
+    Applied(),
+    Saved(),
     Text("Profile"),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: Center(
         child: widgetlist[myindex],
       ),
+
       bottomNavigationBar: BottomNavigationBar(
           onTap: (index) {
             setState(() {
               myindex = index;
-
             });
           },
           type: BottomNavigationBarType.shifting,

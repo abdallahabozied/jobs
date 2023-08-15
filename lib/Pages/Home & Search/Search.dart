@@ -27,7 +27,7 @@ class _SearchState extends State<Search> {
               });
 
             },
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               hintText: "  Type something... ",
               prefixIcon: Icon(Icons.search),
               alignLabelWithHint: true,
@@ -47,7 +47,7 @@ class _SearchState extends State<Search> {
           ),
         ),
       ),
-      body: searchcontroller.text.isEmpty ? Search_Null() : Search_Filters(),
+      body: searchcontroller.text.isEmpty ? const Search_Null() : const Search_Filters(),
     );
   }
 }
