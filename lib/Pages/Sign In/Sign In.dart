@@ -1,9 +1,23 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:jobsque/Pages/Create%20Account/regestrationform.dart';
 import 'package:jobsque/Pages/Home%20&%20Search/Home_Home.dart';
 import 'package:jobsque/Pages/Reset%20Password/Reset%20Password.dart';
 import 'package:jobsque/Shared functions.dart';
+
+Future<bool?> login(String email, String password) async {
+  Response response = await post(
+      Uri.parse("https://project2.amit-learning.com/api/auth/login"),
+      body: {
+        "email": email,
+        "password": password,
+      });
+  if (response.statusCode == 200) {
+    return true;
+  }else
+  return false;
+}
 
 class Sign_In extends StatefulWidget {
   const Sign_In({super.key});
@@ -18,10 +32,8 @@ class _Sign_InState extends State<Sign_In> {
   final TextEditingController _emailcontroler = TextEditingController();
   final TextEditingController _passwordcontroler = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
@@ -137,9 +149,7 @@ class _Sign_InState extends State<Sign_In> {
                             checkColor: Colors.blue[400],
                             value: remember_me,
                             onChanged: (islogin) {
-
-                                remember_me = islogin;
-
+                              remember_me = islogin;
                             }),
                         const Text("Remember me",
                             style: TextStyle(color: Colors.black54)),
@@ -187,26 +197,42 @@ class _Sign_InState extends State<Sign_In> {
                                   !formkey.currentState!.validate()
                               ? null
                               : () async {
-                                  try {
-                                    await FirebaseAuth.instance
-                                        .signInWithEmailAndPassword(
-                                            email: _emailcontroler.text,
-                                            password: _passwordcontroler.text);
+                                  if (await login(
+                                          _emailcontroler.text.toString(),
+                                          _passwordcontroler.text.toString()) ==
+                                      true) {
                                     Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) => Home()));
-                                  } on FirebaseAuthException catch (e) {
-                                    if (e.code == 'user-not-found') {
-                                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                                                content: Text("No user found for that email.")));
-
-                                    } else if (e.code == 'wrong-password') {
-                                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                                          content: Text("Wrong password provided for that user.")));
-                                    }
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(
+                                            content: Text(
+                                                "Check your credintials or internet connection")));
                                   }
                                 },
+                          // : () async {
+                          //     try {
+                          //       await FirebaseAuth.instance
+                          //           .signInWithEmailAndPassword(
+                          //               email: _emailcontroler.text,
+                          //               password: _passwordcontroler.text);
+                          //       Navigator.pushReplacement(
+                          //           context,
+                          //           MaterialPageRoute(
+                          //               builder: (context) => Home()));
+                          //     } on FirebaseAuthException catch (e) {
+                          //       if (e.code == 'user-not-found') {
+                          //         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          //                   content: Text("No user found for that email.")));
+                          //
+                          //       } else if (e.code == 'wrong-password') {
+                          //         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          //             content: Text("Wrong password provided for that user.")));
+                          //       }
+                          //     }
+                          //   },
                           child: const Text(
                             "Login",
                             style: (TextStyle(color: Colors.black54)),

@@ -46,7 +46,10 @@ class HTTPConnections {
     var response1 = await client.get(Uri.parse(baseurl + photosEndPoint));
     var responsebody = jsonDecode(response.body);
     var responsebody1 = jsonDecode(response1.body);
+
+
     if (response.statusCode == 200) {
+
       list.addAll(responsebody);
       list2.addAll(responsebody1);
       List list3 = concatinate(list, list2);
