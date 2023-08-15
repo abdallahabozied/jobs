@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:jobsque/Pages/Home%20&%20Search/Home_Home.dart';
+
 import 'package:jobsque/Pages/onboardScreens/page0.dart';
-import 'package:jobsque/Pages/onboardScreens/page1.dart';
+
 
 class Splash extends StatefulWidget {
   const Splash({super.key});
@@ -15,20 +17,19 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     bool? islogin;
-    var user;
-    //var  user=FirebaseAuth.instance.currentUser;
+    var  user=FirebaseAuth.instance.currentUser;
     if(user == null){
       islogin=false;
     }else{
       islogin=true;
     }
-    Future.delayed(const Duration(seconds:3),(){
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Page0(
-
-      ),));
-
-    }
-    );
+    Future.delayed(const Duration(seconds:2),(){
+      if (islogin== true){
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Home(),));
+      }else{
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Page0(),));
+      }
+    });
     super.initState();
   }
   @override

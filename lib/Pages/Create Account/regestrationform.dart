@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jobsque/Pages/Create%20Account/intersted%20work.dart';
+
+import 'package:jobsque/Pages/Home%20&%20Search/Home_Home.dart';
 import 'package:jobsque/Pages/Sign%20In/Sign%20In.dart';
 import 'package:jobsque/Shared functions.dart';
 
@@ -9,6 +12,7 @@ class Regestration_Form extends StatefulWidget {
   @override
   State<Regestration_Form> createState() => _regestration_formState();
 }
+
 
 class _regestration_formState extends State<Regestration_Form> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
@@ -156,7 +160,7 @@ class _regestration_formState extends State<Regestration_Form> {
                       children: [
                             const Text("Already have an account?",style: TextStyle(color: Colors.black54)),
                             InkWell(onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => Sign_In(),));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => const Sign_In(),));
                             },child: const Text(" Login",style: TextStyle(color: Colors.blue))),
 
                       ],
@@ -169,10 +173,31 @@ class _regestration_formState extends State<Regestration_Form> {
                         backgroundColor: Colors.blueAccent,
                         minimumSize: const Size(600 , 50)
                       ),
-                        onPressed: formkey.currentState == null || !formkey.currentState!.validate()? null :() {
-                        //to do actionsto authenticate then ==>
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Intersted_Work()));
+                        onPressed: formkey.currentState == null || !formkey.currentState!.validate()? null :() async {
+                          try {
+                            await FirebaseAuth.instance
+                                .createUserWithEmailAndPassword(
+                                email: _emailcontroler.text,
+                                password: _passwordcontroler.text);
+                            Navigator.of(context)
+                                .pushReplacement(MaterialPageRoute(builder: (BuildContext) {
+                              return const Intersted_Work();
+                            }));
+                           } on FirebaseAuthException catch (e) {
+                            if (e.code == 'weak-password') {
+                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                         content: Text("The password provided is too weak.")));
+
+                            } else if (e.code == 'email-already-in-use') {
+                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                         content: Text("The account already exists for that email.")));
+                            }
+                          } catch (e) {
+                            print(e);
+                          }
+
                         },
+
                          child: const Text("Create Account",style: (TextStyle(color: Colors.black54)),)),
                   ),
                 ],
@@ -208,9 +233,11 @@ class _regestration_formState extends State<Regestration_Form> {
                   height: 50,
                   child: MaterialButton(
 
-                    shape: RoundedRectangleBorder()
-
-                  ,onPressed: (){}, child: Row(
+                    shape: const RoundedRectangleBorder()
+                  ,onPressed: ()async{
+                    await signInWithGoogle();
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext) =>const Home()));
+                  }, child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(Icons.g_mobiledata_rounded,size: 30,),
@@ -227,9 +254,9 @@ class _regestration_formState extends State<Regestration_Form> {
                   height: 50,
                   child: MaterialButton(
 
-                      shape: RoundedRectangleBorder()
+                      shape: const RoundedRectangleBorder()
 
-                      ,onPressed: (){}, child: Row(
+                      ,onPressed: (){}, child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(Icons.facebook_rounded,color: Colors.blue,),

@@ -8,6 +8,7 @@ class Jobs extends ChangeNotifier {
   int appliedjobcount =0;
   List<Job> jobs = [];
   List<Job> appliedjobs = [];
+  bool isloggedin=false;
   get Count => count;
 
 

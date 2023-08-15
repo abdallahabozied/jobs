@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:jobsque/Model/jobpost.dart';
 import 'package:jobsque/Pages/Home%20&%20Search/Home Feeds .dart';
@@ -12,7 +13,10 @@ import 'package:provider/provider.dart';
 // import 'Pages/Create Account/regestrationform.dart';
 import 'Pages/onboardScreens/splash.dart';
 
-void main() {
+Future<void> main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  //await FirebaseAuth.instance.useAuthEmulator('10.0.2.2', 9099);
   runApp(const MyApp());
 }
 
@@ -26,7 +30,9 @@ class MyApp extends StatelessWidget {
       return Jobs();
     },
       child:
+
        MaterialApp(
+         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
@@ -40,7 +46,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.light(primary: Colors.blue.shade700),
           useMaterial3: true,
         ),
-        home:  const Home(),));
+        home:  const Splash(),));
 
   }
 }

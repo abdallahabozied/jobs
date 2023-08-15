@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jobsque/Pages/Home%20&%20Search/Home_Home.dart';
 
 class Get_Started extends StatelessWidget {
   const Get_Started({super.key});
@@ -40,7 +41,9 @@ class Get_Started extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.indigoAccent,
                     minimumSize: const Size(300, 50)),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home(),), (route) => false);
+                },
                 child: const Text(
                   "Get Started",
                   style: TextStyle(color: Colors.white),

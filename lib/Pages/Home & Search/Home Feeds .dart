@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jobsque/Model/jobpost.dart';
 import 'package:jobsque/Network/HTTP.dart';
@@ -5,6 +6,7 @@ import 'package:jobsque/Pages/Home%20&%20Search/Search.dart';
 import 'package:jobsque/Pages/Home%20&%20Search/recent%20job.dart';
 import 'package:jobsque/Pages/Job%20Detalis%20&%20Apply/Job%20Details.dart';
 import 'package:jobsque/Pages/Job%20Detalis%20&%20Apply/apply%20job.dart';
+import 'package:jobsque/Pages/Sign%20In/Sign%20In.dart';
 import 'package:provider/provider.dart';
 
 class Home_Screen extends StatefulWidget {
@@ -51,7 +53,11 @@ class _Home_ScreenState extends State<Home_Screen> {
                       ],
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () async{
+                        await FirebaseAuth.instance
+                            .signOut();
+                        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Sign_In(),), (route) => false);
+                      },
                       child: Container(
                           width: 40,
                           height: 40,

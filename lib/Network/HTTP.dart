@@ -49,26 +49,12 @@ class HTTPConnections {
     if (response.statusCode == 200) {
       list.addAll(responsebody);
       list2.addAll(responsebody1);
-        List list3 = concatinate(list, list2);
-            return list3;
+      List list3 = concatinate(list, list2);
+      return list3;
     } else {
       print("cannont get all posts");
     }
   }
-
-  // List concatinate(List list, List list2) {
-  //   List<Map<String, dynamic>> list3 = [];
-  //
-  //   list.forEach((element) {
-  //     list2.forEach((e) {
-  //       if (e["id"] == element["id"]) {
-  //         list3.add(list2[e("url")]);
-  //       }
-  //       print(list3);
-  //     });
-  //   });
-  // return list3;
-  // }
 
 }
 
