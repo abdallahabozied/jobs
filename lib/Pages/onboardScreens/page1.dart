@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jobsque/Pages/onboardScreens/page2.dart';
+
 
 class page1 extends StatelessWidget {
   const page1({super.key});

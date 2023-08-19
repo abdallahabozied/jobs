@@ -1,33 +1,8 @@
-//import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-//import 'package:jobsque/Pages/Create%20Account/intersted%20work.dart';
+import 'package:jobsque/Network/HTTP.dart';
 import 'package:jobsque/Pages/Home%20&%20Search/Home_Home.dart';
 import 'package:jobsque/Pages/Sign%20In/Sign%20In.dart';
 import 'package:jobsque/Shared functions.dart';
-import 'package:http/http.dart' ;
-
-void signup(String name,String email, String password) async{
-  try{
-Response response = await post(
-  Uri.parse("https://project2.amit-learning.com/api/auth/register"),
-  body: {
-    "name": name,
-    "email": email,
-    "password": password,
-  }
-);
-if(response.statusCode == 200){
-  print("account created successfully");
-}else{
-  print("failed to post user to server");
-}
-  }catch(e){
-   print(e.toString());
-  }
-}
-
-
-
 
 class Regestration_Form extends StatefulWidget {
   const Regestration_Form({super.key});
@@ -183,7 +158,7 @@ class _regestration_formState extends State<Regestration_Form> {
                       children: [
                             const Text("Already have an account?",style: TextStyle(color: Colors.black54)),
                             InkWell(onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => const Sign_In(),));
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Sign_In(),));
                             },child: const Text(" Login",style: TextStyle(color: Colors.blue))),
 
                       ],
@@ -196,7 +171,7 @@ class _regestration_formState extends State<Regestration_Form> {
                         backgroundColor: Colors.blueAccent,
                         minimumSize: const Size(600 , 50)
                       ),onPressed: (){
-                        signup(_usernamecontroler.text.toString(),_emailcontroler.text.toString(),_passwordcontroler.text.toString());
+                        HTTPConnections().signup(_usernamecontroler.text.toString(),_emailcontroler.text.toString(),_passwordcontroler.text.toString());
                     },
                         // onPressed: formkey.currentState == null || !formkey.currentState!.validate()? null :() async {
                         //   try {

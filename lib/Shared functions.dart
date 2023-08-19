@@ -1,7 +1,27 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:jobsque/Pages/Home%20&%20Search/Home_Home.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+
+// Future <SharedPreferences> AddstringtoSharedPrefrence (String key,String name)async{
+//   var saved = await SharedPreferences.getInstance();
+//   saved.setString("{$key}",name);
+//   return saved ;
+// }
+// Future <String?> getstringfromSharedPrefrence (String key)async{
+//   var saved = await SharedPreferences.getInstance();
+//   var x = saved.getString("{$key}");
+//   return x ;
+// }
+
+
+
+
+
+
 
 Future<UserCredential> signInWithGoogle() async {
   // Trigger the authentication flow

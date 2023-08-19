@@ -1,9 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jobsque/Pages/Home%20&%20Search/Home_Home.dart';
 import 'package:jobsque/Pages/onboardScreens/page0.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-
+SharedPreferences? logindata;
+bool? isloggedin = false;
 class Splash extends StatefulWidget {
   const Splash({super.key});
 
@@ -12,27 +13,21 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-
   @override
   void initState() {
-    bool? islogin;
-    var  user=FirebaseAuth.instance.currentUser;
-    if(user == null){
-      islogin=false;
-    }else{
-      islogin=true;
-    }
+
     Future.delayed(const Duration(seconds:2),(){
-      if (islogin== true){
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Home(),));
-      }else{
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Page0(),));
-      }
+      CheckSignIn();
     });
     super.initState();
   }
+
+
   @override
   Widget build(BuildContext context) {
+   // var prov = Provider.of<Jobs>(context);
+
+
     return Scaffold(
       body: Center(
         child: Stack(
@@ -77,5 +72,15 @@ class _SplashState extends State<Splash> {
         ),
       )
     );
+  }
+  void CheckSignIn() async{
+    var  logindata = await SharedPreferences.getInstance();
+    var   user =(logindata.getBool('login'));
+    print("the new user is"+ " $user");
+    if(user==true){
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home()));
+    }else
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Page0()));
+
   }
 }

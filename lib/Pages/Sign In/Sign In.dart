@@ -1,23 +1,15 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
+import 'package:jobsque/Model/jobpost.dart';
+import 'package:jobsque/Model/profileModel.dart';
+import 'package:jobsque/Network/HTTP.dart';
 import 'package:jobsque/Pages/Create%20Account/regestrationform.dart';
 import 'package:jobsque/Pages/Home%20&%20Search/Home_Home.dart';
 import 'package:jobsque/Pages/Reset%20Password/Reset%20Password.dart';
 import 'package:jobsque/Shared functions.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../onboardScreens/splash.dart';
 
-Future<bool?> login(String email, String password) async {
-  Response response = await post(
-      Uri.parse("https://project2.amit-learning.com/api/auth/login"),
-      body: {
-        "email": email,
-        "password": password,
-      });
-  if (response.statusCode == 200) {
-    return true;
-  }else
-  return false;
-}
 
 class Sign_In extends StatefulWidget {
   const Sign_In({super.key});
@@ -31,9 +23,17 @@ class _Sign_InState extends State<Sign_In> {
   bool? remember_me = false;
   final TextEditingController _emailcontroler = TextEditingController();
   final TextEditingController _passwordcontroler = TextEditingController();
+  late final Profile userprofiledata;
+  @override
+  void initState() {
+
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {
+    var prov = Provider.of<Jobs>(context);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
@@ -142,14 +142,24 @@ class _Sign_InState extends State<Sign_In> {
                     Row(
                       children: [
                         Checkbox(
-                            splashRadius: 0,
+                            autofocus: true,
+                            splashRadius: 20,
                             activeColor: Colors.blue[700],
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5)),
                             checkColor: Colors.blue[400],
+
                             value: remember_me,
-                            onChanged: (islogin) {
-                              remember_me = islogin;
+                            onChanged: (islogin) async{
+                              var logindata = await SharedPreferences.getInstance();
+                              logindata?.setString("email",_emailcontroler.text);
+                              setState(() {
+                                remember_me= islogin;
+                                print("Remember me is  ===============> "+"$remember_me");
+                                logindata?.setBool("login", remember_me!);
+                                print(logindata?.getBool("login"));
+
+                              });
                             }),
                         const Text("Remember me",
                             style: TextStyle(color: Colors.black54)),
@@ -176,7 +186,7 @@ class _Sign_InState extends State<Sign_In> {
                               style: TextStyle(color: Colors.black54)),
                           InkWell(
                               onTap: () {
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => Regestration_Form(),
@@ -197,10 +207,15 @@ class _Sign_InState extends State<Sign_In> {
                                   !formkey.currentState!.validate()
                               ? null
                               : () async {
-                                  if (await login(
+                                  if (await HTTPConnections().login(
                                           _emailcontroler.text.toString(),
                                           _passwordcontroler.text.toString()) ==
                                       true) {
+                                   // var savedlogindata = await SharedPreferences.getInstance();
+                                    logindata?.setBool('login', true);
+                                   //  AddstringtoSharedPrefrence("username", userprofiledata.name);
+                                   // AddstringtoSharedPrefrence("email",userprofiledata.email);
+//                                    savedlogindata.setString("email",);
                                     Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
@@ -310,4 +325,5 @@ class _Sign_InState extends State<Sign_In> {
       ),
     );
   }
+
 }

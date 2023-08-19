@@ -6,8 +6,17 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../Create Account/regestrationform.dart';
 
-class Page0 extends StatelessWidget {
-  const Page0({super.key});
+class Page0 extends StatefulWidget {
+   Page0({super.key});
+
+  @override
+  State<Page0> createState() => _Page0State();
+}
+
+class _Page0State extends State<Page0> {
+int index =1;
+
+  int islast = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -65,12 +74,21 @@ class Page0 extends StatelessWidget {
                       backgroundColor: Colors.indigoAccent,
                       minimumSize: const Size(300, 50)),
                   onPressed: () {
+                    if(islast!=3){
+                      setState(() {
                     _controller.nextPage(
                         duration: const Duration(milliseconds: 300),
                         curve: Curves.linear);
+                       index ++;
+                       islast++;
+                     })
+                    ;}
+                    else if (islast ==3 ){
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Regestration_Form(),));
+                    }
                   },
-                  child: const Text(
-                    "Next",
+                  child:  Text(index <3 ?
+                    "Next": "get started",
                     style: TextStyle(color: Colors.white),
                   )),
             )

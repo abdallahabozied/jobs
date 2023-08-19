@@ -31,8 +31,8 @@ class Applied extends StatelessWidget {
               return Card(
                   child: Consumer<Jobs>(builder: (context,value,child){
                     return ListTile(
-                      leading:Image.network("${value.appliedjobs[i].thumbnailUrl}"),
-                      title: Text("Jobtitle ${value.appliedjobs[i].title}"),
+                      leading:Image.network("${value.appliedjobs[i].image}"),
+                      title: Text("Job_name ${value.appliedjobs[i].name}"),
                       trailing: IconButton(
                         icon: Icon(Icons.remove),
                         onPressed: (){

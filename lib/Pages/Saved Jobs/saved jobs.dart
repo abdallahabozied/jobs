@@ -41,9 +41,9 @@ class _SavedState extends State<Saved> {
               return Card(
                   child: Consumer<Jobs>(builder: (context,value,child){
                     return ListTile(
-                     leading:Image.network("${value.jobs[i].thumbnailUrl}"),
-                      title: Text("Jobtitle ${value.jobs[i].title}"),
-                      subtitle: Text("Subtitle : ${value.jobs[i].title}"),
+                     leading:Image.network("${value.jobs[i].image}"),
+                      title: Text("Jobtitle ${value.jobs[i].name}"),
+                      subtitle: Text("Subtitle : ${value.jobs[i].job_type}"),
                       trailing: IconButton(
                         icon: Icon(Icons.remove),
                         onPressed: (){
