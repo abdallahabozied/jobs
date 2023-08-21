@@ -4,7 +4,6 @@ import 'package:jobsque/Pages/Home%20&%20Search/Search.dart';
 import 'package:jobsque/Pages/Home%20&%20Search/recent%20job.dart';
 import 'package:jobsque/Pages/Job%20Detalis%20&%20Apply/Job%20Details.dart';
 import 'package:jobsque/Pages/Job%20Detalis%20&%20Apply/apply%20job.dart';
-import 'package:jobsque/Pages/Sign%20In/Sign%20In.dart';
 import 'package:provider/provider.dart';
 import '../../Network/HTTP.dart' as varHTTP;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,9 +20,9 @@ class _Home_ScreenState extends State<Home_Screen> {
 
   @override
   void initState() {
-   // httpConnections.GetAllPostswithphotos();
-    varHTTP.HTTPConnections().GetAllPostswithphotos();
+    //httpConnections.GetAllPostswithphotos();
     httpConnections.fetchuser();
+    varHTTP.HTTPConnections().GetAllPostswithphotos();
     super.initState();
   }
 
@@ -32,7 +31,7 @@ class _Home_ScreenState extends State<Home_Screen> {
     var prov = Provider.of<Jobs>(context);
     return Scaffold(
         body: FutureBuilder(
-          future: varHTTP.HTTPConnections().GetAllPostswithphotos(),
+          future: httpConnections.GetAllPostswithphotos(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               print(snapshot);
@@ -65,16 +64,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                                     ],
                                   ),
                                   InkWell(
-                                    onTap: () async {
-                                     var savedlogindata = await SharedPreferences.getInstance();
-                                      savedlogindata.setBool('login', false);
-                                      Navigator.pushAndRemoveUntil(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => Sign_In(),
-                                          ),
-                                          (route) => false);
-                                    },
+                                    onTap: (){},
                                     child: Container(
                                         width: 40,
                                         height: 40,
@@ -189,11 +179,11 @@ class _Home_ScreenState extends State<Home_Screen> {
                                                         BorderRadius.circular(
                                                             22)),
                                                 child: Image.network(
-                                                   // "${list2[index]["image"]}")),
                                                   "${snapshot.data?[index]["image"]}")),
                                             title: InkWell(
                                                 onTap: () {
-                                                  prov.postid = index;
+
+                                                 // prov.postid = index;
                                                   Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
@@ -212,16 +202,21 @@ class _Home_ScreenState extends State<Home_Screen> {
                                                 maxLines: 1),
                                             trailing: InkWell(
                                                 onTap: () {
-                                                  context
-                                                      .read<Jobs>()
-                                                      .Addtosaved(snapshot
-                                                          .data?[index]);
+                                                  // context
+                                                  //     .read<Jobs>()
+                                                  //     .Addtosaved(snapshot
+                                                  //         .data?[index]);
+                                                  varHTTP.HTTPConnections().Addtosaved(varHTTP.id,snapshot.data?[index]["data"]("id"));
                                                   ScaffoldMessenger.of(context)
                                                       .showSnackBar(
                                                           const SnackBar(
                                                               content: Text(
                                                                   "Saved")));
                                                 },
+
+
+
+
                                                 onDoubleTap: () {
                                                   context
                                                       .read<Jobs>()
@@ -398,7 +393,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                                 height:
                                     MediaQuery.of(context).size.height * 0.8,
                                 child: ListView.builder(
-                                  itemCount: varHTTP.list2.length,
+                                  itemCount: snapshot.data?.length,
                                   itemBuilder: (context, index) {
                                     return Column(
                                       children: [
@@ -408,7 +403,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                                           // "${list3[index]["thumbnailUrl"]}"),
                                           title: InkWell(
                                             onTap: () {
-                                              prov.postid = index;
+                                              // prov.postid = index;
                                               Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
@@ -431,7 +426,11 @@ class _Home_ScreenState extends State<Home_Screen> {
                                                   color: Colors.black12)),
                                           trailing: InkWell(
                                               onTap: () {
-                                                prov.Addtosaved(varHTTP.list2[index]);
+                                                print("job id is ====== > ");
+                                                print(snapshot.data?[index]["id"]);
+                                                print("user id is ====== > ");
+                                                print(varHTTP.id);
+                                                varHTTP.HTTPConnections().Addtosaved(varHTTP.id,snapshot.data?[index]["id"]);
                                                 ScaffoldMessenger.of(context)
                                                     .showSnackBar(
                                                         const SnackBar(
@@ -439,10 +438,11 @@ class _Home_ScreenState extends State<Home_Screen> {
                                                                 Text("Saved")));
                                               },
                                               onSecondaryTap: () {
-                                                context
-                                                    .read<Jobs>()
-                                                    .Removefromsaved(
-                                                        snapshot.data?[index]);
+                                                // context
+                                                //     .read<Jobs>()
+                                                //     .Removefromsaved(
+                                                //         snapshot.data?[index]);
+                                                varHTTP.HTTPConnections().deleteSavedJob(index);
                                                 ScaffoldMessenger.of(context)
                                                     .showSnackBar(
                                                         const SnackBar(

@@ -1,9 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
-
 import 'package:flutter/material.dart';
-
 import 'package:jobsque/Model/jobpost.dart';
-
+import 'package:jobsque/Pages/Profile/profile.dart';
 import 'package:provider/provider.dart';
 
 import 'Pages/onboardScreens/splash.dart';
@@ -16,19 +14,10 @@ Future<void> main() async{
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(create: (context) {

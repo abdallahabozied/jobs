@@ -5,6 +5,7 @@ import 'package:jobsque/Pages/Home%20&%20Search/Home_Home.dart';
 import 'package:jobsque/Pages/Job%20Detalis%20&%20Apply/success%20apply.dart';
 import 'package:jobsque/Shared%20functions.dart';
 import 'package:provider/provider.dart';
+import '../../Network/HTTP.dart' as varHTTP;
 
 class Apply_Job extends StatefulWidget {
   const Apply_Job({super.key});
@@ -70,8 +71,9 @@ class _Apply_JobState extends State<Apply_Job> {
                       backgroundColor: Colors.blueAccent[700],
                       minimumSize: const Size(140, 50)),
                   onPressed: islaststep? (){
-                    prov.Addtoapplied(list3[prov.appliedjobid-1]);
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Home(),));
+                    varHTTP.HTTPConnections().AddtoApplied(varHTTP.id, prov.appliedjobid, _usernamecontroler.text, _emailcontroler.text, _phonecontroler.text, "full");
+                   // prov.Addtoapplied(list3[prov.appliedjobid-1]);
+                    //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Home(),));
                   } : details.onStepContinue,
                   child: Text(
                     islaststep ? "Submit" : "Next",
