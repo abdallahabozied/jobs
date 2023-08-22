@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as varHTTP;
 import 'package:http/http.dart';
+import 'package:jobsque/Model/Job.dart';
 import 'package:jobsque/Model/profileModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -104,9 +105,7 @@ class HTTPConnections {
         headers: {"Authorization": "Bearer $token"}
     );
     Map<String, dynamic> responsebody = jsonDecode(response.body);
-    print(token);
     if (response.statusCode == 200) {
-
       return responsebody["data"];
     } else {
       print("cannont get all posts");
@@ -145,9 +144,6 @@ class HTTPConnections {
     );
     Map<String, dynamic> responsebody = jsonDecode(response.body);
     if (response.statusCode == 200) {
-      // list3.add(responsebody["data"]);
-     // list2= list3.toSet().toList(growable: false);
-    //  print("list ==============================>");
       return responsebody["data"];
     } else {
       print("cannont get all posts");
@@ -191,6 +187,13 @@ class HTTPConnections {
       );
       if (response.statusCode == 200) {
         print("Added to Applied jobs");
+        print (user_id);
+        print(job_id);
+        print(name);
+        print(email);
+        print(mobile);
+        print(token);
+        print(work_type);
       }
       else{
         print (user_id);
@@ -209,6 +212,43 @@ class HTTPConnections {
     }
 
   }
+
+  Future<List?> GetAppliedjobs()async{
+    SharedPreferences savedlogin = await SharedPreferences.getInstance();
+    id = savedlogin.getInt("id")!;
+    token = savedlogin.getString("token")!;
+    var response = await client.get(
+        Uri.parse("https://project2.amit-learning.com/api/apply/$id"),
+        headers: {"Authorization": "Bearer $token"}
+    );
+    Map<String, dynamic> responsebody = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      print(responsebody["data"]);
+      return responsebody["data"];
+    } else {
+      print("cannont get all posts");
+    }
+  }
+
+  Future<Map<String,dynamic>> fetchjob(int job_id) async {
+    SharedPreferences savedlogin = await SharedPreferences.getInstance();
+    id = savedlogin.getInt("id")!;
+    token = savedlogin.getString("token")!;
+  Response response =
+  await client.get(Uri.parse("https://project2.amit-learning.com/api/jobs/$job_id"),
+      headers: {"Authorization": "Bearer $token"},
+  );
+  String resposebody = response.body;
+  Map<String, dynamic> _map = jsonDecode(resposebody);
+  if (response.statusCode == 200) {
+    print("data is =====================================/////////////> ");
+    print(_map["data"]);
+    return _map["data"];
+  } else {
+    print("Cannot retrieve Job with id $id");
+    throw Exception("Cannot retrieve Job with id $id");
+  }
+}
 
 
   }

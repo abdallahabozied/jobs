@@ -104,8 +104,8 @@ class _Reset_PasswordState extends State<Reset_Password> {
                               backgroundColor: Colors.blueAccent,
                               minimumSize: const Size(600 , 50)
                           ),
-                          onPressed: formkey.currentState == null || !formkey.currentState!.validate()? null :() {
-                            //to do actionsto authenticate then ==>
+                          onPressed: formkey.currentState == null || !formkey.currentState!.validate()? null :() async{
+
                               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Check_Your_Email()));
                           },
                           child: const Text("Request password reset",style: (TextStyle(color: Colors.white)),)),

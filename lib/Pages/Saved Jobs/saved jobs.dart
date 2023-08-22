@@ -50,7 +50,9 @@ class _SavedState extends State<Saved> {
                   child: ListView.builder(itemCount:snapshot.data?.length ,itemBuilder: (context,i){
                     return Card(
                         child: ListTile(
-                          leading:Image.network("${snapshot.data?[i]["image"]}"),
+                          leading:Container(width: 50,height: 50,decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20)
+                          ),child: Image.network("${snapshot.data?[i]["image"]}")),
                           title: Text("Jobtitle ${snapshot.data?[i]["name"]}"),
                           subtitle: Text("Subtitle : ${snapshot.data?[i]["location"]}"),
                           trailing: IconButton(

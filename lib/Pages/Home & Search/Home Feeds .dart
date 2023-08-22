@@ -178,12 +178,15 @@ class _Home_ScreenState extends State<Home_Screen> {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             22)),
-                                                child: Image.network(
-                                                  "${snapshot.data?[index]["image"]}")),
+                                                child: Container(width: 50,height: 50,decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(20)
+                                                ),
+                                                  child: Image.network(
+                                                    "${snapshot.data?[index]["image"]}"),
+                                                )),
                                             title: InkWell(
                                                 onTap: () {
-
-                                                 // prov.postid = index;
+                                                  prov.postid = index;
                                                   Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
@@ -398,8 +401,12 @@ class _Home_ScreenState extends State<Home_Screen> {
                                     return Column(
                                       children: [
                                         ListTile(
-                                          leading: Image.network(snapshot
-                                              .data?[index]["image"]),
+                                          leading: Container(width: 50,height: 50,decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(20)
+                                          ),
+                                            child: Image.network(snapshot
+                                                .data?[index]["image"]),
+                                          ),
                                           // "${list3[index]["thumbnailUrl"]}"),
                                           title: InkWell(
                                             onTap: () {

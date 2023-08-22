@@ -71,7 +71,7 @@ class _Apply_JobState extends State<Apply_Job> {
                       backgroundColor: Colors.blueAccent[700],
                       minimumSize: const Size(140, 50)),
                   onPressed: islaststep? (){
-                    varHTTP.HTTPConnections().AddtoApplied(varHTTP.id, prov.appliedjobid, _usernamecontroler.text, _emailcontroler.text, _phonecontroler.text, "full");
+                    varHTTP.HTTPConnections().AddtoApplied(varHTTP.id, prov.appliedjobid, _usernamecontroler.text, _emailcontroler.text, _phonecontroler.text, currentoption.toString());
                    // prov.Addtoapplied(list3[prov.appliedjobid-1]);
                     //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Home(),));
                   } : details.onStepContinue,
