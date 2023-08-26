@@ -45,51 +45,53 @@ class _AppliedState extends State<Applied> {
                     "${snapshot.data?.length} Applied Jobs",
                     style: TextStyle(color: Colors.white),),),
                 ),
-                Container(
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width * 1,
-                  height: MediaQuery
-                      .of(context)
-                      .size
-                      .height * 0.8,
-                  child: ListView.builder(itemCount: snapshot.data?.length,
-                      itemBuilder: (context, i) {
-                        return Card(
-                            child: FutureBuilder(
-                                future: httpConnections.fetchjob(
-                                    snapshot.data?[i]["jobs_id"]),
-                                builder: (context, snapshot2){
-                                    return ListTile(
-                                      leading: Container(width: 30,
-                                          height: 30,
-                                          child: Image.network(
-                                              "${snapshot2.data?["image"]}")),
-                                      title: Text(
-                                          "Job_name : ${snapshot2.data?["name"]}"),
-                                      subtitle: Text(
-                                          "Job_type ${snapshot2.data?["job_time_type"]}"),
-                                      trailing: InkWell(
-                                          onTap: () {
-                                            httpConnections.Addtosaved(
-                                                varHTTP.id, snapshot2.data![i]["id"]);
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(
-                                                const SnackBar(
-                                                    content: Text(
-                                                        "Saved")));
-                                          },
-                                          child: const Icon(
-                                            Icons.bookmark,
-                                            color: Colors.black54,
-                                          )),
+                Scrollbar(
+                  child: SizedBox(
+                    width: MediaQuery
+                        .of(context)
+                        .size
+                        .width * 1,
+                    height: MediaQuery
+                        .of(context)
+                        .size
+                        .height * 0.8,
+                    child: ListView.builder(itemCount: snapshot.data?.length,
+                        itemBuilder: (context, i) {
+                          return Card(
+                              child: FutureBuilder(
+                                  future: httpConnections.fetchjob(
+                                      snapshot.data?[i]["jobs_id"]),
+                                  builder: (context, snapshot2){
+                                      return ListTile(
+                                        leading: Container(width: 30,
+                                            height: 30,
+                                            child: Image.network(
+                                                "${snapshot2.data?["image"]}")),
+                                        title: Text(
+                                            "Job_name : ${snapshot2.data?["name"]}"),
+                                        subtitle: Text(
+                                            "Job_type ${snapshot2.data?["job_time_type"]}"),
+                                        trailing: InkWell(
+                                            onTap: () {
+                                              httpConnections.Addtosaved(
+                                                  varHTTP.id, snapshot2.data![i]["id"]);
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                  const SnackBar(
+                                                      content: Text(
+                                                          "Saved")));
+                                            },
+                                            child: const Icon(
+                                              Icons.bookmark,
+                                              color: Colors.black54,
+                                            )),
 
-                                    );
-                                }
-                            )
-                        );
-                      }),
+                                      );
+                                  }
+                              )
+                          );
+                        }),
+                  ),
                 ),
               ],
             );

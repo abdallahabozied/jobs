@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as varHTTP;
 import 'package:http/http.dart';
 import 'package:jobsque/Model/Job.dart';
@@ -7,7 +9,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 List<Map<String,dynamic>> list = []; //jobs
 List list2 = []; //photos
-List list3=[];
+List listofsavedjobs=[];
+List listofappliedjobs =[];
 List list4=[];
 late int id ;
 late String name="";
@@ -82,7 +85,7 @@ class HTTPConnections {
     Map<String, dynamic> _user = jsonDecode(body);
     if (response.statusCode == 200) {
       Profile _profile = Profile.fromJson(_user["data"]);
-      print("======================================================");
+      print("====================================================== "+"${token}");
       //  name= _profile.name;
       //  email = _profile.email;
       //  SharedPreferences savedlogin = await SharedPreferences.getInstance();
@@ -124,6 +127,7 @@ class HTTPConnections {
            },headers: {"Authorization":"Bearer $token"}
        );
        if (response.statusCode == 200) {
+
          print("Added to saved posts");
        }
      }
@@ -144,7 +148,8 @@ class HTTPConnections {
     );
     Map<String, dynamic> responsebody = jsonDecode(response.body);
     if (response.statusCode == 200) {
-      return responsebody["data"];
+      listofsavedjobs= responsebody["data"];
+      return listofsavedjobs;
     } else {
       print("cannont get all posts");
     }
@@ -153,16 +158,14 @@ class HTTPConnections {
   void deleteSavedJob(int jobid) async {
       try{
         Response response =
-        await client.delete(Uri.parse("https://project2.amit-learning.com/api/favorites"),
-            body: {
-              "id": jobid.toString(),
-
-            },
+        await client.delete(Uri.parse("https://project2.amit-learning.com/api/favorites/${jobid.toString()}"),
             headers: {"Authorization":"Bearer $token"});
         if (response.statusCode == 200) {
           print("deleted from saved");
         }else{
-          throw Exception();
+
+          print("response code error is "+ "${response.statusCode}");
+          print("cannot delete from saved ");
         }
       }catch(e){
         print(e.toString());
@@ -223,8 +226,9 @@ class HTTPConnections {
     );
     Map<String, dynamic> responsebody = jsonDecode(response.body);
     if (response.statusCode == 200) {
+      listofappliedjobs = responsebody["data"];
       print(responsebody["data"]);
-      return responsebody["data"];
+      return listofappliedjobs;
     } else {
       print("cannont get all posts");
     }
@@ -241,8 +245,6 @@ class HTTPConnections {
   String resposebody = response.body;
   Map<String, dynamic> _map = jsonDecode(resposebody);
   if (response.statusCode == 200) {
-    print("data is =====================================/////////////> ");
-    print(_map["data"]);
     return _map["data"];
   } else {
     print("Cannot retrieve Job with id $id");
@@ -250,6 +252,89 @@ class HTTPConnections {
   }
 }
 
+
+
+  Future<bool> EditProfile(String bio , String address , String mobile ) async {
+    SharedPreferences savedlogin = await SharedPreferences.getInstance();
+    id = savedlogin.getInt("id")!;
+    token = savedlogin.getString("token")!;
+    Response response =
+    await client.put(Uri.parse("https://project2.amit-learning.com/api/user/profile/edit/$id"),
+      body: {
+      "bio": bio.toString(),
+      "address": address.toString(),
+      "mobile": mobile.toString()
+      },
+      headers: {"Authorization": "Bearer $token"},
+    );
+    String resposebody = response.body;
+    // Map<String, dynamic> _map = jsonDecode(resposebody);
+    if (response.statusCode == 200) {
+      print("user data edited");
+      print(resposebody);
+      return true;
+    } else {
+      print("Cannot edit data for this user");
+      return false;
+    }
+
+  }
+  void AddPortofolio(File cv_file) async {
+    SharedPreferences savedlogin = await SharedPreferences.getInstance();
+    id = savedlogin.getInt("id")!;
+    savedlogin.setString("image", cv_file.path);
+    token = savedlogin.getString("token")!;
+    try{
+
+      Response response = await post(
+          Uri.parse("https://project2.amit-learning.com/api/user/profile/portofolios/$id"),
+          body: {
+            "cv_file": cv_file.path,
+            "name": "cv",
+            "image": "File path:[com.mr.flutter.plugin.filepicker.FileInfo@113c58a]",
+          }
+          ,headers: {"Authorization":"Bearer $token"}
+      );
+
+      if (response.statusCode == 200) {
+        print("Added to Portofolios");
+      }
+      else{
+        // print(id);
+        // print(token);
+        print(savedlogin.getString("image"));
+        // print(token.toString());
+        print("Not Added to Portofolios");
+      }
+    }
+    catch(e){
+      print("the error is ============");
+      print(e.toString());
+    }
+
+  }
+
+  Future<void> uploadFile(File file) async {
+    SharedPreferences savedlogin = await SharedPreferences.getInstance();
+    id = savedlogin.getInt("id")!;
+
+   var uri = Uri.parse('https://project2.amit-learning.com/api/user/profile/portofolios/$id');
+    token = savedlogin.getString("token")!;
+
+    var request = MultipartRequest('POST',uri);
+    request.files.add(await MultipartFile.fromPath('cv_file', file.absolute.path));
+   // request.fields["cv_file"]= cv_file;
+    request.fields["image"]= "/data/user/0/com.example.jobsque/cache/file_picker/FB_IMG_1691616401697.jpg";
+    request.fields["name"]= "abdallah";
+    var response = await request.send();
+    if (response.statusCode == 200) {
+      print('File uploaded successfully');
+    } else {
+     // print(image);
+      print(name);
+      print('Error uploading file');
+    }
+  }
 
   }
 

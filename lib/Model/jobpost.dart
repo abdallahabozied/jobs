@@ -12,7 +12,8 @@ class Jobs extends ChangeNotifier {
   int appliedjobcount =0;
   List<Profile> profiles=[];
   List<Job> jobs = [];
-  List<Job> appliedjobs = [];
+  List savedjobs=[];
+  List appliedjobs = [];
   bool? isloggedin=false;
   get Count => count;
 
@@ -26,12 +27,23 @@ class Jobs extends ChangeNotifier {
     profiles.add(_profile);
     notifyListeners();
   }
+
   Addtosaved(Map<String,dynamic> _map) {
      Job job =Job.fromJson(_map);
-    count++;
-    jobs.add(job);
+    savedjobs.add(job);
     notifyListeners();
   }
+
+  Removefromsaved(Map<String,dynamic> _map) {
+    count--;
+    savedjobs.remove(_map);
+    notifyListeners();
+  }
+
+
+
+
+
   Addtoapplied(Map<String,dynamic> _map) {
     Job job =Job.fromJson(_map);
     appliedjobcount++;
@@ -43,9 +55,5 @@ class Jobs extends ChangeNotifier {
     appliedjobs.remove(job);
     notifyListeners();
   }
-  Removefromsaved(Job job) {
-    count--;
-    jobs.remove(job);
-    notifyListeners();
-  }
+
 }
