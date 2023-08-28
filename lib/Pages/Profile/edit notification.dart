@@ -22,7 +22,7 @@ class _notification_propertiesState extends State<notification_properties> {
         centerTitle: true,
         elevation: 0,
         scrolledUnderElevation: 0,
-        title: Text("Notification",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold)),
+        title: Text("Notification",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
       ),
       body: SingleChildScrollView(
         child: Column(

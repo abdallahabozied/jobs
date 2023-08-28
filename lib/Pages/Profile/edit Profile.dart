@@ -181,35 +181,6 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                         autovalidateMode: AutovalidateMode.onUserInteraction,
 
                     ),
-                    // TextFormField(
-                    //     controller: _phonecontroler,
-                    //     decoration: const InputDecoration(
-                    //         errorStyle: TextStyle(color: Colors.red),
-                    //         hintText: "  No.Handphone",
-                    //         alignLabelWithHint: true,
-                    //         border: OutlineInputBorder(
-                    //             borderRadius: BorderRadius.all(Radius.circular(10)),
-                    //             borderSide: BorderSide(color: Colors.blue)),
-                    //         enabledBorder: OutlineInputBorder(
-                    //           borderRadius: BorderRadius.all(Radius.circular(10)),
-                    //           borderSide: BorderSide(color: Colors.blue),
-                    //         ),
-                    //         focusedBorder: OutlineInputBorder(
-                    //           borderRadius: BorderRadius.all(Radius.circular(10)),
-                    //           borderSide: BorderSide(color: Colors.blue),
-                    //         )
-                    //     ),
-                    //     cursorColor: Colors.black,
-                    //     maxLines: 1,
-                    //     keyboardType: TextInputType.phone,
-                    //     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    //     validator: (value) {
-                    //       if(11> value!.length || value.length <11  ){
-                    //         return  "Enter valid phone";
-                    //       }
-                    //       return null;
-                    //     }
-                    // ),
                     const SizedBox(height: 20),
                     Container(
                       padding: const EdgeInsets.only(left: 80,top: 30),

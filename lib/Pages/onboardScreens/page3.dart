@@ -19,7 +19,7 @@ class page3 extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 1.0,
               decoration:  BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                image:DecorationImage(image:AssetImage('Assets/images/1.jpg'),fit:BoxFit.cover ),
+                image:DecorationImage(image:AssetImage('Assets/images/3.jpg'),fit:BoxFit.cover ),
                 gradient: LinearGradient(
                   colors: [Colors.white12, Colors.transparent],
                   begin: Alignment.topLeft,

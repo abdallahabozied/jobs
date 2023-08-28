@@ -19,7 +19,7 @@ class _email_editState extends State<email_edit> {
           elevation: 0,
           scrolledUnderElevation: 0,
           title: Text("Email Address",
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         ),
         body: Padding(
           padding: EdgeInsets.all(15),

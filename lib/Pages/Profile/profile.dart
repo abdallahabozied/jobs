@@ -40,6 +40,7 @@ class _profileState extends State<profile> {
                   onPressed: () async {
                     var savedlogindata = await SharedPreferences.getInstance();
                     savedlogindata.setBool('login', false);
+                    savedlogindata.clear();
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(

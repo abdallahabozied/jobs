@@ -1,8 +1,47 @@
 import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../Network/HTTP.dart' as varHTTP;
 import 'package:path_provider/path_provider.dart';
 import 'package:jobsque/Pages/Home%20&%20Search/recent%20job.dart';
+
+Future uploadPdf() async {
+  SharedPreferences savedlogin = await SharedPreferences.getInstance();
+  int id = savedlogin.getInt("id")!;
+  String token = savedlogin.getString("token")!;
+  var dio = Dio();
+  FilePickerResult? result = await FilePicker.platform.pickFiles();
+  if (result != null) {
+    File file = File(result.files.single.path ?? " ");
+    String filename = file.path.split('/').last;
+    String path = file.path;
+
+    FormData formdata = FormData.fromMap({
+      "token": token,
+      "image": await MultipartFile.fromFile(path),
+      "profile_id": id,
+//      "cv_file": await MultipartFile.fromFile(path, filename: filename),
+      "name": "1.jpg",
+    });
+    Response response = await dio.post(
+      "https://project2.amit-learning.com/api/user/profile/portofolios/$id",
+      options: Options(
+          followRedirects: false,
+          validateStatus: (status) {
+            return status! < 500;
+          }
+          ),
+        data: formdata
+    );
+    if (response.statusCode == 200) {
+      print("uploaded successfully");
+    }else{
+      print(response.toString());
+    }
+  }
+}
 
 class Portofolio_Upload extends StatefulWidget {
   const Portofolio_Upload({super.key});
@@ -19,7 +58,8 @@ class _Portofolio_UploadState extends State<Portofolio_Upload> {
         centerTitle: true,
         elevation: 0,
         scrolledUnderElevation: 0,
-        title: Text("Portofolio",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold)),
+        title: Text("Portofolio",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -28,7 +68,10 @@ class _Portofolio_UploadState extends State<Portofolio_Upload> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Add portofolio here",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+              Text(
+                "Add portofolio here",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
               SizedBox(height: 10),
               Container(
                 width: MediaQuery.of(context).size.width * 1,
@@ -46,7 +89,8 @@ class _Portofolio_UploadState extends State<Portofolio_Upload> {
                       width: 60,
                       height: 60,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),color: Colors.blueAccent.shade200.withOpacity(0.2)),
+                          borderRadius: BorderRadius.circular(100),
+                          color: Colors.blueAccent.shade200.withOpacity(0.2)),
                       child: Icon(Icons.file_open_outlined),
                     ),
                     const SizedBox(height: 10),
@@ -56,23 +100,22 @@ class _Portofolio_UploadState extends State<Portofolio_Upload> {
                     const SizedBox(height: 10),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blueAccent.shade200.withOpacity(0.6),
-                           maximumSize: const Size(300 , 50)
-                        ),
-
-                        onPressed: () async {
-                          FilePickerResult? result = await FilePicker.platform.pickFiles();
-                          if (result != null) {
-                            File file = File(result.files.single.path!);
-                            httpConnections.AddPortofolio(file);
-                            //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("portfolio is added")));
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("cannot add portfolio ")));
-                            // User canceled the picker
-                          }
-
+                            backgroundColor:
+                                Colors.blueAccent.shade200.withOpacity(0.6),
+                            maximumSize: const Size(300, 50)),
+                        // onPressed: () async {
+                        //     httpConnections.AddPortofolio();
+                        //     //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("portfolio is added")));
+                        //   } else {
+                        //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        //         content: Text("cannot add portfolio ")));
+                        //     // User canceled the picker
+                        //   }
+                        // },
+                        onPressed: () {
+                          uploadPdf();
                         },
-                        child:  Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
@@ -105,29 +148,33 @@ class _Portofolio_UploadState extends State<Portofolio_Upload> {
                               borderRadius: BorderRadius.circular(20)),
                           child: ListTile(
                             contentPadding:
-                            EdgeInsets.symmetric(horizontal: 20),
+                                EdgeInsets.symmetric(horizontal: 20),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
                             title: Text(
                               "jobs[index]",
                               style:
-                              const TextStyle(fontWeight: FontWeight.w500),
+                                  const TextStyle(fontWeight: FontWeight.w500),
                             ),
                             subtitle: Text(
                               "CV.pdf  . portofolio.pdf",
                               style: TextStyle(color: Colors.grey[600]),
                             ),
-                            trailing:SizedBox(
+                            trailing: SizedBox(
                               width: 80,
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                Icon(Icons.mode_edit_outline_rounded,color: Colors.blueAccent[600]),
-                                RotationTransition(
-                                    turns: AlwaysStoppedAnimation(45/360),
-                                    child: Icon(Icons.add_circle_outline,color: Colors.red))
-                              ],),
+                                  Icon(Icons.mode_edit_outline_rounded,
+                                      color: Colors.blueAccent[600]),
+                                  RotationTransition(
+                                      turns: AlwaysStoppedAnimation(45 / 360),
+                                      child: Icon(Icons.add_circle_outline,
+                                          color: Colors.red))
+                                ],
+                              ),
                             ),
                           ),
                         ),

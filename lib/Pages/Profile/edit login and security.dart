@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:jobsque/Pages/Profile/Change%20Password.dart';
 import 'package:jobsque/Pages/Profile/email%20address%20edit.dart';
+import 'package:jobsque/Pages/Profile/phone%20number.dart';
 import '../../Network/HTTP.dart' as varHTTP;
 
 class account_access extends StatefulWidget {
@@ -17,7 +19,7 @@ class _account_accessState extends State<account_access> {
         centerTitle: true,
         elevation: 0,
         scrolledUnderElevation: 0,
-        title: Text("Login and Security",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold)),
+        title: Text("Login and Security",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -55,7 +57,7 @@ class _account_accessState extends State<account_access> {
           Divider(color:Colors.grey.shade200,indent: 20,endIndent: 20,),
           InkWell(
             onTap: (){
-              // Navigator.push(context, MaterialPageRoute(builder: (context) => notification_properties()));
+               Navigator.push(context, MaterialPageRoute(builder: (context) => Edit_Phone_Number()));
             },
             child: ListTile(
               title: Text("Phone Number"),
@@ -65,7 +67,7 @@ class _account_accessState extends State<account_access> {
           Divider(color:Colors.grey.shade200,indent: 20,endIndent: 20,),
           InkWell(
             onTap: (){
-              // Navigator.push(context, MaterialPageRoute(builder: (context) => notification_properties()));
+               Navigator.push(context, MaterialPageRoute(builder: (context) => Change_Password()));
             },
             child: ListTile(
               title: Text("Change Password"),

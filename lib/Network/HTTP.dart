@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter/services.dart';
+// import 'package:file_picker/file_picker.dart';
+// import 'package:flutter/services.dart';
 import 'package:http/http.dart' as varHTTP;
 import 'package:http/http.dart';
-import 'package:jobsque/Model/Job.dart';
+//import 'package:jobsque/Model/Job.dart';
 import 'package:jobsque/Model/profileModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -16,6 +17,7 @@ late int id ;
 late String name="";
 late String token="";
 late String email="";
+late String password="";
 
 class HTTPConnections {
   String baseurl = "https://jsonplaceholder.typicode.com/";
@@ -279,21 +281,18 @@ class HTTPConnections {
     }
 
   }
-  void AddPortofolio(File cv_file) async {
+  void AddPortofolio() async {
     SharedPreferences savedlogin = await SharedPreferences.getInstance();
     id = savedlogin.getInt("id")!;
-    savedlogin.setString("image", cv_file.path);
     token = savedlogin.getString("token")!;
-    try{
-
+      try{
       Response response = await post(
           Uri.parse("https://project2.amit-learning.com/api/user/profile/portofolios/$id"),
           body: {
-            "cv_file": cv_file.path,
+            "cv_file":"",
             "name": "cv",
-            "image": "File path:[com.mr.flutter.plugin.filepicker.FileInfo@113c58a]",
           }
-          ,headers: {"Authorization":"Bearer $token"}
+          ,headers: {"Authorization":"Bearer $token"},
       );
 
       if (response.statusCode == 200) {
@@ -333,6 +332,24 @@ class HTTPConnections {
      // print(image);
       print(name);
       print('Error uploading file');
+    }
+  }
+
+  Future<bool> updatePassword(String password) async {
+    SharedPreferences savedlogin = await SharedPreferences.getInstance();
+    id = savedlogin.getInt("id")!;
+    token = savedlogin.getString("token")!;
+    Map mybody = {'password': password};
+    Response response = await client.put(
+        Uri.parse("https://project2.amit-learning.com/api/auth/user/update/$id"),
+        body: jsonEncode(mybody),
+        headers: {"Authorization":"Bearer $token"});
+    if (response.statusCode == 200) {
+     print("password for user $id  is updated ");
+     return true;
+    } else {
+      throw Exception("failed to update");
+
     }
   }
 
