@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jobsque/Pages/Home%20&%20Search/recent%20job.dart';
+import 'package:jobsque/Pages/Profile/Help%20Center/Help%20Center.dart';
 import 'package:jobsque/Pages/Profile/edit%20Profile.dart';
 import 'package:jobsque/Pages/Profile/edit%20login%20and%20security.dart';
 import 'package:jobsque/Pages/Profile/edit%20notification.dart';
@@ -27,6 +28,7 @@ class _profileState extends State<profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       body: NestedScrollView(
         headerSliverBuilder: (context,scrolled)=>[
           SliverAppBar(
@@ -275,10 +277,15 @@ class _profileState extends State<profile> {
                       ),
                       Divider(color:Colors.grey.shade200,indent: 20,endIndent: 20,),
                       SizedBox(height: 5),
-                      ListTile(
+                      InkWell(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => Help_Center()));
+                        },
+                        child: ListTile(
 
-                        title: Text("Help Center"),
-                        trailing: Icon(Icons.arrow_forward_rounded),
+                          title: Text("Help Center"),
+                          trailing: Icon(Icons.arrow_forward_rounded),
+                        ),
                       ),
                       Divider(color:Colors.grey.shade200,indent: 20,endIndent: 20,),
                       SizedBox(height: 5),

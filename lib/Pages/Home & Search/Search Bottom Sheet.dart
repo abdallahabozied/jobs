@@ -23,7 +23,7 @@ class _Search_Bottom_SheetState extends State<Search_Bottom_Sheet> {
 
   final _items = _job_types.map((_job_types) => MultiSelectItem<Job_Type>(_job_types!, _job_types.name!))
       .toList();
-  List<Animal?> _selected_jobs = [];
+  List<Intested_joblocation?> _selected_jobs = [];
 
   @override
   Widget build(BuildContext context) {

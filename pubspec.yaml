@@ -10,7 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
   cupertino_icons: ^1.0.2
   provider: ^6.0.5
   firebase_core: ^2.14.0
@@ -36,12 +35,17 @@ dev_dependencies:
   json_serializable:
   flutter_test:
     sdk: flutter
-
+ # flutter_launcher_icons: ^0.13.1
   flutter_lints: ^2.0.0
 
+#flutter_launcher_icons:
+#   android:true
+#   ios:true
+#   image_path:"Assets/images/jobsque.png"
+#   min_sdk_android:16
+#  image_path_android:"Assets/images/icon.png"
+
 flutter:
-
-
   uses-material-design: true
 
   assets:

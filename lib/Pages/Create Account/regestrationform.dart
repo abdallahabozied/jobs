@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jobsque/Network/HTTP.dart';
+import 'package:jobsque/Pages/Create%20Account/intersted%20work.dart';
 import 'package:jobsque/Pages/Home%20&%20Search/Home_Home.dart';
 import 'package:jobsque/Pages/Sign%20In/Sign%20In.dart';
 import 'package:jobsque/Shared functions.dart';
@@ -158,7 +159,7 @@ class _regestration_formState extends State<Regestration_Form> {
                       children: [
                             const Text("Already have an account?",style: TextStyle(color: Colors.black54)),
                             InkWell(onTap: (){
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Sign_In(),));
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Sign_In()));
                             },child: const Text(" Login",style: TextStyle(color: Colors.blue))),
 
                       ],
@@ -171,8 +172,9 @@ class _regestration_formState extends State<Regestration_Form> {
                         backgroundColor: Colors.blueAccent,
                         minimumSize: const Size(600 , 50)
                       ),onPressed: (){
-                        HTTPConnections().signup(_usernamecontroler.text.toString(),_emailcontroler.text.toString(),_passwordcontroler.text.toString());
-                    },
+                       HTTPConnections().signup(_usernamecontroler.text.toString(),_emailcontroler.text.toString(),_passwordcontroler.text.toString());
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Intersted_Work()));
+                       },
                         // onPressed: formkey.currentState == null || !formkey.currentState!.validate()? null :() async {
                         //   try {
                         //     await FirebaseAuth.instance
@@ -236,7 +238,8 @@ class _regestration_formState extends State<Regestration_Form> {
                     shape: const RoundedRectangleBorder()
                   ,onPressed: ()async{
                     await signInWithGoogle();
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext) =>const Home()));
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Email registered Successfully , Now you can Sign in")));
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext) =>const Sign_In()));
                   }, child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -256,7 +259,11 @@ class _regestration_formState extends State<Regestration_Form> {
 
                       shape: const RoundedRectangleBorder()
 
-                      ,onPressed: (){}, child: const Row(
+                      ,onPressed: (){
+
+
+
+                  }, child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(Icons.facebook_rounded,color: Colors.blue,),

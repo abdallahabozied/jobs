@@ -21,7 +21,7 @@ class Check_Your_Email extends StatelessWidget {
               height: MediaQuery.of(context).size.height*0.27,
               child: CircleAvatar(
 
-                backgroundImage: AssetImage("Assets/images/1.jpg"),
+                backgroundImage: AssetImage("Assets/images/check_mail.png"),
               ),
             ),
             SizedBox(

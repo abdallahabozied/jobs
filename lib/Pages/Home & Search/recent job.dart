@@ -50,7 +50,17 @@ class _Recent_Jobs_AllState extends State<Recent_Jobs_All> {
                                     return Column(
                                       children: [
                                         ListTile(
-                                          leading: Image.network(
+                                          leading: Image.network(errorBuilder:
+                                              (context, error, stackTrace) {
+                                            return Container(
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                    BorderRadius.circular(50)),
+                                                child: Image.asset(
+                                                  "Assets/images/No_image.png",
+                                                  fit: BoxFit.fill,
+                                                ));
+                                          },
                                               "${snapshot.data![index]["image"]}"),
                                           title: Text(
                                               "${snapshot.data![index]["name"]}",
@@ -171,14 +181,17 @@ class _Recent_Jobs_AllState extends State<Recent_Jobs_All> {
                               ),
                             ],
                           )))
-                  : Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CircularProgressIndicator(),
-                        Text("Recent jobs is loading")
-                      ],
-                    );
+                  : Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image(image: AssetImage("Assets/images/no_saved_yet.png")),
+                    Text("There is no applied job yet",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),),
+                    Text("Apply to any Job vacancy to see it here.")
+                  ],
+                ),
+              );
             }));
   }
 }

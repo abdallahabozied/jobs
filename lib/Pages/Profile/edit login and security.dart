@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jobsque/Pages/Profile/Change%20Password.dart';
 import 'package:jobsque/Pages/Profile/email%20address%20edit.dart';
 import 'package:jobsque/Pages/Profile/phone%20number.dart';
+import 'package:jobsque/Pages/Profile/Two%20step%20vertfication/two%20step%20properties.dart';
 import '../../Network/HTTP.dart' as varHTTP;
 
 class account_access extends StatefulWidget {
@@ -42,12 +43,13 @@ class _account_accessState extends State<account_access> {
             child: ListTile(
               title: Text("Email Address"),
               trailing: SizedBox(
-                width: 150,
+                width: 200,
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(varHTTP.email,style: TextStyle(color: Colors.black38,fontSize: 15),),
+
+                    Text(varHTTP.email,style: TextStyle(color: Colors.black38,fontSize: 10),),
                     Icon(Icons.arrow_forward_rounded),
                   ],
                 ),
@@ -77,7 +79,7 @@ class _account_accessState extends State<account_access> {
           Divider(color:Colors.grey.shade200,indent: 20,endIndent: 20,),
           InkWell(
             onTap: (){
-              // Navigator.push(context, MaterialPageRoute(builder: (context) => notification_properties()));
+               Navigator.push(context, MaterialPageRoute(builder: (context) => Two_Step_Properties()));
             },
             child: ListTile(
               title: Text("Two Step verification"),

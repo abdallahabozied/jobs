@@ -20,6 +20,7 @@ class _AppliedState extends State<Applied> {
     super.initState();
     httpConnections.GetAppliedjobs();
   }
+
   @override
   Widget build(BuildContext context) {
     var prov = Provider.of<Jobs>(context, listen: true);
@@ -28,83 +29,89 @@ class _AppliedState extends State<Applied> {
         centerTitle: true,
         title: Text("Applied"),
       ),
-
       body: FutureBuilder(
         future: httpConnections.GetAppliedjobs(),
-        builder: (context,snapshot){
-          if(snapshot.hasData) {
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(height: 20,
+                Container(
+                  height: 20,
                   decoration: BoxDecoration(
                     color: Colors.grey,
                   ),
-                  child: Center(child: Text(
-                    "${snapshot.data?.length} Applied Jobs",
-                    style: TextStyle(color: Colors.white),),),
+                  child: Center(
+                    child: Text(
+                      "${snapshot.data?.length} Applied Jobs",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                 ),
                 Scrollbar(
                   child: SizedBox(
-                    width: MediaQuery
-                        .of(context)
-                        .size
-                        .width * 1,
-                    height: MediaQuery
-                        .of(context)
-                        .size
-                        .height * 0.8,
-                    child: ListView.builder(itemCount: snapshot.data?.length,
+                    width: MediaQuery.of(context).size.width * 1,
+                    height: MediaQuery.of(context).size.height * 0.8,
+                    child: ListView.builder(
+                        itemCount: snapshot.data?.length,
                         itemBuilder: (context, i) {
                           return Card(
                               child: FutureBuilder(
-                                  future: httpConnections.fetchjob(
-                                      snapshot.data?[i]["jobs_id"]),
-                                  builder: (context, snapshot2){
-                                      return ListTile(
-                                        leading: Container(width: 30,
-                                            height: 30,
-                                            child: Image.network(
-                                                "${snapshot2.data?["image"]}")),
-                                        title: Text(
-                                            "Job_name : ${snapshot2.data?["name"]}"),
-                                        subtitle: Text(
-                                            "Job_type ${snapshot2.data?["job_time_type"]}"),
-                                        trailing: InkWell(
-                                            onTap: () {
-                                              httpConnections.Addtosaved(
-                                                  varHTTP.id, snapshot2.data![i]["id"]);
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(
-                                                  const SnackBar(
-                                                      content: Text(
-                                                          "Saved")));
-                                            },
-                                            child: const Icon(
-                                              Icons.bookmark,
-                                              color: Colors.black54,
-                                            )),
-
-                                      );
-                                  }
-                              )
-                          );
+                                  future: httpConnections
+                                      .fetchjob(snapshot.data?[i]["jobs_id"]),
+                                  builder: (context, snapshot2) {
+                                    return ListTile(
+                                      leading: Container(
+                                          width: 30,
+                                          height: 30,
+                                          child: Image.network(errorBuilder:
+                                              (context, error, stackTrace) {
+                                            return Container(
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            50)),
+                                                child: Image.asset(
+                                                  "Assets/images/No_image.png",
+                                                  fit: BoxFit.fill,
+                                                ));
+                                          }, "${snapshot2.data?["image"]}")),
+                                      title: Text(
+                                          "Job_name : ${snapshot2.data?["name"]}"),
+                                      subtitle: Text(
+                                          "Job_type ${snapshot2.data?["job_time_type"]}"),
+                                      trailing: InkWell(
+                                          onTap: () {
+                                            httpConnections.Addtosaved(
+                                                varHTTP.id,
+                                                snapshot2.data![i]["id"]);
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(const SnackBar(
+                                                    content: Text("Saved")));
+                                          },
+                                          child: const Icon(
+                                            Icons.bookmark,
+                                            color: Colors.black54,
+                                          )),
+                                    );
+                                  }));
                         }),
                   ),
                 ),
               ],
             );
-          }else return Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircularProgressIndicator(),
-                Text("Applied jobs is loading")
-              ],
-            ),
-          );
+          } else
+            return Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircularProgressIndicator(),
+                  Text("Applied jobs is loading")
+                ],
+              ),
+            );
         },
       ),
     );

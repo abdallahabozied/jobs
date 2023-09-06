@@ -22,11 +22,11 @@ class Home_Screen extends StatefulWidget {
 class _Home_ScreenState extends State<Home_Screen> {
   @override
   void initState() {
-    //httpConnections.GetAllPostswithphotos();
+
     httpConnections.fetchuser();
     varHTTP.HTTPConnections().GetAllPostswithphotos();
     varHTTP.HTTPConnections().Getsavedjobs();
-    varHTTP.HTTPConnections().GetAppliedjobs();
+  // varHTTP.HTTPConnections().GetAppliedjobs();
     super.initState();
   }
 
@@ -191,8 +191,7 @@ class _Home_ScreenState extends State<Home_Screen> {
                                   trailing: InkWell(
                                       onTap: () {
                                         varHTTP.HTTPConnections().Addtosaved(
-                                            varHTTP.id,
-                                            snapshot.data?[index]["id"]);
+                                            varHTTP.id, snapshot.data?[index]["id"]);
                                         context
                                             .read<Jobs>()
                                             .Addtosaved(snapshot.data?[index]);

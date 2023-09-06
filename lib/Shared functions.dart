@@ -29,11 +29,11 @@ extension EmailValidator on String {
   }
 }
 
-class Animal {
+class Intested_joblocation {
   final int? id;
   final String? name;
 
-  Animal({
+  Intested_joblocation({
     this.id,
     this.name,
   });

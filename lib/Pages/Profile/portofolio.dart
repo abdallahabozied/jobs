@@ -9,7 +9,7 @@ import 'package:jobsque/Pages/Home%20&%20Search/recent%20job.dart';
 
 Future uploadPdf() async {
   SharedPreferences savedlogin = await SharedPreferences.getInstance();
-  int id = savedlogin.getInt("id")!;
+  // int id = savedlogin.getInt("id")!;
   String token = savedlogin.getString("token")!;
   var dio = Dio();
   FilePickerResult? result = await FilePicker.platform.pickFiles();
@@ -19,25 +19,24 @@ Future uploadPdf() async {
     String path = file.path;
 
     FormData formdata = FormData.fromMap({
-      "token": token,
-      "image": await MultipartFile.fromFile(path),
-      "profile_id": id,
-//      "cv_file": await MultipartFile.fromFile(path, filename: filename),
-      "name": "1.jpg",
+
+     "image": await MultipartFile.fromFile(path),
+      // "cv_file": await MultipartFile.fromFile(path, filename: filename),
+
     });
     Response response = await dio.post(
-      "https://project2.amit-learning.com/api/user/profile/portofolios/$id",
-      options: Options(
-          followRedirects: false,
-          validateStatus: (status) {
-            return status! < 500;
-          }
-          ),
-        data: formdata
-    );
+        "https://project2.amit-learning.com/api/user/profile/portofolios",
+        options: Options(
+            headers: {"token":"Brear $token"},
+            followRedirects: false,
+            validateStatus: (status) {
+              return status! < 500;
+            }),
+        data: formdata);
     if (response.statusCode == 200) {
       print("uploaded successfully");
-    }else{
+    } else {
+
       print(response.toString());
     }
   }
@@ -112,8 +111,8 @@ class _Portofolio_UploadState extends State<Portofolio_Upload> {
                         //     // User canceled the picker
                         //   }
                         // },
-                        onPressed: () {
-                          uploadPdf();
+                        onPressed: () async {
+                          await uploadPdf();
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,

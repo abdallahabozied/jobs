@@ -1,7 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jobsque/Model/jobpost.dart';
 import 'package:jobsque/Model/profileModel.dart';
-import 'package:jobsque/Network/HTTP.dart';
+import 'package:jobsque/Network/HTTP.dart' as varHttp;
 import 'package:jobsque/Pages/Create%20Account/regestrationform.dart';
 import 'package:jobsque/Pages/Home%20&%20Search/Home_Home.dart';
 import 'package:jobsque/Pages/Reset%20Password/Reset%20Password.dart';
@@ -207,7 +208,7 @@ class _Sign_InState extends State<Sign_In> {
                                   !formkey.currentState!.validate()
                               ? null
                               : () async {
-                                  if (await HTTPConnections().login(
+                                  if (await varHttp.HTTPConnections().login(
                                           _emailcontroler.text.toString(),
                                           _passwordcontroler.text.toString()) ==
                                       true) {
@@ -285,7 +286,12 @@ class _Sign_InState extends State<Sign_In> {
                     height: 50,
                     child: MaterialButton(
                         shape: RoundedRectangleBorder(),
-                        onPressed: () {},
+                        onPressed: () async{
+                          await signInWithGoogle();
+                          varHttp.name=FirebaseAuth.instance.currentUser!.displayName!;
+                          varHttp.email=FirebaseAuth.instance.currentUser!.email!;
+                          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext) =>const Home()));
+                        },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

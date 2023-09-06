@@ -73,7 +73,7 @@ class _Apply_JobState extends State<Apply_Job> {
                   onPressed: islaststep? (){
                     varHTTP.HTTPConnections().AddtoApplied(varHTTP.id, prov.appliedjobid, _usernamecontroler.text, _emailcontroler.text, _phonecontroler.text, currentoption.toString());
                    // prov.Addtoapplied(list3[prov.appliedjobid-1]);
-                    //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Home(),));
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Home(),));
                   } : details.onStepContinue,
                   child: Text(
                     islaststep ? "Submit" : "Next",

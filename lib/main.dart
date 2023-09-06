@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:jobsque/Model/jobpost.dart';
+import 'package:jobsque/Pages/Home%20&%20Search/Home_Home.dart';
 import 'package:jobsque/Pages/Profile/profile.dart';
 import 'package:provider/provider.dart';
 
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.light(primary: Colors.blue.shade700),
           useMaterial3: true,
         ),
-        home:  const Splash(),));
+        home:  const Splash()));
 
   }
 }

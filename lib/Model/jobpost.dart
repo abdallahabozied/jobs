@@ -31,6 +31,7 @@ class Jobs extends ChangeNotifier {
   Addtosaved(Map<String,dynamic> _map) {
      Job job =Job.fromJson(_map);
     savedjobs.add(job);
+    count++;
     notifyListeners();
   }
 

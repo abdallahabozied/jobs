@@ -36,6 +36,8 @@ class _HomeState extends State<Home> {
               myindex = index;
             });
           },
+          elevation: 0,
+          backgroundColor: Colors.transparent.withOpacity(0.5),
           type: BottomNavigationBarType.shifting,
           currentIndex: myindex,
           selectedItemColor: Colors.blue[700],
