@@ -118,7 +118,7 @@ class _Reset_PasswordState extends State<Reset_Password> {
                                   !formkey.currentState!.validate()
                               ? null
                               : () async {
-                                  if (httpConnections.getotp(_emailcontroler.text) != true) {
+                                  if (await httpConnections.getotp(_emailcontroler.text) == true) {
                                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("we sent the OTP to your email")));
                                     Navigator.pushReplacement(
                                         context,

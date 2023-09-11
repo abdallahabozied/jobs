@@ -155,7 +155,7 @@ class _Job_DetailState extends State<Job_Detail> with TickerProviderStateMixin {
                                       style:
                                       TextStyle(fontSize: 30, color: Colors.black)),
                                   TextSpan(
-                                      text:("${snapshot.data?["id"]} \n \n "),
+                                      text:("${snapshot.data?["job_description"]}."),
                                       style: const TextStyle(color: Colors.black)),
                                   TextSpan(
                                       text:
@@ -167,20 +167,9 @@ class _Job_DetailState extends State<Job_Detail> with TickerProviderStateMixin {
                                       TextStyle(fontSize: 30, color: Colors.black)),
                                   TextSpan(
                                       text:
-                                      ("${snapshot.data?["id"]} \n"),
+                                      ("${snapshot.data?["job_skill"]} \n"),
                                       style: const TextStyle(color: Colors.black)),
-                                  TextSpan(
-                                      text:
-                                      ("${snapshot.data?["id"]+1} \n"),
-                                      style: const TextStyle(color: Colors.black)),
-                                  TextSpan(
-                                      text:
-                                      ("${snapshot.data?["id"]+2} \n"),
-                                      style: const TextStyle(color: Colors.black)),
-                                  TextSpan(
-                                      text:
-                                      ("${snapshot.data?["id"]+3} \n"),
-                                      style: const TextStyle(color: Colors.black)),
+
                                 ]))),
                         SingleChildScrollView(
                             physics: const BouncingScrollPhysics(),
@@ -203,12 +192,12 @@ class _Job_DetailState extends State<Job_Detail> with TickerProviderStateMixin {
                                       ),
                                       width: 170,
                                       height: 50,
-                                      child: const Column(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
                                           InkWell(child: Text("Email",style: TextStyle(color: Colors.grey),)),
-                                          Text("Twitter@mail.com",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15))
+                                          Text("${snapshot.data?["comp_email"]}",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 13))
                                         ],
                                       ),
                                     ),
@@ -219,14 +208,14 @@ class _Job_DetailState extends State<Job_Detail> with TickerProviderStateMixin {
                                           border: Border.all(color: Colors.grey.shade300),
                                           borderRadius: BorderRadius.circular(10)
                                       ),
-                                      width: 170,
+                                      width: 190,
                                       height: 50,
-                                      child: const Column(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
                                           InkWell(child: Text("Website",style: TextStyle(color: Colors.grey),)),
-                                          Text("https://twitter.com",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15))
+                                          Text("${snapshot.data?["comp_website"]}",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 12))
                                         ],
                                       ),
                                     )
@@ -243,7 +232,7 @@ class _Job_DetailState extends State<Job_Detail> with TickerProviderStateMixin {
                                           TextStyle(fontSize: 20, color: Colors.black)),
                                       TextSpan(
                                           text:
-                                          ("${snapshot.data?["location"]} \n"),
+                                          ("${snapshot.data?["about_comp"]} \n"),
                                           style: const TextStyle(color: Colors.black)),
                                       TextSpan(
                                           text:

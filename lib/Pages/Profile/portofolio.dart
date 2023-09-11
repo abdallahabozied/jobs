@@ -1,11 +1,59 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../Network/HTTP.dart' as varHTTP;
+import 'package:http/http.dart' as http;
+import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:jobsque/Pages/Home%20&%20Search/recent%20job.dart';
+
+// Future<void> addPortfolio() async {
+//   SharedPreferences savedlogin = await SharedPreferences.getInstance();
+//   String token = savedlogin.getString("token")!;
+//   FilePickerResult? result = await FilePicker.platform.pickFiles(
+//       allowMultiple: false);
+//   FilePickerResult? result2 = await FilePicker.platform.pickFiles(
+//       allowMultiple: false);
+//
+//   if (result != null && result2 != null  ) {
+//     File cvFile = File(result.files.single.path!);
+//     File imageFile = File(result2.files.single.path!);
+//
+//     var uri = Uri.parse(
+//         'https://project2.amit-learning.com/api/user/profile/portfolios');
+//
+//     // Create multipart request
+//     var request = http.MultipartRequest('POST', uri);
+//     request.headers["Authorization"] = "Bearer $token";
+//
+//     // Attach files
+//     request.files.add(
+//         await http.MultipartFile.fromPath('cv_file', cvFile.path));
+//     request.files.add(
+//         await http.MultipartFile.fromPath('image', imageFile.path));
+//
+//     // Send request
+//     var response = await request.send();
+//
+//     if (response.statusCode == 200) {
+//       // Success
+//       // print(cvFile);
+//       // print(imageFile);
+//       print('Portfolio added successfully');
+//     } else {
+//       // Error
+//       print(cvFile);
+//       print(imageFile);
+//       print("=======================");
+//       print(cvFile.path);
+//       print(imageFile.path);
+//       print('Failed to add portfolio. Error: ${response.reasonPhrase}');
+//     }
+//   }
+// }
 
 Future uploadPdf() async {
   SharedPreferences savedlogin = await SharedPreferences.getInstance();
@@ -13,31 +61,42 @@ Future uploadPdf() async {
   String token = savedlogin.getString("token")!;
   var dio = Dio();
   FilePickerResult? result = await FilePicker.platform.pickFiles();
-  if (result != null) {
-    File file = File(result.files.single.path ?? " ");
-    String filename = file.path.split('/').last;
-    String path = file.path;
+  FilePickerResult? result2 = await FilePicker.platform.pickFiles();
+  if (result != null && result2 != null) {
+    File image_file = File(result.files.single.path ?? " ");
+    File cv_file = File(result2.files.single.path ?? " ");
+  print ("=====================================");
+  print(image_file);
+  print(cv_file);
+    String imagefilename = image_file.path.split('/').last;
+    String imagefilepath = image_file.path;
+
+    String cvfilename = cv_file.path.split('/').last;
+    String cvpath = cv_file.path;
 
     FormData formdata = FormData.fromMap({
-
-     "image": await MultipartFile.fromFile(path),
-      // "cv_file": await MultipartFile.fromFile(path, filename: filename),
-
+      "image": await MultipartFile.fromFile(imagefilepath, filename: imagefilename),
+       "cv_file": await MultipartFile.fromFile(cvpath, filename: cvfilename),
     });
-    Response response = await dio.post(
-        "https://project2.amit-learning.com/api/user/profile/portofolios",
-        options: Options(
-            headers: {"token":"Brear $token"},
-            followRedirects: false,
-            validateStatus: (status) {
-              return status! < 500;
-            }),
-        data: formdata);
+    Response response = await dio
+        .post("https://project2.amit-learning.com/api/user/profile/portofolios",
+            options: Options(
+                headers: {"token": "Brear $token"},
+                followRedirects: false,
+                validateStatus: (status) {
+                  return status! < 500;
+                }),
+    data: jsonEncode({"image":image_file ,"cv_file":cv_file}));
+    //         data: formdata, onSendProgress: (int sent, int total) {
+    //   print("$sent   from $total");
+    // });
+
     if (response.statusCode == 200) {
       print("uploaded successfully");
     } else {
-
       print(response.toString());
+      print("$imagefilename  $imagefilepath \n $cvfilename    $cvpath ");
+      print("======cant upload========");
     }
   }
 }
@@ -112,6 +171,9 @@ class _Portofolio_UploadState extends State<Portofolio_Upload> {
                         //   }
                         // },
                         onPressed: () async {
+                          // File cvFile = File('/path/to/cv_file.pdf');
+                          // File imageFile = File('/path/to/image.jpg');
+                          // await addPortfolio();
                           await uploadPdf();
                         },
                         child: Row(

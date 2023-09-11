@@ -3,7 +3,7 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:jobsque/Pages/Home%20&%20Search/recent%20job.dart';
 import 'package:jobsque/Pages/Profile/profile.dart';
 import 'package:country_picker/country_picker.dart';
-
+import 'package:jobsque/Network/HTTP.dart' as varHTTP;
 class Edit_Profile extends StatefulWidget {
   const Edit_Profile({super.key});
 
@@ -17,6 +17,7 @@ class _Edit_ProfileState extends State<Edit_Profile> {
   final TextEditingController _biocontroler = TextEditingController();
   final TextEditingController _addresscontroler = TextEditingController();
   final TextEditingController _phonecontroler = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -198,6 +199,10 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                                 _biocontroler.text,
                                 _addresscontroler.text,
                                 _phonecontroler.text) == true ){
+                             varHTTP.about[0]["bio"] = _biocontroler.text;
+                             varHTTP.about[1]["address"] = _addresscontroler.text;
+                             varHTTP.about[2]["phone"] = _phonecontroler.text;
+
                               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                   content: Text("Profile data updated")));
                               Navigator.pushReplacement(

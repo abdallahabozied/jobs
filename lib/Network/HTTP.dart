@@ -13,6 +13,7 @@ List listofappliedjobs =[];
 late int id ;
 late String name="";
 late String token="";
+late List <Map<String, String>> about= [{"bio":" "},{"address":" "},{"phone":" "}];
 late String email="";
 late String phone="";
 late String password="";
@@ -119,6 +120,7 @@ class HTTPConnections {
         return true;
       }
       else{
+        print("OTP Not Sent to mail");
         print(email);
         return false;
       }
@@ -203,24 +205,25 @@ class HTTPConnections {
       }
     }
 
-  void AddtoApplied(int user_id,int job_id ,String name ,String email , String mobile, String work_type) async {
+  void AddtoApplied(int user_id,int job_id ,String name ,String email , String mobile,String other ,String work_type) async {
     SharedPreferences savedlogin = await SharedPreferences.getInstance();
     token = savedlogin.getString("token")!;
     try{
       Response response = await post(
           Uri.parse("https://project2.amit-learning.com/api/apply"),
           body: {
-            "jobs_id": job_id.toString(),
             "user_id": user_id.toString(),
+            "jobs_id": job_id.toString(),
             "name": name.toString(),
             "email": email.toString(),
+            // "other_file":other.toString(),
             "mobile": mobile.toString(),
             "work_type": work_type.toString(),
-
           },headers: {"Authorization":"Bearer $token"}
       );
       if (response.statusCode == 200) {
         print("Added to Applied jobs");
+        print(response.reasonPhrase);
         print (user_id);
         print(job_id);
         print(name);
@@ -230,13 +233,9 @@ class HTTPConnections {
         print(work_type);
       }
       else{
-        print (user_id);
-        print(job_id);
-        print(name);
-        print(email);
-        print(mobile);
-        print(token);
-        print(work_type);
+        print("didn't appled to this job");
+        print(response.body);
+
       }
     }
     catch(e){
@@ -310,8 +309,6 @@ class HTTPConnections {
 
   }
 
-
-
   Future<bool> updatePassword(String password) async {
     SharedPreferences savedlogin = await SharedPreferences.getInstance();
     id = savedlogin.getInt("id")!;
@@ -330,40 +327,64 @@ class HTTPConnections {
     }
   }
 
+  void AddPortofolio() async {
+  SharedPreferences savedlogin = await SharedPreferences.getInstance();
+  // id = savedlogin.getInt("id")!;
+  token = savedlogin.getString("token")!;
+    try{
+    Response response = await post(
+        Uri.parse("https://project2.amit-learning.com/api/user/profile/portofolios/"),
+        body: {
+          "cv_file":"",
+          "name": "cv",
+        }
+        ,headers: {"Authorization":"Bearer $token"},
+    );
+
+    if (response.statusCode == 200) {
+      print("Added to Portofolios");
+    }
+    else{
+      // print(id);
+      // print(token);
+      print(savedlogin.getString("image"));
+      // print(token.toString());
+      print("Not Added to Portofolios");
+    }
+  }
+  catch(e){
+    print("the error is ============");
+    print(e.toString());
+  }
+
+}
+
+  Future<void> uploadFile(File file) async {
+  SharedPreferences savedlogin = await SharedPreferences.getInstance();
+  id = savedlogin.getInt("id")!;
+
+ var uri = Uri.parse('https://project2.amit-learning.com/api/user/profile/portofolios/$id');
+  token = savedlogin.getString("token")!;
+
+  var request = MultipartRequest('POST',uri);
+  request.files.add(await MultipartFile.fromPath('cv_file', file.absolute.path));
+ // request.fields["cv_file"]= cv_file;
+  request.fields["image"]= "";
+  request.fields["cv_file"]= "";
+  var response = await request.send();
+  if (response.statusCode == 200) {
+    print('File uploaded successfully');
+  } else {
+   // print(image);
+    print(name);
+    print('Error uploading file');
+  }
+}
+
   }
 
 
-// void AddPortofolio() async {
-//   SharedPreferences savedlogin = await SharedPreferences.getInstance();
-//   // id = savedlogin.getInt("id")!;
-//   token = savedlogin.getString("token")!;
-//     try{
-//     Response response = await post(
-//         Uri.parse("https://project2.amit-learning.com/api/user/profile/portofolios/"),
-//         body: {
-//           "cv_file":"",
-//           "name": "cv",
-//         }
-//         ,headers: {"Authorization":"Bearer $token"},
-//     );
 //
-//     if (response.statusCode == 200) {
-//       print("Added to Portofolios");
-//     }
-//     else{
-//       // print(id);
-//       // print(token);
-//       print(savedlogin.getString("image"));
-//       // print(token.toString());
-//       print("Not Added to Portofolios");
-//     }
-//   }
-//   catch(e){
-//     print("the error is ============");
-//     print(e.toString());
-//   }
-//
-// }
 
 // Future<void> uploadFile(File file) async {
 //   SharedPreferences savedlogin = await SharedPreferences.getInstance();

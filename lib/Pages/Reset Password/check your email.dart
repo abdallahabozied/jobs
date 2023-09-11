@@ -16,14 +16,7 @@ class Check_Your_Email extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(height: 10),
-            Container(
-              width: MediaQuery.of(context).size.width*1.0,
-              height: MediaQuery.of(context).size.height*0.27,
-              child: CircleAvatar(
-
-                backgroundImage: AssetImage("Assets/images/check_mail.png"),
-              ),
-            ),
+            Image.asset("Assets/images/check_mail.png"),
             SizedBox(
                 height: 20
             ),

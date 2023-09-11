@@ -1,33 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:jobsque/Model/jobpost.dart';
 import 'package:jobsque/Network/HTTP.dart';
+import 'package:jobsque/Pages/Home%20&%20Search/recent%20job.dart';
 import 'package:jobsque/Pages/Job%20Detalis%20&%20Apply/Job%20Details.dart';
 import 'package:provider/provider.dart';
-import 'package:jobsque/Network/HTTP.dart'as varHTTP ;
-HTTPConnections httpConnections = HTTPConnections();
-
-class Recent_Jobs_All extends StatefulWidget {
-  const Recent_Jobs_All({super.key});
+import '../../Network/HTTP.dart' as varHTTP;
+class Sugessted_job extends StatefulWidget {
+  const Sugessted_job({super.key});
 
   @override
-  State<Recent_Jobs_All> createState() => _Recent_Jobs_AllState();
+  State<Sugessted_job> createState() => _Sugessted_jobState();
 }
-
-class _Recent_Jobs_AllState extends State<Recent_Jobs_All> {
-  @override
-  void initState() {
-    super.initState();
-    // TODO: implement initState
-    httpConnections.GetAllPostswithphotos();
-  }
-
+void initState() {
+  // TODO: implement initState
+  httpConnections.GetAllPostswithphotos();
+}
+class _Sugessted_jobState extends State<Sugessted_job> {
   @override
   Widget build(BuildContext context) {
     var prov = Provider.of<Jobs>(context);
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text("Recent Jobs"),
+          title: const Text("Suggested jobs"),
         ),
         body: FutureBuilder(
             future: HTTPConnections().GetAllPostswithphotos(),

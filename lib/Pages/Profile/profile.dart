@@ -4,9 +4,9 @@ import 'package:jobsque/Pages/Profile/Help%20Center/Help%20Center.dart';
 import 'package:jobsque/Pages/Profile/edit%20Profile.dart';
 import 'package:jobsque/Pages/Profile/edit%20login%20and%20security.dart';
 import 'package:jobsque/Pages/Profile/edit%20notification.dart';
+import 'package:jobsque/Pages/Profile/language.dart';
 import 'package:jobsque/Pages/Profile/portofolio.dart';
 import 'package:jobsque/Pages/Sign%20In/Sign%20In.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../Network/HTTP.dart' as varHTTP;
 
@@ -19,14 +19,14 @@ class profile extends StatefulWidget {
 
 class _profileState extends State<profile> {
   @override
-  void initState() {
+  void initState(){
     // TODO: implement initState
     httpConnections.fetchuser();
     super.initState();
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(
       extendBody: true,
       body: NestedScrollView(
@@ -42,7 +42,7 @@ class _profileState extends State<profile> {
                   onPressed: () async {
                     var savedlogindata = await SharedPreferences.getInstance();
                     savedlogindata.setBool('login', false);
-                    savedlogindata.clear();
+                    // savedlogindata.clear();
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
@@ -140,9 +140,15 @@ class _profileState extends State<profile> {
                 SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: Text(maxLines: 5,
-                      "ssssssssssssssssssss \n sssssssssssssddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
-                      "sddddddddddddddddsssssssss \n ssssssssssssssssssss \n"),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("${varHTTP.about[1]["bio"]}",style: TextStyle(fontSize: 20 ,fontWeight: FontWeight.w500),maxLines: 5),
+                      Text("Address : ${varHTTP.about[1]["address"]}",maxLines: 2),
+                      Text("Phone : ${varHTTP.about[2]["phone"]}",maxLines: 1),
+                    ],
+                  ),
                 ),
                 SizedBox(height: 7),
                 Container(
@@ -199,18 +205,23 @@ class _profileState extends State<profile> {
                       ),
                       Divider(color:Colors.grey.shade200,indent: 20,endIndent: 20,),
                       SizedBox(height: 10),
-                      ListTile(
-                        leading: Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              color: Colors.blue.shade200,
-                              borderRadius: BorderRadius.circular(100)
+                      InkWell(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => Language()));
+                        },
+                        child: ListTile(
+                          leading: Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                color: Colors.blue.shade200,
+                                borderRadius: BorderRadius.circular(100)
+                            ),
+                            child: Icon(Icons.language_rounded),
                           ),
-                          child: Icon(Icons.language_rounded),
+                          title: Text("Language"),
+                          trailing: Icon(Icons.arrow_forward_rounded),
                         ),
-                        title: Text("Language"),
-                        trailing: Icon(Icons.arrow_forward_rounded),
                       ),
                       Divider(color:Colors.grey.shade200,indent: 20,endIndent: 20,),
                       SizedBox(height: 10),
