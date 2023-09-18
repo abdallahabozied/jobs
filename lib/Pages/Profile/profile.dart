@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jobsque/Pages/Home%20&%20Search/recent%20job.dart';
 import 'package:jobsque/Pages/Profile/Help%20Center/Help%20Center.dart';
+import 'package:jobsque/Pages/Profile/Privacy%20policy/privacy%20policy.dart';
+import 'package:jobsque/Pages/Profile/Terms%20&%20conditions/Terms.dart';
 import 'package:jobsque/Pages/Profile/edit%20Profile.dart';
 import 'package:jobsque/Pages/Profile/edit%20login%20and%20security.dart';
 import 'package:jobsque/Pages/Profile/edit%20notification.dart';
@@ -144,9 +146,9 @@ class _profileState extends State<profile> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("${varHTTP.about[1]["bio"]}",style: TextStyle(fontSize: 20 ,fontWeight: FontWeight.w500),maxLines: 5),
-                      Text("Address : ${varHTTP.about[1]["address"]}",maxLines: 2),
-                      Text("Phone : ${varHTTP.about[2]["phone"]}",maxLines: 1),
+                      varHTTP.about[1]["bio"]== null ? Text(" "):Text("${varHTTP.about[1]["bio"]}",style: TextStyle(fontSize: 20 ,fontWeight: FontWeight.w500),maxLines: 5),
+                      varHTTP.about[1]["address"]== null ? Text(" "):Text("Address : ${varHTTP.about[1]["address"]}",maxLines: 2),
+                      varHTTP.about[1]["phone"]== null ? Text(" "):Text("Phone : ${varHTTP.about[2]["phone"]}",maxLines: 1),
                     ],
                   ),
                 ),
@@ -300,17 +302,25 @@ class _profileState extends State<profile> {
                       ),
                       Divider(color:Colors.grey.shade200,indent: 20,endIndent: 20,),
                       SizedBox(height: 5),
-                      ListTile(
-
-                        title: Text("Terms & Conditions"),
-                        trailing: Icon(Icons.arrow_forward_rounded),
+                      InkWell(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => Terms()));
+                        },
+                        child: ListTile(
+                          title: Text("Terms & Conditions"),
+                          trailing: Icon(Icons.arrow_forward_rounded),
+                        ),
                       ),
                       Divider(color:Colors.grey.shade200,indent: 20,endIndent: 20,),
                       SizedBox(height: 5),
-                      ListTile(
-
-                        title: Text("Privacy Policy"),
-                        trailing: Icon(Icons.arrow_forward_rounded),
+                      InkWell(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => Privacy_Policy()));
+                        },
+                        child: ListTile(
+                          title: Text("Privacy Policy"),
+                          trailing: Icon(Icons.arrow_forward_rounded),
+                        ),
                       ),
                       Divider(color:Colors.grey.shade200,indent: 20,endIndent: 20,),
                     ],

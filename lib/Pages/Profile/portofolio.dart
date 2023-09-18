@@ -31,7 +31,7 @@ import 'package:jobsque/Pages/Home%20&%20Search/recent%20job.dart';
 //
 //     // Attach files
 //     request.files.add(
-//         await http.MultipartFile.fromPath('cv_file', cvFile.path));
+//         await http.MultipartFile.fromPath('cv_file', cvFile));
 //     request.files.add(
 //         await http.MultipartFile.fromPath('image', imageFile.path));
 //
@@ -65,14 +65,14 @@ Future uploadPdf() async {
   if (result != null && result2 != null) {
     File image_file = File(result.files.single.path ?? " ");
     File cv_file = File(result2.files.single.path ?? " ");
-  print ("=====================================");
-  print(image_file);
-  print(cv_file);
+    print("=====================================");
+    print(image_file);
+     print(cv_file);
     String imagefilename = image_file.path.split('/').last;
     String imagefilepath = image_file.path;
 
-    String cvfilename = cv_file.path.split('/').last;
-    String cvpath = cv_file.path;
+     String cvfilename = cv_file.path.split('/').last;
+     String cvpath = cv_file.path;
 
     FormData formdata = FormData.fromMap({
       "image": await MultipartFile.fromFile(imagefilepath, filename: imagefilename),
@@ -86,17 +86,17 @@ Future uploadPdf() async {
                 validateStatus: (status) {
                   return status! < 500;
                 }),
-    data: jsonEncode({"image":image_file ,"cv_file":cv_file}));
-    //         data: formdata, onSendProgress: (int sent, int total) {
-    //   print("$sent   from $total");
-    // });
+            data: formdata, onSendProgress: (int sent, int total) {
+      print("$sent   from $total");
+    });
 
     if (response.statusCode == 200) {
       print("uploaded successfully");
     } else {
-      print(response.toString());
-      print("$imagefilename  $imagefilepath \n $cvfilename    $cvpath ");
       print("======cant upload========");
+      print(response.toString());
+      print(response.statusCode);
+      print(response.statusMessage);
     }
   }
 }
@@ -170,11 +170,11 @@ class _Portofolio_UploadState extends State<Portofolio_Upload> {
                         //     // User canceled the picker
                         //   }
                         // },
-                        onPressed: () async {
+                        onPressed: () {
                           // File cvFile = File('/path/to/cv_file.pdf');
                           // File imageFile = File('/path/to/image.jpg');
                           // await addPortfolio();
-                          await uploadPdf();
+                           uploadPdf();
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,

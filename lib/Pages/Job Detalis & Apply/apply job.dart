@@ -1,14 +1,61 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:jobsque/Model/jobpost.dart';
 import 'package:jobsque/Network/HTTP.dart';
 import 'package:jobsque/Pages/Home%20&%20Search/Home_Home.dart';
 import 'package:jobsque/Pages/Job%20Detalis%20&%20Apply/success%20apply.dart';
+import 'package:jobsque/Pages/Profile/portofolio.dart';
 import 'package:jobsque/Shared%20functions.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../Network/HTTP.dart' as varHTTP;
+Future uploadPdf() async {
+   SharedPreferences savedlogin = await SharedPreferences.getInstance();
+   int id = savedlogin.getInt("id")!;
+  String token = savedlogin.getString("token")!;
+  var dio = Dio();
+  FilePickerResult? result = await FilePicker.platform.pickFiles();
+  // FilePickerResult? result2 = await FilePicker.platform.pickFiles();
+  if (result != null ) {
+    File image_file = File(result.files.single.path ?? " ");
+    // File cv_file = File(result2.files.single.path ?? " ");
+    print("=====================================");
+    print(image_file);
+    // print(cv_file);
+    String imagefilename = image_file.path.split('/').last;
+    String imagefilepath = image_file.path;
+
+    // String cvfilename = cv_file.path.split('/').last;
+    // String cvpath = cv_file.path;
+
+    FormData formdata = FormData.fromMap({
+      "other_file": await MultipartFile.fromFile(imagefilepath, filename: imagefilename),
+    });
+    Response response = await dio
+        .post("https://project2.amit-learning.com/api/apply",
+        options: Options(
+            headers: {"user_id":"$id","token": "Brear $token"},
+            followRedirects: false,
+            validateStatus: (status) {
+              return status! < 500;
+            }),
+        data: formdata, onSendProgress: (int sent, int total) {
+          print("$sent   from $total");
+        });
+
+    if (response.statusCode == 200) {
+      print("uploaded successfully");
+    } else {
+      print("======cant upload========");
+      print(response.toString());
+      print(response.statusCode);
+      print(response.statusMessage);
+    }
+  }
+}
 
 class Apply_Job extends StatefulWidget {
   const Apply_Job({super.key});
@@ -407,17 +454,10 @@ class _Apply_JobState extends State<Apply_Job> {
                             )),
                             const SizedBox(height: 10),
                             InkWell(
-                              onTap: () async {
-                                FilePickerResult? result = await FilePicker
-                                    .platform
-                                    .pickFiles(allowMultiple: false);
-                                if (result != null) {
-                                   otherfile =
-                                      File(result.files.single.path!);
-                                    filename = otherfile.path.split('/').last;
-                                   print("the other file is $otherfile");
+                              onTap: (){
 
-                                }
+
+
                               },
                               child: Text("Upload your other file",
                                   style: TextStyle(
@@ -439,7 +479,9 @@ class _Apply_JobState extends State<Apply_Job> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(50),
                               ),
-                              onPressed: null,
+                              onPressed: ()async{
+                                await uploadPdf();
+                              },
                               child: SizedBox(
                                 width: 150,
                                 child: Row(

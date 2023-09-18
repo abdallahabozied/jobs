@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jobsque/Pages/Applied%20Job/Applied%20Jobs.dart';
 import 'package:jobsque/Pages/Home%20&%20Search/Home Feeds .dart';
+import 'package:jobsque/Pages/Messages/chats%20list.dart';
 import 'package:jobsque/Pages/Profile/profile.dart';
 import 'package:jobsque/Pages/Saved%20Jobs/saved%20jobs.dart';
 
@@ -16,7 +17,7 @@ class _HomeState extends State<Home> {
   int myindex=0;
   List <Widget> widgetlist =  [
     Home_Screen(),
-    Text("Messages"),
+    Chats_List(),
     Applied(),
     Saved(),
     profile(),

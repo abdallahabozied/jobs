@@ -2,7 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:jobsque/Model/jobpost.dart';
 import 'package:jobsque/Pages/Home%20&%20Search/Home_Home.dart';
+import 'package:jobsque/Pages/Messages/chat%20page.dart';
+import 'package:jobsque/Pages/Messages/chats%20list.dart';
 import 'package:jobsque/Pages/Profile/language.dart';
+import 'package:jobsque/Pages/Profile/portofolio.dart';
 import 'package:jobsque/Pages/Profile/profile.dart';
 import 'package:provider/provider.dart';
 

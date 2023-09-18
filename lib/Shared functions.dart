@@ -48,6 +48,15 @@ class Job_Type {
     this.name,
   });
 }
+class Message {
+
+  String? text;
+  DateTime? date ;
+  bool? issentbyme;
+
+  Message({required this.text , required this.date , required this.issentbyme});
+
+}
 
 List<Step> getSteps() => [
       Step(
@@ -85,3 +94,4 @@ List<Step> getSteps() => [
           title: Divider(),
           content: Center(child: Text("hello3"))),
     ];
+
