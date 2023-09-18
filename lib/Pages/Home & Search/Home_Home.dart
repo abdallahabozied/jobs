@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jobsque/Pages/Applied%20Job/Applied%20Jobs.dart';
 import 'package:jobsque/Pages/Home%20&%20Search/Home Feeds .dart';
-import 'package:jobsque/Pages/Messages/chats%20list.dart';
-import 'package:jobsque/Pages/Profile/profile.dart';
 import 'package:jobsque/Pages/Saved%20Jobs/saved%20jobs.dart';
 
 
@@ -15,30 +12,26 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int myindex=0;
-  List <Widget> widgetlist =  [
+  List <Widget> widgetlist = const [
     Home_Screen(),
-    Chats_List(),
-    Applied(),
+    Text("Messages"),
+    Text("Applied"),
     Saved(),
-    profile(),
+    Text("Profile"),
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Center(
         child: widgetlist[myindex],
       ),
-
       bottomNavigationBar: BottomNavigationBar(
           onTap: (index) {
             setState(() {
               myindex = index;
+
             });
           },
-          elevation: 0,
-          backgroundColor: Colors.transparent.withOpacity(0.5),
           type: BottomNavigationBarType.shifting,
           currentIndex: myindex,
           selectedItemColor: Colors.blue[700],
