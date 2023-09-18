@@ -1,18 +1,21 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:jobsque/Model/jobpost.dart';
-import 'package:jobsque/Pages/Home%20&%20Search/Home Feeds .dart';
 import 'package:jobsque/Pages/Home%20&%20Search/Home_Home.dart';
-import 'package:jobsque/Pages/Reset%20Password/Create%20New%20Password.dart';
-import 'package:jobsque/Pages/Reset%20Password/Reset%20Password.dart';
+import 'package:jobsque/Pages/Messages/chat%20page.dart';
+import 'package:jobsque/Pages/Messages/chats%20list.dart';
+import 'package:jobsque/Pages/Profile/language.dart';
+import 'package:jobsque/Pages/Profile/portofolio.dart';
+import 'package:jobsque/Pages/Profile/profile.dart';
 import 'package:provider/provider.dart';
-// import 'package:jobsque/Pages/Create%20Account/get%20started.dart';
-// import 'package:jobsque/Pages/Create%20Account/interested%20work%20type.dart';
-// import 'package:jobsque/Pages/Create%20Account/intersted%20work.dart';
-// import 'package:jobsque/Pages/Sign%20In/Sign%20In.dart';
-// import 'Pages/Create Account/regestrationform.dart';
+
 import 'Pages/onboardScreens/splash.dart';
 
-void main() {
+Future<void> main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  //await FirebaseAuth.instance.useAuthEmulator('10.0.2.2', 9099);
+
   runApp(const MyApp());
 }
 
@@ -26,7 +29,9 @@ class MyApp extends StatelessWidget {
       return Jobs();
     },
       child:
+
        MaterialApp(
+         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
@@ -40,7 +45,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.light(primary: Colors.blue.shade700),
           useMaterial3: true,
         ),
-        home:  const Splash(),));
+        home:  const Splash()));
 
   }
 }

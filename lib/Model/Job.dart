@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 class Job extends ChangeNotifier {
   int id;
-  String title;
-  String subtitle;
-  String thumbnailUrl;
+  String name;
+  String job_type;
+  String image;
+  String location;
 
 
   Job(
-      {required this.thumbnailUrl,required this.id, required this.title, required this.subtitle});
+      {required this.location,required this.image,required this.id, required this.name, required this.job_type});
 
-  factory Job.fromJson(Map _map) {
+  factory Job.fromJson(Map<String,dynamic> _map) {
     Job _job = Job(
         id: _map["id"],
-        title: _map["title"],
-        subtitle: _map["title"],
-        thumbnailUrl:_map["thumbnailUrl"]
+        name: _map["name"],
+        job_type: _map["job_type"],
+        image:_map["image"],
+        location:_map["location"]
     );
     return _job;
   }
