@@ -92,7 +92,7 @@ class _Recent_Jobs_AllState extends State<Recent_Jobs_All> {
                                             context
                                                 .read<Jobs>()
                                                 .Addtosaved(snapshot.data?[index]);
-                                            print(prov);
+                                            // print(prov);
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(const SnackBar(
                                                 content: Text("Saved")));
@@ -197,7 +197,7 @@ class _Recent_Jobs_AllState extends State<Recent_Jobs_All> {
                           ),
                         ],
                       )))
-                  : Center(
+                  : const Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,

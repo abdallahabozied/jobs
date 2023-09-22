@@ -7,7 +7,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../Create Account/regestrationform.dart';
 
 class Page0 extends StatefulWidget {
-   Page0({super.key});
+   const Page0({super.key});
 
   @override
   State<Page0> createState() => _Page0State();
@@ -20,7 +20,7 @@ int index =1;
 
   @override
   Widget build(BuildContext context) {
-    final _controller = PageController();
+    final controller = PageController();
     return Scaffold(
       appBar: AppBar(
         leadingWidth: 100,
@@ -29,7 +29,7 @@ int index =1;
               splashColor: Colors.white12,
               highlightColor: Colors.white12,
               onPressed: () {
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Regestration_Form(),));
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Regestration_Form(),));
               },
               child: const Text(
                 "Skip",
@@ -54,12 +54,12 @@ int index =1;
               width: MediaQuery.of(context).size.width * 1.0,
               height: MediaQuery.of(context).size.height * 0.75,
               child: PageView(
-                controller: _controller,
+                controller: controller,
                 children: const [page1(), page2(), page3()],
               ),
             ),
             SmoothPageIndicator(
-              controller: _controller,
+              controller: controller,
               count: 3,
               effect: ColorTransitionEffect(
                   dotHeight: 7,
@@ -76,7 +76,7 @@ int index =1;
                   onPressed: () {
                     if(islast!=3){
                       setState(() {
-                    _controller.nextPage(
+                    controller.nextPage(
                         duration: const Duration(milliseconds: 300),
                         curve: Curves.linear);
                        index ++;
@@ -84,12 +84,12 @@ int index =1;
                      })
                     ;}
                     else if (islast ==3 ){
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Regestration_Form(),));
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Regestration_Form(),));
                     }
                   },
                   child:  Text(index <3 ?
                     "Next": "get started",
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   )),
             )
           ],

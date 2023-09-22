@@ -11,45 +11,43 @@ class Get_Started extends StatelessWidget {
         elevation: 0,
         scrolledUnderElevation: 0,
       ),
-      body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: 10),
-            Container(
-              width: MediaQuery.of(context).size.width*1.0,
-                height: MediaQuery.of(context).size.height*0.27,
-              child: CircleAvatar(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(height: 10),
+          SizedBox(
+            width: MediaQuery.of(context).size.width*1.0,
+              height: MediaQuery.of(context).size.height*0.27,
+            child: const CircleAvatar(
 
-                backgroundImage: AssetImage("Assets/images/1.jpg"),
-              ),
+              backgroundImage: AssetImage("Assets/images/1.jpg"),
             ),
-            SizedBox(
-              height: 20
-            ),
-            Text("Your Account has been set up!",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
-            Container(
-              padding: EdgeInsets.all(8),
-              alignment: Alignment.center,
-              child: Text( textAlign: TextAlign.center,"We have customized feeds according to your \n prefrences"),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height*0.3,
-            ),
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.indigoAccent,
-                    minimumSize: const Size(300, 50)),
-                onPressed: () {
-                  Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home(),), (route) => false);
-                },
-                child: const Text(
-                  "Get Started",
-                  style: TextStyle(color: Colors.white),
-                ))
-          ],
-        ),
+          ),
+          const SizedBox(
+            height: 20
+          ),
+          const Text("Your Account has been set up!",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
+          Container(
+            padding: const EdgeInsets.all(8),
+            alignment: Alignment.center,
+            child: const Text( textAlign: TextAlign.center,"We have customized feeds according to your \n prefrences"),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height*0.3,
+          ),
+          ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.indigoAccent,
+                  minimumSize: const Size(300, 50)),
+              onPressed: () {
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => const Home(),), (route) => false);
+              },
+              child: const Text(
+                "Get Started",
+                style: TextStyle(color: Colors.white),
+              ))
+        ],
       ),
     );
   }

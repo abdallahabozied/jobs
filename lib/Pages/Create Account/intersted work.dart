@@ -19,27 +19,27 @@ class _Intersted_WorkState extends State<Intersted_Work> {
         ),
         body: Container(
             alignment: Alignment.topCenter,
-            padding: EdgeInsets.all(30),
+            padding: const EdgeInsets.all(30),
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text("Where are your prefered location?",
+                  const Text("Where are your prefered location?",
                       style: TextStyle(fontSize: 33)),
-                  SizedBox(height: 10),
-                  Text(
+                  const SizedBox(height: 10),
+                  const Text(
                       "Let us know, where is the location you want at this time , So we can adjust it.",
                       style:
                           TextStyle(color: Colors.black54, fontSize: 20)),
-                  SizedBox(height: 10),
-                  Container(
+                  const SizedBox(height: 10),
+                  SizedBox(
                     width: double.infinity,
                     height: 350,
                     child: GridView.builder(
                       itemCount: 20,
                       scrollDirection: Axis.vertical,
                       gridDelegate:
-                      SliverGridDelegateWithFixedCrossAxisCount(
+                      const SliverGridDelegateWithFixedCrossAxisCount(
                           mainAxisExtent: 100,
                           crossAxisCount: 2,
                           crossAxisSpacing: 10,
@@ -47,11 +47,11 @@ class _Intersted_WorkState extends State<Intersted_Work> {
                       ),
                      itemBuilder: (context, index) {
                        return Container(
-                         padding: EdgeInsets.all(5),
+                         padding: const EdgeInsets.all(5),
                          decoration: BoxDecoration(
                              borderRadius: BorderRadius.circular(20),
                              border: Border.all(color: Colors.blue)),
-                         child: Column(
+                         child: const Column(
                            mainAxisAlignment: MainAxisAlignment.start,
                            crossAxisAlignment: CrossAxisAlignment.start,
                            children: [
@@ -76,13 +76,13 @@ class _Intersted_WorkState extends State<Intersted_Work> {
                       width: 400,
                       height: 100,
                       child: Column(children: [
-                        SizedBox(height: 30),
+                        const SizedBox(height: 30),
                         ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.blueAccent[700],
                                 minimumSize: const Size(300, 50)),
                             onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => Intersted_Work_type()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => const Intersted_Work_type()));
                             },
                             child: const Text(
                               "Next",

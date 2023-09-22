@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jobsque/Model/Job.dart';
 import 'package:jobsque/Model/jobpost.dart';
-import 'package:jobsque/Network/HTTP.dart';
 import 'package:jobsque/Pages/Job%20Detalis%20&%20Apply/Job%20Details.dart';
 import 'package:provider/provider.dart';
-
-// import 'package:jobsque/Model/jobpost.dart';
-// import 'package:provider/provider.dart';
 import '../../Network/HTTP.dart' as varHTTP;
 
 class Saved extends StatefulWidget {
@@ -25,15 +20,16 @@ class _SavedState extends State<Saved> {
     super.initState();
   }
 
-  @override
+
   bool issnapshotempty = false;
 
+  @override
   Widget build(BuildContext context) {
     var prov = Provider.of<Jobs>(context, listen: true);
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Saved"),
+          title: const Text("Saved"),
         ),
         body: FutureBuilder(
             future: varHTTP.HTTPConnections().Getsavedjobs(),
@@ -46,19 +42,19 @@ class _SavedState extends State<Saved> {
                     children: [
                       Container(
                         height: 20,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Colors.grey,
                         ),
                         child: Center(
                           child: Text(
                             "${snapshot.data?.length} Job Saved",
-                            style: TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white),
                           ),
                         ),
 
                         // child:Center(child: Text("${snapshot.data!.length} Job Saved",style: TextStyle(color: Colors.white),),),
                       ),
-                      Container(
+                      SizedBox(
                         width: MediaQuery.of(context).size.width * 1,
                         height: MediaQuery.of(context).size.height * 0.8,
                         child: ListView.builder(
@@ -103,7 +99,7 @@ class _SavedState extends State<Saved> {
                                 subtitle: Text(
                                     " ${snapshot.data?[i]["jobs"]["comp_name"]}..${snapshot.data?[i]["jobs"]["job_type"]}"),
                                 trailing: IconButton(
-                                  icon: Icon(Icons.remove),
+                                  icon: const Icon(Icons.remove),
                                   onPressed: () async {
                                     if (await varHTTP.HTTPConnections()
                                             .deleteSavedJob(
@@ -111,19 +107,19 @@ class _SavedState extends State<Saved> {
                                         true) {
                                       // prov.Removefromsaved(value.savedjobs?[i]);
                                       // context.read<Jobs>().Removefromsaved(value.savedjobs?[i]);
-                                      if (snapshot.data!.length < 1) {
+                                      if (snapshot.data!.isEmpty) {
                                         issnapshotempty = true;
                                       }
                                       setState(() {});
 
                                       ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
+                                          .showSnackBar(const SnackBar(
                                               content:
                                                   Text("Deleted from saved")));
                                     } else {
-                                      print(snapshot.data?[i]["id"]);
+                                      // print(snapshot.data?[i]["id"]);
                                       ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
+                                          .showSnackBar(const SnackBar(
                                               content: Text(
                                                   "Cannot delete from saved now ,Try later")));
                                     }
@@ -136,7 +132,7 @@ class _SavedState extends State<Saved> {
                   ),
                 );
               } else {
-                return Center(
+                return const Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,

@@ -18,28 +18,28 @@ class _email_editState extends State<email_edit> {
           centerTitle: true,
           elevation: 0,
           scrolledUnderElevation: 0,
-          title: Text("Email Address",
+          title: const Text("Email Address",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         ),
         body: Padding(
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           child: Form(
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
+                  SizedBox(
                     width: MediaQuery.of(context).size.width * 1.0,
                     height: MediaQuery.of(context).size.height * 0.2,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Main E-mail Address"),
-                        SizedBox(height: 5),
+                        const Text("Main E-mail Address"),
+                        const SizedBox(height: 5),
                         TextFormField(
                           controller: _emailController,
-                          autofillHints: [AutofillHints.email],
+                          autofillHints: const [AutofillHints.email],
                           decoration: const InputDecoration(
                               hintText: "  Email",
                               prefixIcon: Icon(Icons.email),

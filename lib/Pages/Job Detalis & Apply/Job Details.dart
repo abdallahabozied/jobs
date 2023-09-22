@@ -196,8 +196,8 @@ class _Job_DetailState extends State<Job_Detail> with TickerProviderStateMixin {
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
-                                          InkWell(child: Text("Email",style: TextStyle(color: Colors.grey),)),
-                                          Text("${snapshot.data?["comp_email"]}",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 13))
+                                          const InkWell(child: Text("Email",style: TextStyle(color: Colors.grey),)),
+                                          Text("${snapshot.data?["comp_email"]}",style: const TextStyle(fontWeight: FontWeight.w500,fontSize: 13))
                                         ],
                                       ),
                                     ),
@@ -214,8 +214,8 @@ class _Job_DetailState extends State<Job_Detail> with TickerProviderStateMixin {
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
-                                          InkWell(child: Text("Website",style: TextStyle(color: Colors.grey),)),
-                                          Text("${snapshot.data?["comp_website"]}",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 12))
+                                          const InkWell(child: Text("Website",style: TextStyle(color: Colors.grey),)),
+                                          Text("${snapshot.data?["comp_website"]}",style: const TextStyle(fontWeight: FontWeight.w500,fontSize: 12))
                                         ],
                                       ),
                                     )
@@ -290,6 +290,7 @@ class _Job_DetailState extends State<Job_Detail> with TickerProviderStateMixin {
                               backgroundColor: Colors.blueAccent[700],
                               minimumSize: const Size(300, 50)),
                           onPressed: () {
+
                             Navigator.push(context, MaterialPageRoute(builder: (context) => const Apply_Job()));
                           },
                           child: const Text(
@@ -304,7 +305,7 @@ class _Job_DetailState extends State<Job_Detail> with TickerProviderStateMixin {
             ),
           );}
           else{
-             return Center(
+             return const Center(
               child: CircularProgressIndicator(),
             );
           }

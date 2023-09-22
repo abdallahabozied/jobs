@@ -63,7 +63,7 @@ class _Reset_PasswordState extends State<Reset_Password> {
                   children: [
                     TextFormField(
                       controller: _emailcontroler,
-                      autofillHints: [AutofillHints.email],
+                      autofillHints: const [AutofillHints.email],
                       decoration: const InputDecoration(
                           hintText: "Enter your Email....",
                           prefixIcon: Icon(Icons.email),
@@ -100,7 +100,7 @@ class _Reset_PasswordState extends State<Reset_Password> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => Sign_In(),
+                                      builder: (context) => const Sign_In(),
                                     ));
                               },
                               child: const Text(" Login",
@@ -119,14 +119,14 @@ class _Reset_PasswordState extends State<Reset_Password> {
                               ? null
                               : () async {
                                   if (await httpConnections.getotp(_emailcontroler.text) == true) {
-                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("we sent the OTP to your email")));
+                                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("we sent the OTP to your email")));
                                     Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                Check_Your_Email()));
+                                                const Check_Your_Email()));
                                   }else{
-                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("An error occured while sending an OTP ")));
+                                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("An error occured while sending an OTP ")));
                                   }
                                 },
                           child: const Text(

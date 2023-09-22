@@ -9,7 +9,7 @@ class Terms extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         scrolledUnderElevation: 0,
-        title: Text("Terms & Conditions"),
+        title: const Text("Terms & Conditions"),
       ),
       body: Scrollbar(
         child: SingleChildScrollView(
@@ -19,34 +19,34 @@ class Terms extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Your Privacy Policy is Important",
+                const Text("Your Privacy Policy is Important",
                     style:
                         TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                SizedBox(height: 10),
-                Text(
+                const SizedBox(height: 10),
+                const Text(
                     " sdfifdjfijskfjskfjksjdfiscjsckmklsvcmdfvxodfvilkvjmlvmdklfnvdufvnidufhvsdjikvhnkshvkjhfsdfhiosdhiosddfiosjnckndskcnkjlfsdilvjklnvklcnsknkdjhvsihlvkjdnvsfjkvsijdhfkdsjkkkkkkkkkkkkkkkkja;lkdfnvadfm,vnioejfals,dfma;oweirjfqwpefjdkfjjpqpfqjirqireqpfje;rpfqkje;flkefldfdflkfjsdlfsjdfkjdfl "),
-                Text(
+                const Text(
                     " sdfifdjfijskfjskfjksjdfiscjsckmklsvcmdfvxodfvilkvjmlvmdklfnvdufvnidufhvsdjikvhnkshvkjhfsdfhiosdhiosddfiosjnckndskcnkjlfsdilvjklnvklcnsknkdjhvsihlvkjdnvsfjkvsijdhfkdsjkkkkkkkkkkkkkkkkja;lkdfnvadfm,vnioejfals,dfma;oweirjfqwpefjdkfjjpqpfqjirqireqpfje;rpfqkje;flkefldfdflkfjsdlfsjdfkjdfl "),
-                SizedBox(height: 10),
-                Text("Your Privacy Policy is Important",
+                const SizedBox(height: 10),
+                const Text("Your Privacy Policy is Important",
                     style:
                         TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                SizedBox(height: 10),
-                Text(
+                const SizedBox(height: 10),
+                const Text(
                     " sdfifdjfijskfjskfjksjdfiscjsckmklsvcmdfvxodfvilkvjmlvmdklfnvdufvnidufhvsdjikvhnkshvkjhfsdfhiosdhiosddfiosjnckndskcnkjlfsdilvjklnvklcnsknkdjhvsihlvkjdnvsfjkvsijdhfkdsjkkkkkkkkkkkkkkkkja;lkdfnvadfm,vnioejfals,dfma;oweirjfqwpefjdkfjjpqpfqjirqireqpfje;rpfqkje;flkefldfdflkfjsdlfsjdfkjdfl "),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Align(
                   alignment: Alignment.center,
                   child: Container(
                       width: 300,
                       color: Colors.grey.shade200,
-                      child: Text(
+                      child: const Text(
                           "sdfifdjfijskfjskfjksjdfiscjsckmklsvcmdfvxodfvilkvjmlvmdklfnvdufvnidufhvsdjikvhnkshvkjhfsdfhiosdhiosddfiosjnckndskcnkjlfsdilvjklnvklcnsknkdjhvsihlvkjdnvsfjkvsijd")),
                 ),
-                SizedBox(height: 10),
-                Text(
+                const SizedBox(height: 10),
+                const Text(
                     " sdfifdjfijskfjskfjksjdfiscjsckmklsvcmdfvxodfvilkvjmlvmdklfnvdufvnidufhvsdjikvhnkshvkjhfsdfhiosdhiosddfiosjnckndskcnkjlfsdilvjklnvklcnsknkdjhvsihlvkjdnvsfjkvsijdhfkdsjkkkkkkkkkkkkkkkkja;lkdfnvadfm,vnioejfals,dfma;oweirjfqwpefjdkfjjpqpfqjirqireqpfje;rpfqkje;flkefldfdflkfjsdlfsjdfkjdfl "),
-                Text(
+                const Text(
                     " sdfifdjfijskfjskfjksjdfiscjsckmklsvcmdfvxodfvilkvjmlvmdklfnvdufvnidufhvsdjikvhnkshvkjhfsdfhiosdhiosddfiosjnckndskcnkjlfsdilvjklnvklcnsknkdjhvsihlvkjdnvsfjkvsijdhfkdsjkkkkkkkkkkkkkkkkja;lkdfnvadfm,vnioejfals,dfma;oweirjfqwpefjdkfjjpqpfqjirqireqpfje;rpfqkje;flkefldfdflkfjsdlfsjdfkjdfl "),
               ],
             ),

@@ -95,7 +95,7 @@ class _regestration_formState extends State<Regestration_Form> {
                   const SizedBox(height: 8),
                   TextFormField(
                     controller: _emailcontroler,
-                    autofillHints: [AutofillHints.email],
+                    autofillHints: const [AutofillHints.email],
                     decoration: const InputDecoration(
                         hintText: "  Email",
                         prefixIcon: Icon(Icons.email),
@@ -173,7 +173,7 @@ class _regestration_formState extends State<Regestration_Form> {
                         minimumSize: const Size(600 , 50)
                       ),onPressed: (){
                        HTTPConnections().signup(_usernamecontroler.text.toString(),_emailcontroler.text.toString(),_passwordcontroler.text.toString());
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Intersted_Work()));
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Intersted_Work()));
                        },
                         // onPressed: formkey.currentState == null || !formkey.currentState!.validate()? null :() async {
                         //   try {
@@ -238,7 +238,7 @@ class _regestration_formState extends State<Regestration_Form> {
                     shape: const RoundedRectangleBorder()
                   ,onPressed: ()async{
                     await signInWithGoogle();
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Email registered Successfully , Now you can Sign in")));
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Email registered Successfully , Now you can Sign in")));
                     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext) =>const Sign_In()));
                   }, child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,

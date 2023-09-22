@@ -87,7 +87,7 @@ class _Sugessted_jobState extends State<Sugessted_job> {
                                             context
                                                 .read<Jobs>()
                                                 .Addtosaved(snapshot.data?[index]);
-                                            print(prov);
+                                            // print(prov);
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(const SnackBar(
                                                 content: Text("Saved")));
@@ -192,7 +192,7 @@ class _Sugessted_jobState extends State<Sugessted_job> {
                           ),
                         ],
                       )))
-                  : Center(
+                  : const Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,

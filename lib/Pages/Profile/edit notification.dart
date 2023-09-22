@@ -22,61 +22,61 @@ class _notification_propertiesState extends State<notification_properties> {
         centerTitle: true,
         elevation: 0,
         scrolledUnderElevation: 0,
-        title: Text("Notification",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
+        title: const Text("Notification",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
       ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Container(
               width: MediaQuery.of(context).size.width * 1,
               height: 30,
               decoration: BoxDecoration(color: Colors.grey.shade200),
-              padding: EdgeInsets.only(left: 15),
-              child: Text("Job Notification",
+              padding: const EdgeInsets.only(left: 15),
+              child: const Text("Job Notification",
                   style: TextStyle(fontSize: 20, color: Colors.black)),
             ),
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width*1,
               height: MediaQuery.of(context).size.height*0.4,
               child: Column(
                 children: [
-                  SwitchListTile(title:Text(("Job Search Alert")) ,value: job_search, onChanged:(value){
+                  SwitchListTile(title:const Text(("Job Search Alert")) ,value: job_search, onChanged:(value){
                     job_search = value;
                     setState(() {
                       job_search = value;
                     });
                   }),
-                Divider(indent: 30,endIndent: 30),
-                  SwitchListTile(title:Text(("Job Application Update")) ,value: job_app_update, onChanged:(value){
+                const Divider(indent: 30,endIndent: 30),
+                  SwitchListTile(title:const Text(("Job Application Update")) ,value: job_app_update, onChanged:(value){
                     job_app_update = value;
                     setState(() {
 
                     });
                   }),
-                  Divider(indent: 30,endIndent: 30),
-                  SwitchListTile(title:Text(("Job Application Reminders")) ,value: job_reminder, onChanged:(value){
+                  const Divider(indent: 30,endIndent: 30),
+                  SwitchListTile(title:const Text(("Job Application Reminders")) ,value: job_reminder, onChanged:(value){
                     job_reminder = value;
                     setState(() {
 
                     });
                   }),
-                  Divider(indent: 30,endIndent: 30),
-                  SwitchListTile(title:Text(("Job You may Be Interested In")) ,value: job_interstedin, onChanged:(value){
+                  const Divider(indent: 30,endIndent: 30),
+                  SwitchListTile(title:const Text(("Job You may Be Interested In")) ,value: job_interstedin, onChanged:(value){
                     job_interstedin = value;
                     setState(() {
                     });
                   }),
-                  Divider(indent: 30,endIndent: 30),
-                  SwitchListTile(title:Text(("Job Seeker Updates")) ,value: job_seekerupdate, onChanged:(value){
+                  const Divider(indent: 30,endIndent: 30),
+                  SwitchListTile(title:const Text(("Job Seeker Updates")) ,value: job_seekerupdate, onChanged:(value){
                     job_seekerupdate = value;
                     setState(() {
 
                     });
                   }),
-                  Divider(indent: 30,endIndent: 30),
+                  const Divider(indent: 30,endIndent: 30),
                 ],
               ),
             ),
@@ -84,34 +84,34 @@ class _notification_propertiesState extends State<notification_properties> {
               width: MediaQuery.of(context).size.width * 1,
               height: 30,
               decoration: BoxDecoration(color: Colors.grey.shade200),
-              padding: EdgeInsets.only(left: 15),
-              child: Text("Other Notification",
+              padding: const EdgeInsets.only(left: 15),
+              child: const Text("Other Notification",
                   style: TextStyle(fontSize: 20, color: Colors.black)),
             ),
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width*1,
               height: MediaQuery.of(context).size.height*0.3,
               child: Column(
                 children: [
-                  SwitchListTile(title:Text(("Show Profile")) ,value: show_profile, onChanged:(value){
+                  SwitchListTile(title:const Text(("Show Profile")) ,value: show_profile, onChanged:(value){
                     show_profile = value;
                     setState(() {
                     });
                   }),
-                  Divider(indent: 30,endIndent: 30),
-                  SwitchListTile(title:Text(("All Message")) ,value: all_Message, onChanged:(value){
+                  const Divider(indent: 30,endIndent: 30),
+                  SwitchListTile(title:const Text(("All Message")) ,value: all_Message, onChanged:(value){
                     all_Message = value;
                     setState(() {
                     });
                   }),
-                  Divider(indent: 30,endIndent: 30),
-                  SwitchListTile(title:Text(("Message Nudges")) ,value: message_nudge, onChanged:(value){
+                  const Divider(indent: 30,endIndent: 30),
+                  SwitchListTile(title:const Text(("Message Nudges")) ,value: message_nudge, onChanged:(value){
                     message_nudge = value;
                     setState(() {
 
                     });
                   }),
-                  Divider(indent: 30,endIndent: 30),
+                  const Divider(indent: 30,endIndent: 30),
                 ],
               ),
             )

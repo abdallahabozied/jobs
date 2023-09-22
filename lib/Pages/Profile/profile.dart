@@ -38,7 +38,7 @@ class _profileState extends State<profile> {
             centerTitle: true,
             backgroundColor: Colors.blueAccent.shade100,
             forceMaterialTransparency: false,
-            title:Text("Profile"),
+            title:const Text("Profile"),
             actions: [
               IconButton(
                   onPressed: () async {
@@ -48,17 +48,17 @@ class _profileState extends State<profile> {
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Sign_In(),
+                          builder: (context) => const Sign_In(),
                         ),
                             (route) => false);
                   },
-                  icon: Icon(Icons.exit_to_app,size: 30,)),
+                  icon: const Icon(Icons.exit_to_app,size: 30,)),
             ],
           )
         ],
         body:Scrollbar(
           thickness: 10,
-          radius:Radius.circular(10),
+          radius:const Radius.circular(10),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -75,40 +75,34 @@ class _profileState extends State<profile> {
                       SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                       Text(varHTTP.name,
                           style:
-                              TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
+                              const TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
                       Text(varHTTP.email),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: Colors.grey.shade200),
                             height: 80,
-                            child: Padding(
-                              padding: const EdgeInsets.all(15.0),
+                            child: const Padding(
+                              padding: EdgeInsets.all(15.0),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
-                                  Container(
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [Text("Applied",style: TextStyle(fontSize: 17,fontWeight: FontWeight.w300)), Text("45",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold))],
-                                    ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [Text("Applied",style: TextStyle(fontSize: 17,fontWeight: FontWeight.w300)), Text("45",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold))],
                                   ),
                                   VerticalDivider(),
-                                  Container(
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [Text("Reviwed",style: TextStyle(fontSize: 17,fontWeight: FontWeight.w300)), Text("23",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold))],
-                                    ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [Text("Reviwed",style: TextStyle(fontSize: 17,fontWeight: FontWeight.w300)), Text("23",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold))],
                                   ),
                                   VerticalDivider(),
-                                  Container(
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [Text("Contacted",style: TextStyle(fontSize: 17,fontWeight: FontWeight.w300)), Text("16",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold))],
-                                    ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [Text("Contacted",style: TextStyle(fontSize: 17,fontWeight: FontWeight.w300)), Text("16",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold))],
                                   ),
                                 ],
                               ),
@@ -118,16 +112,16 @@ class _profileState extends State<profile> {
                     Positioned(
                         top: MediaQuery.of(context).size.height *0.1,
                         child:
-                            CircleAvatar(backgroundImage: AssetImage("Assets/images/1.jpg"), radius: 60)),
+                            const CircleAvatar(backgroundImage: AssetImage("Assets/images/1.jpg"), radius: 60)),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15),
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("About",
+                      const Text("About",
                           style: TextStyle(fontSize: 20, color: Colors.black)),
                       InkWell(
                           onTap: () {},
@@ -139,37 +133,37 @@ class _profileState extends State<profile> {
                     ],
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      varHTTP.about[1]["bio"]== null ? Text(" "):Text("${varHTTP.about[1]["bio"]}",style: TextStyle(fontSize: 20 ,fontWeight: FontWeight.w500),maxLines: 5),
-                      varHTTP.about[1]["address"]== null ? Text(" "):Text("Address : ${varHTTP.about[1]["address"]}",maxLines: 2),
-                      varHTTP.about[1]["phone"]== null ? Text(" "):Text("Phone : ${varHTTP.about[2]["phone"]}",maxLines: 1),
+                      varHTTP.about[1]["bio"]== null ? const Text(" "):Text("${varHTTP.about[1]["bio"]}",style: const TextStyle(fontSize: 20 ,fontWeight: FontWeight.w500),maxLines: 5),
+                      varHTTP.about[1]["address"]== null ? const Text(" "):Text("Address : ${varHTTP.about[1]["address"]}",maxLines: 2),
+                      varHTTP.about[1]["phone"]== null ? const Text(" "):Text("Phone : ${varHTTP.about[2]["phone"]}",maxLines: 1),
                     ],
                   ),
                 ),
-                SizedBox(height: 7),
+                const SizedBox(height: 7),
                 Container(
                   width: MediaQuery.of(context).size.width * 1,
                   height: 30,
                   decoration: BoxDecoration(color: Colors.grey.shade200),
-                  padding: EdgeInsets.only(left: 15),
-                  child: Text("General",
+                  padding: const EdgeInsets.only(left: 15),
+                  child: const Text("General",
                       style: TextStyle(fontSize: 20, color: Colors.black)),
                 ),
-                Container(
+                SizedBox(
                   height: MediaQuery.of(context).size.height * 0.45,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       InkWell(
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Edit_Profile()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const Edit_Profile()));
                         },
                         child: ListTile(
                           leading: Container(
@@ -179,17 +173,17 @@ class _profileState extends State<profile> {
                               color: Colors.blue.shade200,
                               borderRadius: BorderRadius.circular(100)
                             ),
-                            child: Icon(Icons.perm_identity_rounded),
+                            child: const Icon(Icons.perm_identity_rounded),
                           ),
-                          title: Text("Edit Profile"),
-                          trailing: Icon(Icons.arrow_forward_rounded),
+                          title: const Text("Edit Profile"),
+                          trailing: const Icon(Icons.arrow_forward_rounded),
                         ),
                       ),
                       Divider(color:Colors.grey.shade200,indent: 20,endIndent: 20,),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       InkWell(
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Portofolio_Upload()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const Portofolio_Upload()));
                         },
                         child: ListTile(
                           leading: Container(
@@ -199,17 +193,17 @@ class _profileState extends State<profile> {
                                 color: Colors.blue.shade200,
                                 borderRadius: BorderRadius.circular(100)
                             ),
-                            child: Icon(Icons.create_new_folder_outlined),
+                            child: const Icon(Icons.create_new_folder_outlined),
                           ),
-                          title: Text("Portofolio"),
-                          trailing: Icon(Icons.arrow_forward_rounded),
+                          title: const Text("Portofolio"),
+                          trailing: const Icon(Icons.arrow_forward_rounded),
                         ),
                       ),
                       Divider(color:Colors.grey.shade200,indent: 20,endIndent: 20,),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       InkWell(
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Language()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const Language()));
                         },
                         child: ListTile(
                           leading: Container(
@@ -219,17 +213,17 @@ class _profileState extends State<profile> {
                                 color: Colors.blue.shade200,
                                 borderRadius: BorderRadius.circular(100)
                             ),
-                            child: Icon(Icons.language_rounded),
+                            child: const Icon(Icons.language_rounded),
                           ),
-                          title: Text("Language"),
-                          trailing: Icon(Icons.arrow_forward_rounded),
+                          title: const Text("Language"),
+                          trailing: const Icon(Icons.arrow_forward_rounded),
                         ),
                       ),
                       Divider(color:Colors.grey.shade200,indent: 20,endIndent: 20,),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       InkWell(
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => notification_properties()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const notification_properties()));
                         },
                         child: ListTile(
                           leading: Container(
@@ -239,17 +233,17 @@ class _profileState extends State<profile> {
                                 color: Colors.blue.shade200,
                                 borderRadius: BorderRadius.circular(100)
                             ),
-                            child: Icon(Icons.notifications_outlined),
+                            child: const Icon(Icons.notifications_outlined),
                           ),
-                          title: Text("Notification"),
-                          trailing: Icon(Icons.arrow_forward_rounded),
+                          title: const Text("Notification"),
+                          trailing: const Icon(Icons.arrow_forward_rounded),
                         ),
                       ),
                       Divider(color:Colors.grey.shade200,indent: 20,endIndent: 20,),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       InkWell(
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => account_access()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const account_access()));
                         },
                         child: ListTile(
                           leading: Container(
@@ -259,10 +253,10 @@ class _profileState extends State<profile> {
                                 color: Colors.blue.shade200,
                                 borderRadius: BorderRadius.circular(100)
                             ),
-                            child: Icon(Icons.lock_outline),
+                            child: const Icon(Icons.lock_outline),
                           ),
-                          title: Text("Login and security"),
-                          trailing: Icon(Icons.arrow_forward_rounded),
+                          title: const Text("Login and security"),
+                          trailing: const Icon(Icons.arrow_forward_rounded),
                         ),
                       ),
                       Divider(color:Colors.grey.shade200,indent: 20,endIndent: 20,)
@@ -273,51 +267,51 @@ class _profileState extends State<profile> {
                   width: MediaQuery.of(context).size.width * 1,
                   height: 30,
                   decoration: BoxDecoration(color: Colors.grey.shade200),
-                  padding: EdgeInsets.only(left: 15),
-                  child: Text("Others",
+                  padding: const EdgeInsets.only(left: 15),
+                  child: const Text("Others",
                       style: TextStyle(fontSize: 20, color: Colors.black)),
                 ),
-                Container(
+                SizedBox(
                   height: MediaQuery.of(context).size.height * 0.35,
 
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      SizedBox(height: 5),
-                      ListTile(
+                      const SizedBox(height: 5),
+                      const ListTile(
                         title: Text("Accessability"),
                         trailing: Icon(Icons.arrow_forward_rounded),
                       ),
                       Divider(color:Colors.grey.shade200,indent: 20,endIndent: 20,),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       InkWell(
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Help_Center()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const Help_Center()));
                         },
-                        child: ListTile(
+                        child: const ListTile(
 
                           title: Text("Help Center"),
                           trailing: Icon(Icons.arrow_forward_rounded),
                         ),
                       ),
                       Divider(color:Colors.grey.shade200,indent: 20,endIndent: 20,),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       InkWell(
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Terms()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const Terms()));
                         },
-                        child: ListTile(
+                        child: const ListTile(
                           title: Text("Terms & Conditions"),
                           trailing: Icon(Icons.arrow_forward_rounded),
                         ),
                       ),
                       Divider(color:Colors.grey.shade200,indent: 20,endIndent: 20,),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       InkWell(
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Privacy_Policy()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const Privacy_Policy()));
                         },
-                        child: ListTile(
+                        child: const ListTile(
                           title: Text("Privacy Policy"),
                           trailing: Icon(Icons.arrow_forward_rounded),
                         ),

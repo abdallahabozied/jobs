@@ -11,9 +11,9 @@ class Two_step_3 extends StatefulWidget {
 }
 
 class _Two_step_3State extends State<Two_step_3> {
-  TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
   bool use_phone_to_reset = false;
-  TextEditingController _currentpasswordcontroler = TextEditingController();
+  final TextEditingController _currentpasswordcontroler = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,26 +22,26 @@ class _Two_step_3State extends State<Two_step_3> {
           centerTitle: true,
           elevation: 0,
           scrolledUnderElevation: 0,
-          title: Text("Two-step verification",
+          title: const Text("Two-step verification",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         ),
         body: Padding(
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           child: Form(
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
+                  SizedBox(
                     width: MediaQuery.of(context).size.width * 1.0,
                     // height: MediaQuery.of(context).size.height * 0.2,
                     child: Column(
                       children: [
-                        Text("  Add phone Number"),
-                        SizedBox(height: 3),
-                        Text(
+                        const Text("  Add phone Number"),
+                        const SizedBox(height: 3),
+                        const Text(
                             "  we will send a verification code to this number"),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         IntlPhoneField(
                           initialCountryCode: "+20",
                           initialValue: "+20",
@@ -69,9 +69,9 @@ class _Two_step_3State extends State<Two_step_3> {
                           keyboardType: TextInputType.phone,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                         ),
-                        SizedBox(height: 5),
-                        Text("  Enter your password"),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
+                        const Text("  Enter your password"),
+                        const SizedBox(height: 5),
                         TextFormField(
                             obscureText: true,
                             controller: _currentpasswordcontroler,
@@ -119,7 +119,7 @@ class _Two_step_3State extends State<Two_step_3> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Verify_code()));
+                                  builder: (context) => const Verify_code()));
                         },
                         child: const Text(
                           "Send code",

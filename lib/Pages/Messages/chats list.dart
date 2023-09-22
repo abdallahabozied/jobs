@@ -15,7 +15,7 @@ class _Chats_ListState extends State<Chats_List> {
         appBar: AppBar(
           centerTitle: true,
           scrolledUnderElevation: 0,
-          title: Text("Messages"),
+          title: const Text("Messages"),
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -67,17 +67,17 @@ class _Chats_ListState extends State<Chats_List> {
                                    mainAxisAlignment: MainAxisAlignment.start,
                                    crossAxisAlignment: CrossAxisAlignment.start,
                                    children: [
-                                     Text("Message filters",style: TextStyle(
+                                     const Text("Message filters",style: TextStyle(
                                      fontWeight: FontWeight.w400,
                                      fontSize: 25)),
-                                     SizedBox(height: 15),
+                                     const SizedBox(height: 15),
                                      Container(
-                                       padding: EdgeInsets.symmetric(horizontal: 20),
+                                       padding: const EdgeInsets.symmetric(horizontal: 20),
                                        width: MediaQuery.of(context).size.width*1,
                                        height: MediaQuery.of(context).size.height*.08,
                                      decoration: BoxDecoration(border: Border.all(color: Colors.grey.shade500),borderRadius: BorderRadius.circular(30),
                                      ),
-                                       child: Row(
+                                       child: const Row(
 
                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                          crossAxisAlignment: CrossAxisAlignment.center,
@@ -89,14 +89,14 @@ class _Chats_ListState extends State<Chats_List> {
                                          ],
                                        ),
                                      ),
-                                     SizedBox(height: 10),
+                                     const SizedBox(height: 10),
                                      Container(
-                                       padding: EdgeInsets.symmetric(horizontal: 20),
+                                       padding: const EdgeInsets.symmetric(horizontal: 20),
                                        width: MediaQuery.of(context).size.width*1,
                                        height: MediaQuery.of(context).size.height*.08,
                                        decoration: BoxDecoration(border: Border.all(color: Colors.grey.shade500),borderRadius: BorderRadius.circular(30),
                                        ),
-                                       child: Row(
+                                       child: const Row(
 
                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                          crossAxisAlignment: CrossAxisAlignment.center,
@@ -108,14 +108,14 @@ class _Chats_ListState extends State<Chats_List> {
                                          ],
                                        ),
                                      ),
-                                     SizedBox(height: 10),
+                                     const SizedBox(height: 10),
                                      Container(
-                                       padding: EdgeInsets.symmetric(horizontal: 20),
+                                       padding: const EdgeInsets.symmetric(horizontal: 20),
                                        width: MediaQuery.of(context).size.width*1,
                                        height: MediaQuery.of(context).size.height*.08,
                                        decoration: BoxDecoration(border: Border.all(color: Colors.grey.shade500),borderRadius: BorderRadius.circular(30),
                                        ),
-                                       child: Row(
+                                       child: const Row(
 
                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                          crossAxisAlignment: CrossAxisAlignment.center,
@@ -146,7 +146,7 @@ class _Chats_ListState extends State<Chats_List> {
                         )
                       ],
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Scrollbar(
                       child: SizedBox(
                         height: MediaQuery.of(context).size.height * 0.8,
@@ -158,17 +158,17 @@ class _Chats_ListState extends State<Chats_List> {
                               children: [
                                 InkWell(
                                   onTap: (){
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => Chat_Page()));
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => const Chat_Page()));
                                   },
                                   child: ListTile(
-                                    leading: CircleAvatar(
+                                    leading: const CircleAvatar(
                                       radius: 30,
                                     ),
                                     title: Text("Index ${index+1}",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontWeight: FontWeight.w400,
                                             fontSize: 20)),
-                                    subtitle: Text(
+                                    subtitle: const Text(
                                         "Hello it's Abdallah Abozied from group 43 online",
                                         maxLines: 1,
                                         style: TextStyle(

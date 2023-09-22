@@ -1,13 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:jobsque/Model/jobpost.dart';
+// import 'package:jobsque/Model/jobpost.dart';
 import 'package:jobsque/Model/profileModel.dart';
 import 'package:jobsque/Network/HTTP.dart' as varHttp;
 import 'package:jobsque/Pages/Create%20Account/regestrationform.dart';
 import 'package:jobsque/Pages/Home%20&%20Search/Home_Home.dart';
 import 'package:jobsque/Pages/Reset%20Password/Reset%20Password.dart';
 import 'package:jobsque/Shared functions.dart';
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../onboardScreens/splash.dart';
 
@@ -34,7 +34,7 @@ class _Sign_InState extends State<Sign_In> {
 
   @override
   Widget build(BuildContext context) {
-    var prov = Provider.of<Jobs>(context);
+    // var prov = Provider.of<Jobs>(context);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
@@ -153,12 +153,10 @@ class _Sign_InState extends State<Sign_In> {
                             value: remember_me,
                             onChanged: (islogin) async{
                               var logindata = await SharedPreferences.getInstance();
-                              logindata?.setString("email",_emailcontroler.text);
+                              logindata.setString("email",_emailcontroler.text);
                               setState(() {
                                 remember_me= islogin;
-                                print("Remember me is  ===============> "+"$remember_me");
-                                logindata?.setBool("login", remember_me!);
-                                print(logindata?.getBool("login"));
+                                logindata.setBool("login", remember_me!);
 
                               });
                             }),
@@ -171,7 +169,7 @@ class _Sign_InState extends State<Sign_In> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => Reset_Password(),
+                                    builder: (context) => const Reset_Password(),
                                   ));
                             },
                             child: const Text(" Forgot Password?",
@@ -190,7 +188,7 @@ class _Sign_InState extends State<Sign_In> {
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => Regestration_Form(),
+                                      builder: (context) => const Regestration_Form(),
                                     ));
                               },
                               child: const Text(" Register",
@@ -220,7 +218,7 @@ class _Sign_InState extends State<Sign_In> {
                                     Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => Home()));
+                                            builder: (context) => const Home()));
                                   } else {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                         const SnackBar(
@@ -285,14 +283,14 @@ class _Sign_InState extends State<Sign_In> {
                     width: 160,
                     height: 50,
                     child: MaterialButton(
-                        shape: RoundedRectangleBorder(),
+                        shape: const RoundedRectangleBorder(),
                         onPressed: () async{
                           await signInWithGoogle();
                           varHttp.name=FirebaseAuth.instance.currentUser!.displayName!;
                           varHttp.email=FirebaseAuth.instance.currentUser!.email!;
                           Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext) =>const Home()));
                         },
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
@@ -310,9 +308,9 @@ class _Sign_InState extends State<Sign_In> {
                     width: 160,
                     height: 50,
                     child: MaterialButton(
-                        shape: RoundedRectangleBorder(),
+                        shape: const RoundedRectangleBorder(),
                         onPressed: () {},
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(

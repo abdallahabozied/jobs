@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:jobsque/Pages/Home%20&%20Search/recent%20job.dart';
 import 'package:jobsque/Pages/Profile/profile.dart';
-import 'package:country_picker/country_picker.dart';
 import 'package:jobsque/Network/HTTP.dart' as varHTTP;
 class Edit_Profile extends StatefulWidget {
   const Edit_Profile({super.key});
@@ -25,7 +24,7 @@ class _Edit_ProfileState extends State<Edit_Profile> {
       appBar: AppBar(
         centerTitle: true,
         scrolledUnderElevation: 0,
-        title: Text("Edit Profile"),
+        title: const Text("Edit Profile"),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -34,17 +33,17 @@ class _Edit_ProfileState extends State<Edit_Profile> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width * 1.0,
                 height: MediaQuery.of(context).size.height * 0.2,
                 child: Center(
                   child: Column(
                     children: [
-                      CircleAvatar(
+                      const CircleAvatar(
                         radius: 40,
                         backgroundImage: AssetImage("Assets/images/1.jpg"),
                       ),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       TextButton(
                           onPressed: () {},
                           child: Text(
@@ -63,7 +62,7 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("  Name"),
+                    const Text("  Name"),
                     TextFormField(
                       controller: _namecontroler,
                       decoration: const InputDecoration(
@@ -94,7 +93,7 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                       },
                     ),
                     const SizedBox(height: 15),
-                    Text("  Bio"),
+                    const Text("  Bio"),
                     TextFormField(
                       controller: _biocontroler,
                       autofillHints: [AutofillHints.email],
@@ -126,7 +125,7 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                       },
                     ),
                     const SizedBox(height: 15),
-                    Text("  Address"),
+                    const Text("  Address"),
                     TextFormField(
                         controller: _addresscontroler,
                         decoration: const InputDecoration(
@@ -158,7 +157,7 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                           return null;
                         }),
                     const SizedBox(height: 15),
-                    Text("  No.Handphone"),
+                    const Text("  No.Handphone"),
                     IntlPhoneField(
                       initialCountryCode: "+20",
                       initialValue: "+20",
@@ -203,14 +202,14 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                              varHTTP.about[1]["address"] = _addresscontroler.text;
                              varHTTP.about[2]["phone"] = _phonecontroler.text;
 
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                   content: Text("Profile data updated")));
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => profile()));
+                                      builder: (context) => const profile()));
                             }else{
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                   content: Text("Canot update Profile data.")));
                             }
                              await httpConnections.fetchuser();

@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -11,7 +10,7 @@ class Help_Center extends StatefulWidget {
 
 class _Help_CenterState extends State<Help_Center> {
 
-  TextEditingController _searchcontroller = TextEditingController();
+  final TextEditingController _searchcontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class _Help_CenterState extends State<Help_Center> {
         centerTitle: true,
         elevation: 0,
         scrolledUnderElevation: 0,
-        title: Text("Help Center",
+        title: const Text("Help Center",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
       ),
       body: SingleChildScrollView(
@@ -31,7 +30,7 @@ class _Help_CenterState extends State<Help_Center> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height:10),
+              const SizedBox(height:10),
               TextField(
                 controller: _searchcontroller,
                 onSubmitted: (value){
@@ -58,92 +57,92 @@ class _Help_CenterState extends State<Help_Center> {
                 ),
                 cursorColor: Colors.blue,
               ),
-              SizedBox(height:10),
+              const SizedBox(height:10),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   border: Border.all(color: Colors.black)
                 ),
                 child: ExpansionTile(
-                    childrenPadding: EdgeInsets.all(10),
-                    title: Text("Lorem ipsum dolor sit amet"),
-                    children: [
-                      Text("sdfifdjfijskfjskfjksjdfiscjsckmklsvcmdfvxodfvilkvjmlvmdklfnvdufvnidufhvsdjikvhnkshvkjhfsdfhiosdhiosddfiosjnckndskcnkjlfsdilvjklnvklcnsknkdjhvsihlvkjdnvsfjkvsijdhfkdsjkkkkkkkkkkkkkkkkja;lkdfnvadfm,vnioejfals,dfma;oweirjfq'wpefjdkfjjpqpfqjirqireqpfj'e;rpfqkje;flkefldfdflkfjsdlfsjdfkjdfl")
-                    ],
+                    childrenPadding: const EdgeInsets.all(10),
+                    title: const Text("Lorem ipsum dolor sit amet"),
 
                 collapsedShape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                    children: const [
+                      Text("sdfifdjfijskfjskfjksjdfiscjsckmklsvcmdfvxodfvilkvjmlvmdklfnvdufvnidufhvsdjikvhnkshvkjhfsdfhiosdhiosddfiosjnckndskcnkjlfsdilvjklnvklcnsknkdjhvsihlvkjdnvsfjkvsijdhfkdsjkkkkkkkkkkkkkkkkja;lkdfnvadfm,vnioejfals,dfma;oweirjfq'wpefjdkfjjpqpfqjirqireqpfj'e;rpfqkje;flkefldfdflkfjsdlfsjdfkjdfl")
+                    ]
                     ),
               ),
-              SizedBox(height:10),
+              const SizedBox(height:10),
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(color: Colors.black)
                 ),
                 child: ExpansionTile(
-                    childrenPadding: EdgeInsets.all(10),
-                    title: Text("Lorem ipsum dolor sit amet"),
-                    children: [
-                      Text("sdfifdjfijskfjskfjksjdfiscjsckmklsvcmdfvxodfvilkvjmlvmdklfnvdufvnidufhvsdjikvhnkshvkjhfsdfhiosdhiosddfiosjnckndskcnkjlfsdilvjklnvklcnsknkdjhvsihlvkjdnvsfjkvsijdhfkdsjkkkkkkkkkkkkkkkkja;lkdfnvadfm,vnioejfals,dfma;oweirjfq'wpefjdkfjjpqpfqjirqireqpfj'e;rpfqkje;flkefldfdflkfjsdlfsjdfkjdfl")
-                    ],
+                    childrenPadding: const EdgeInsets.all(10),
+                    title: const Text("Lorem ipsum dolor sit amet"),
 
                     collapsedShape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                    children: const [
+                      Text("sdfifdjfijskfjskfjksjdfiscjsckmklsvcmdfvxodfvilkvjmlvmdklfnvdufvnidufhvsdjikvhnkshvkjhfsdfhiosdhiosddfiosjnckndskcnkjlfsdilvjklnvklcnsknkdjhvsihlvkjdnvsfjkvsijdhfkdsjkkkkkkkkkkkkkkkkja;lkdfnvadfm,vnioejfals,dfma;oweirjfq'wpefjdkfjjpqpfqjirqireqpfj'e;rpfqkje;flkefldfdflkfjsdlfsjdfkjdfl")
+                    ]
                 ),
               ),
-              SizedBox(height:10),
+              const SizedBox(height:10),
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(color: Colors.black)
                 ),
                 child: ExpansionTile(
-                    childrenPadding: EdgeInsets.all(10),
-                    title: Text("Lorem ipsum dolor sit amet"),
-                    children: [
-                      Text("sdfifdjfijskfjskfjksjdfiscjsckmklsvcmdfvxodfvilkvjmlvmdklfnvdufvnidufhvsdjikvhnkshvkjhfsdfhiosdhiosddfiosjnckndskcnkjlfsdilvjklnvklcnsknkdjhvsihlvkjdnvsfjkvsijdhfkdsjkkkkkkkkkkkkkkkkja;lkdfnvadfm,vnioejfals,dfma;oweirjfq'wpefjdkfjjpqpfqjirqireqpfj'e;rpfqkje;flkefldfdflkfjsdlfsjdfkjdfl")
-                    ],
+                    childrenPadding: const EdgeInsets.all(10),
+                    title: const Text("Lorem ipsum dolor sit amet"),
 
                     collapsedShape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                    children: const [
+                      Text("sdfifdjfijskfjskfjksjdfiscjsckmklsvcmdfvxodfvilkvjmlvmdklfnvdufvnidufhvsdjikvhnkshvkjhfsdfhiosdhiosddfiosjnckndskcnkjlfsdilvjklnvklcnsknkdjhvsihlvkjdnvsfjkvsijdhfkdsjkkkkkkkkkkkkkkkkja;lkdfnvadfm,vnioejfals,dfma;oweirjfq'wpefjdkfjjpqpfqjirqireqpfj'e;rpfqkje;flkefldfdflkfjsdlfsjdfkjdfl")
+                    ]
                 ),
               ),
-              SizedBox(height:10),
+              const SizedBox(height:10),
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(color: Colors.black)
                 ),
                 child: ExpansionTile(
-                    childrenPadding: EdgeInsets.all(10),
-                    title: Text("Lorem ipsum dolor sit amet"),
-                    children: [
-                      Text("sdfifdjfijskfjskfjksjdfiscjsckmklsvcmdfvxodfvilkvjmlvmdklfnvdufvnidufhvsdjikvhnkshvkjhfsdfhiosdhiosddfiosjnckndskcnkjlfsdilvjklnvklcnsknkdjhvsihlvkjdnvsfjkvsijdhfkdsjkkkkkkkkkkkkkkkkja;lkdfnvadfm,vnioejfals,dfma;oweirjfq'wpefjdkfjjpqpfqjirqireqpfj'e;rpfqkje;flkefldfdflkfjsdlfsjdfkjdfl")
-                    ],
+                    childrenPadding: const EdgeInsets.all(10),
+                    title: const Text("Lorem ipsum dolor sit amet"),
 
                     collapsedShape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                    children: const [
+                      Text("sdfifdjfijskfjskfjksjdfiscjsckmklsvcmdfvxodfvilkvjmlvmdklfnvdufvnidufhvsdjikvhnkshvkjhfsdfhiosdhiosddfiosjnckndskcnkjlfsdilvjklnvklcnsknkdjhvsihlvkjdnvsfjkvsijdhfkdsjkkkkkkkkkkkkkkkkja;lkdfnvadfm,vnioejfals,dfma;oweirjfq'wpefjdkfjjpqpfqjirqireqpfj'e;rpfqkje;flkefldfdflkfjsdlfsjdfkjdfl")
+                    ]
                 ),
               ),
-              SizedBox(height:10),
+              const SizedBox(height:10),
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(color: Colors.black)
                 ),
                 child: ExpansionTile(
-                    childrenPadding: EdgeInsets.all(10),
-                    title: Text("Lorem ipsum dolor sit amet"),
-                    children: [
-                      Text("sdfifdjfijskfjskfjksjdfiscjsckmklsvcmdfvxodfvilkvjmlvmdklfnvdufvnidufhvsdjikvhnkshvkjhfsdfhiosdhiosddfiosjnckndskcnkjlfsdilvjklnvklcnsknkdjhvsihlvkjdnvsfjkvsijdhfkdsjkkkkkkkkkkkkkkkkja;lkdfnvadfm,vnioejfals,dfma;oweirjfq'wpefjdkfjjpqpfqjirqireqpfj'e;rpfqkje;flkefldfdflkfjsdlfsjdfkjdfl")
-                    ],
+                    childrenPadding: const EdgeInsets.all(10),
+                    title: const Text("Lorem ipsum dolor sit amet"),
 
                     collapsedShape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                    children: const [
+                      Text("sdfifdjfijskfjskfjksjdfiscjsckmklsvcmdfvxodfvilkvjmlvmdklfnvdufvnidufhvsdjikvhnkshvkjhfsdfhiosdhiosddfiosjnckndskcnkjlfsdilvjklnvklcnsknkdjhvsihlvkjdnvsfjkvsijdhfkdsjkkkkkkkkkkkkkkkkja;lkdfnvadfm,vnioejfals,dfma;oweirjfq'wpefjdkfjjpqpfqjirqireqpfj'e;rpfqkje;flkefldfdflkfjsdlfsjdfkjdfl")
+                    ]
                 ),
               ),
-              SizedBox(height:10),
+              const SizedBox(height:10),
 
 
             ],

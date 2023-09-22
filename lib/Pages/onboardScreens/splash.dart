@@ -36,32 +36,32 @@ class _SplashState extends State<Splash> {
             Container(
                 width: 280,
                 height: 280,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Colors.black26,
                     shape: BoxShape.circle
                 )),
             Container(
                 width: 600,
                 height: 600,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Colors.black12,
                     shape: BoxShape.circle
                 )),
             Container(
               width: 800,
               height: 800,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   color: Colors.white38,
                   shape: BoxShape.circle
               )),
             Container(
                 width: 1000,
                 height: 1000,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     color: Colors.transparent,
                     shape: BoxShape.circle
                 )),
-            Row(
+            const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("J",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 50)),
@@ -76,11 +76,12 @@ class _SplashState extends State<Splash> {
   void CheckSignIn() async{
     var  logindata = await SharedPreferences.getInstance();
     var   user =(logindata.getBool('login'));
-    print("the new user is"+ " $user");
+    // print("the new user is"+ " $user");
     if(user==true){
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home()));
-    }else
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Page0()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Home()));
+    }else {
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Page0()));
+    }
 
   }
 }

@@ -6,6 +6,7 @@ import 'package:jobsque/Pages/Home%20&%20Search/recent%20job.dart';
 import 'package:jobsque/Pages/Job%20Detalis%20&%20Apply/Job%20Details.dart';
 import 'package:jobsque/Pages/Job%20Detalis%20&%20Apply/apply%20job.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 import '../../Network/HTTP.dart' as varHTTP;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,11 +24,10 @@ class Home_Screen extends StatefulWidget {
 class _Home_ScreenState extends State<Home_Screen> {
   @override
   void initState() {
-
     httpConnections.fetchuser();
     varHTTP.HTTPConnections().GetAllPostswithphotos();
     varHTTP.HTTPConnections().Getsavedjobs();
-  // varHTTP.HTTPConnections().GetAppliedjobs();
+    // varHTTP.HTTPConnections().GetAppliedjobs();
     super.initState();
   }
 
@@ -41,7 +41,7 @@ class _Home_ScreenState extends State<Home_Screen> {
       future: httpConnections.GetAllPostswithphotos(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          print(snapshot);
+
           return Padding(
             padding: const EdgeInsets.all(15.0),
             child: Column(
@@ -56,8 +56,8 @@ class _Home_ScreenState extends State<Home_Screen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text(varHTTP.name, style: TextStyle(fontSize: 20)),
-                          Text("Create better future for yourself here ",
+                          Text(varHTTP.name, style: const TextStyle(fontSize: 20)),
+                          const Text("Create better future for yourself here ",
                               style: TextStyle(
                                   fontSize: 15, color: Colors.black54))
                         ],
@@ -129,7 +129,6 @@ class _Home_ScreenState extends State<Home_Screen> {
                     ],
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 1,
                     height: MediaQuery.of(context).size.height * 0.27,
@@ -151,27 +150,31 @@ class _Home_ScreenState extends State<Home_Screen> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               ListTile(
-                                leading:Container(
+                                leading: Container(
                                   width: 50,
                                   height: 50,
                                   decoration: BoxDecoration(
-                                      borderRadius:
-                                      BorderRadius.circular(50)),
-                                  child: Image.network(errorBuilder:
-                                      (context, error, stackTrace) {
-                                    return Container(
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                            BorderRadius.circular(50)),
-                                        child: Image.asset("Assets/images/No_image.png",fit: BoxFit.fill,));
-                                  }, "${snapshot.data?[index]["image"]}",fit: BoxFit.fill,),
+                                      borderRadius: BorderRadius.circular(50)),
+                                  child: Image.network(
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(50)),
+                                          child: Image.asset(
+                                            "Assets/images/No_image.png",
+                                            fit: BoxFit.fill,
+                                          ));
+                                    },
+                                    "${snapshot.data?[index]["image"]}",
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
                                 title: InkWell(
                                     onTap: () {
-                                      print("the id which try to reach is ");
-                                      print(snapshot.data?[index]["id"]);
-                                      prov.postid =
-                                          snapshot.data?[index]["id"];
+                                      // print("the id which try to reach is ");
+                                      // print(snapshot.data?[index]["id"]);
+                                      prov.postid = snapshot.data?[index]["id"];
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -191,11 +194,12 @@ class _Home_ScreenState extends State<Home_Screen> {
                                 trailing: InkWell(
                                     onTap: () {
                                       varHTTP.HTTPConnections().Addtosaved(
-                                          varHTTP.id, snapshot.data?[index]["id"]);
+                                          varHTTP.id,
+                                          snapshot.data?[index]["id"]);
                                       context
                                           .read<Jobs>()
                                           .Addtosaved(snapshot.data?[index]);
-                                      print(prov);
+                                      // print(prov);
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(const SnackBar(
                                               content: Text("Saved")));
@@ -211,8 +215,8 @@ class _Home_ScreenState extends State<Home_Screen> {
                                       Icons.bookmark,
                                       color: Colors.black54,
                                     )),
-                                contentPadding: const EdgeInsets.symmetric(
-                                    horizontal: 10),
+                                contentPadding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
                               ),
                               SizedBox(
                                   height: MediaQuery.of(context).size.height *
@@ -289,13 +293,11 @@ class _Home_ScreenState extends State<Home_Screen> {
                                             "${snapshot.data?[index]["salary"]}",
 //
                                         style: const TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 20)),
+                                            color: Colors.black, fontSize: 20)),
                                     const TextSpan(
                                         text: '/month',
                                         style: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 10)),
+                                            color: Colors.grey, fontSize: 10)),
                                   ])),
                                   MaterialButton(
                                     shape: RoundedRectangleBorder(
@@ -305,7 +307,6 @@ class _Home_ScreenState extends State<Home_Screen> {
                                     onPressed: () {
                                       prov.appliedjobid =
                                           snapshot.data?[index]["id"];
-                                      //prov.appliedjobid = list3[index]["id"];
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -350,7 +351,6 @@ class _Home_ScreenState extends State<Home_Screen> {
                     ),
                   ),
                   const SizedBox(height: 1),
-                  //MediaQuery.of(context).size.height * 0.015),
 
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 1,
@@ -366,21 +366,26 @@ class _Home_ScreenState extends State<Home_Screen> {
                                   width: 50,
                                   height: 50,
                                   decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.circular(50)),
-                                  child: Image.network(errorBuilder:
-                                      (context, error, stackTrace) {
-                                    return Container(
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                            BorderRadius.circular(50)),
-                                       child: Image.asset("Assets/images/No_image.png",fit: BoxFit.fill,));
-                                  }, "${snapshot.data?[index]["image"]}",fit: BoxFit.fill,),
+                                      borderRadius: BorderRadius.circular(50)),
+                                  child: Image.network(
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(50)),
+                                          child: Image.asset(
+                                            "Assets/images/No_image.png",
+                                            fit: BoxFit.fill,
+                                          ));
+                                    },
+                                    "${snapshot.data?[index]["image"]}",
+                                    fit: BoxFit.fill,
+                                  ),
                                 ),
-                                // "${list3[index]["thumbnailUrl"]}"),
                                 title: InkWell(
                                   onTap: () {
                                     prov.postid = snapshot.data?[index]["id"];
+                                    prov.appliedjobid = prov.postid;
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
@@ -436,8 +441,8 @@ class _Home_ScreenState extends State<Home_Screen> {
                                       Icons.bookmark,
                                       color: Colors.black54,
                                     )),
-                                contentPadding: const EdgeInsets.symmetric(
-                                    horizontal: 10),
+                                contentPadding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
                               ),
                               Row(
                                 mainAxisAlignment:
@@ -498,13 +503,11 @@ class _Home_ScreenState extends State<Home_Screen> {
                                             "${snapshot.data?[index]["salary"]}",
                                         //  text: "${list[index]["id"]}",
                                         style: const TextStyle(
-                                            color: Colors.green,
-                                            fontSize: 20)),
+                                            color: Colors.green, fontSize: 20)),
                                     const TextSpan(
                                         text: '/month',
                                         style: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 15)),
+                                            color: Colors.grey, fontSize: 15)),
                                   ]))
                                 ],
                               ),
@@ -527,10 +530,197 @@ class _Home_ScreenState extends State<Home_Screen> {
           );
         } else {
           return Center(
-            child: CircularProgressIndicator(),
+            child: Shimmer.fromColors(
+              baseColor: Colors.black.withOpacity(1),
+              highlightColor: Colors.black54,
+              child: Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Column(
+                            children: [
+                              Skelton(
+                                width: 200,
+                                height: 20,
+                              ),
+                              SizedBox(height: 8),
+                              Skelton(
+                                width: 200,
+                                height: 20,
+                              )
+                            ],
+                          ),
+                          SizedBox(height: 6),
+                          Skelton(height: 60, width: 60),
+                        ],
+                      ),
+                      const SizedBox(height: 30),
+
+                      const Skelton(
+                        width: 500,
+                        height: 70,
+                      ),
+                      const SizedBox(height: 30),
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Skelton(
+                            height: 20,
+                            width: 100,
+                          ),
+                          Skelton(
+                            height: 20,
+                            width: 100,
+                          )
+                        ],
+                      ),
+                      const SizedBox(height: 30),
+                      Container(
+                        padding: const EdgeInsets.all(8),
+                        width: 400,
+                        height: 200,
+                        child: const Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Skelton(
+                                  height: 70,
+                                  width: 70,
+                                ),
+                                Column(
+                                  children: [
+                                    Skelton(
+                                      height: 10,
+                                      width: 80,
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Skelton(height: 10, width: 80),
+                                  ],
+                                ),
+                                Skelton(
+                                  width: 50,
+                                  height: 20,
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Skelton(width: 50),
+                                SizedBox(width: 10),
+                                Skelton(width: 50),
+                                SizedBox(width: 10),
+                                Skelton(width: 50),
+                                SizedBox(width: 10)
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Skelton(width: 50),
+                                SizedBox(width: 10),
+                                Skelton(width: 60, height: 40),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                      // SizedBox(height: 30),
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Skelton(width: 100, height: 20,),
+                          Skelton(width: 100, height: 20,),
+                        ],
+                      ),
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: 3,
+                          itemBuilder: (context, index) {
+                            return const Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Skelton(
+                                    width: 60,
+                                    height: 60,
+                                  ),
+                                  SizedBox(width: 30),
+                                  Column(
+                                    children: [
+                                      Skelton(
+                                        width: 80,
+                                        height: 20,
+                                      ),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Skelton(
+                                        width: 80,
+                                        height: 20,
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(width: 90),
+                                  Skelton(
+                                    width: 30,
+                                    height: 30,
+                                  )
+                                ],
+                              ),
+                              SizedBox(height: 3,),
+                              Row(mainAxisAlignment: MainAxisAlignment.spaceAround,children: [Skelton(width: 40,),Skelton(width: 40,),Skelton(width: 40,),Skelton(width: 40,)],)
+                                  ,SizedBox(height: 15,),
+                                ]);
+                          },
+                        ),
+                      )
+                    ],
+                  )),
+            ),
           );
         }
       },
     ));
+  }
+}
+
+class Skelton extends StatelessWidget {
+  const Skelton({super.key, this.height, this.width});
+
+  final double? height;
+
+  final double? width;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: height,
+      width: width,
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+          color: Colors.black.withOpacity(0.1),
+          borderRadius: const BorderRadius.all(Radius.circular(16))),
+    );
   }
 }

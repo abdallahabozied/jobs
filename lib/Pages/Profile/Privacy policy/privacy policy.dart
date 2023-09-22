@@ -10,12 +10,12 @@ class Privacy_Policy extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         scrolledUnderElevation: 0,
-        title: Text("Privacy Policy"),
+        title: const Text("Privacy Policy"),
       ),
-      body: Scrollbar(
+      body: const Scrollbar(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: EdgeInsets.all(15.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,

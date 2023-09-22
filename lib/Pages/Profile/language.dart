@@ -63,10 +63,10 @@ class _LanguageState extends State<Language> {
                           contentPadding:
                               const EdgeInsets.symmetric(horizontal: 10),
 
-                          leading: Container(
+                          leading: SizedBox(
                             width: 30,
                             height: 30,
-                            child: CountryFlag.fromCountryCode('${flags[index]}'),
+                            child: CountryFlag.fromCountryCode(flags[index]),
                           ),
                           title: Text(
                             options[index],

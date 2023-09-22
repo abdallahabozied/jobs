@@ -13,7 +13,7 @@ class Intersted_Work_type extends StatefulWidget {
 
 class _Intersted_Work_typeState extends State<Intersted_Work_type>
     with TickerProviderStateMixin {
-  static List<Intested_joblocation?> _countries = [
+  static final List<Intested_joblocation?> _countries = [
     Intested_joblocation(id: 1, name: "United States"),
     Intested_joblocation(id: 2, name: "Malaysia"),
     Intested_joblocation(id: 3, name: "Singapore"),
@@ -32,19 +32,36 @@ class _Intersted_Work_typeState extends State<Intersted_Work_type>
     Intested_joblocation(id: 16, name: "Kowait"),
     Intested_joblocation(id: 17, name: "Hungary"),
   ];
+  static final List<Intested_jobtypes?> _types = [
+    Intested_jobtypes(id: 1, name: "UI/UX Designer"),
+    Intested_jobtypes(id: 2, name: "Illustrator Designer"),
+    Intested_jobtypes(id: 3, name: "Developer"),
+    Intested_jobtypes(id: 4, name: "Management"),
+    Intested_jobtypes(id: 5, name: "Information Technology"),
+    Intested_jobtypes(id: 6, name: "Research and analytics"),
+    Intested_jobtypes(id: 7, name: "Research and analytics"),
+    Intested_jobtypes(id: 8, name: "Research and analytics"),
+    Intested_jobtypes(id: 9, name: "Research and analytics")
+  ];
+
   late TabController _tabController;
   final _items = _countries
       .map((countries) =>
           MultiSelectItem<Intested_joblocation>(countries!, countries.name!))
       .toList();
-  List<Intested_joblocation?> _selectedAnimals2 = [];
 
+  final List<Intested_joblocation?> _selectedlocations = [];
+
+  Set<String> _selectedtypeset={};
+List<bool>  isselected=[false,false,false,false,false,false,false,false,false];
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -55,24 +72,23 @@ class _Intersted_Work_typeState extends State<Intersted_Work_type>
         ),
         body: Container(
             alignment: Alignment.center,
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  SizedBox(height: 10),
-                  Text("Where are your prefered location?",
+                  const Text("Where are your prefered location?",
                       style: TextStyle(fontSize: 33)),
-                  SizedBox(height: 10),
-                  Text(
+                  const SizedBox(height: 5),
+                  const Text(
                       "Let us know, where is the location you want at this time , So we can adjust it.",
                       style: TextStyle(color: Colors.black54, fontSize: 20)),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   TabBar(
                     controller: _tabController,
-                    tabs: [
+                    tabs: const [
                       Tab(
-                        text: 'Work From Home',
+                        text: 'Work From Office',
                       ),
                       Tab(
                         text: 'Remote Work',
@@ -80,174 +96,64 @@ class _Intersted_Work_typeState extends State<Intersted_Work_type>
                     ],
                     labelColor: Colors.black,
                   ),
-                  Container(
+                  SizedBox(
                     width: double.infinity,
-                    height: 350,
-                    child: TabBarView(controller: _tabController, children: [
-                      Container(
-                        width: 500,
-                        height: 300,
-                        child: GridView(
-                          scrollDirection: Axis.vertical,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                  mainAxisExtent: 140,
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 10,
-                                  mainAxisSpacing: 10),
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          children: [
-                            Container(
-                              padding: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  border: Border.all(color: Colors.blue)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  CircleAvatar(
-                                    maxRadius: 35,
-                                    minRadius: 35,
-                                  ),
-                                  SizedBox(height: 20),
-                                  Text(
-                                    "UI/UX Design",
-                                    style: TextStyle(fontSize: 20),
-                                  )
-                                ],
-                              ),
+                    height: 500,
+                    child: TabBarView(
+                        controller: _tabController, children: [
+                     GridView.builder(itemCount: _types.length,gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,mainAxisSpacing: 5,crossAxisSpacing: 5,mainAxisExtent: 160) ,itemBuilder: (context, index) {
+                       return InkWell(
+                         onTap: (){
+                           isselected[index] = true;
+                           setState(() {
+                           });
+                           _selectedtypeset.add(_types[index]!.name!);
+                         },
+                         onLongPress:(){
+                           isselected[index] = false;
+                           _selectedtypeset.remove(_types[index]!.name!);
+
+                           setState(() {
+
+                           });
+                         } ,
+                         child: Container(
+
+                           padding: const EdgeInsets.all(8),
+                            decoration:isselected[index] == true? BoxDecoration(
+                              color: Colors.blue.withOpacity(0.2),
+                             borderRadius:
+                             BorderRadius.circular(20),
+                              border:
+                              Border.all(width: 0.5, style: BorderStyle.none),
+                           ):BoxDecoration(
+                              borderRadius:
+                              BorderRadius.circular(20),
+                              border: Border.all(),
                             ),
-                            Container(
-                              padding: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  border: Border.all(color: Colors.blue)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  CircleAvatar(
-                                    maxRadius: 35,
-                                    minRadius: 35,
-                                  ),
-                                  SizedBox(height: 20),
-                                  Text(
-                                    "UI/UX Design",
-                                    style: TextStyle(fontSize: 20),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  border: Border.all(color: Colors.blue)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  CircleAvatar(
-                                    maxRadius: 35,
-                                    minRadius: 35,
-                                  ),
-                                  SizedBox(height: 20),
-                                  Text(
-                                    "UI/UX Design",
-                                    style: TextStyle(fontSize: 20),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  border: Border.all(color: Colors.blue)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  CircleAvatar(
-                                    maxRadius: 35,
-                                    minRadius: 35,
-                                  ),
-                                  SizedBox(height: 20),
-                                  Text(
-                                    "UI/UX Design",
-                                    style: TextStyle(fontSize: 20),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  border: Border.all(color: Colors.blue)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  CircleAvatar(
-                                    maxRadius: 35,
-                                    minRadius: 35,
-                                  ),
-                                  SizedBox(height: 20),
-                                  Text(
-                                    "UI/UX Design",
-                                    style: TextStyle(fontSize: 20),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  border: Border.all(color: Colors.blue)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  CircleAvatar(
-                                    maxRadius: 35,
-                                    minRadius: 35,
-                                  ),
-                                  SizedBox(height: 20),
-                                  Text(
-                                    "UI/UX Design",
-                                    style: TextStyle(fontSize: 20),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  border: Border.all(color: Colors.blue)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  CircleAvatar(
-                                    maxRadius: 35,
-                                    minRadius: 35,
-                                  ),
-                                  SizedBox(height: 20),
-                                  Text(
-                                    "UI/UX Design",
-                                    style: TextStyle(fontSize: 20),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      //Text("Mia Khalifa"),
+                           child: Column(
+                             mainAxisAlignment:
+                             MainAxisAlignment.start,
+                             crossAxisAlignment:
+                             CrossAxisAlignment.start,
+                             children: [
+                               CircleAvatar(
+                                 maxRadius: 30,
+                                 minRadius: 30,
+
+                                 child: Text("${_types[index]!.id}"),
+                               ),
+                               const SizedBox(height: 20),
+                               Text(
+                                 "${_types[index]!.name}",
+                                 style: const TextStyle(fontSize: 20),
+                                 softWrap: true,
+                               )
+                             ],
+                           ),
+                         ),
+                       );
+                     },),
                       MultiSelectChipField(
                         items: _items,
                         decoration: BoxDecoration(
@@ -255,12 +161,12 @@ class _Intersted_Work_typeState extends State<Intersted_Work_type>
                               Border.all(width: 0.5, style: BorderStyle.none),
                         ),
                         onTap: (item) {
-                          _selectedAnimals2 == false ||
-                                  _selectedAnimals2.isEmpty
+                          _selectedlocations == false ||
+                                  _selectedlocations.isEmpty
                               ? Container(
-                                  padding: EdgeInsets.all(10),
+                                  padding: const EdgeInsets.all(10),
                                   alignment: Alignment.centerLeft,
-                                  child: Text(
+                                  child: const Text(
                                     "None selected",
                                     style: TextStyle(color: Colors.black54),
                                   ))
@@ -270,28 +176,26 @@ class _Intersted_Work_typeState extends State<Intersted_Work_type>
                         showHeader: false,
                         scroll: false,
                         selectedChipColor: Colors.blue.withOpacity(0.2),
-                        initialValue: _selectedAnimals2,
+                        initialValue: _selectedlocations,
                       ),
                     ]),
                   ),
-                  SizedBox(height: 10),
-                  Column(children: [
-                    ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blueAccent[700],
-                            minimumSize: const Size(300, 50)),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Get_Started(),
-                              ));
-                        },
-                        child: const Text(
-                          "Next",
-                          style: TextStyle(color: Colors.white),
-                        )),
-                  ])
+                  const SizedBox(height: 10),
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blueAccent[700],
+                          minimumSize: const Size(300, 50)),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Get_Started(),
+                            ));
+                      },
+                      child: const Text(
+                        "Next",
+                        style: TextStyle(color: Colors.white),
+                      ))
                 ])));
   }
 }

@@ -29,6 +29,7 @@ dependencies:
   country_flags: ^2.1.0
   grouped_list: ^5.1.2
   intl: ^0.17.0
+  shimmer: ^3.0.0
 
 
 

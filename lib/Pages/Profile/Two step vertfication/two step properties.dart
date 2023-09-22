@@ -18,7 +18,7 @@ class _Two_Step_PropertiesState extends State<Two_Step_Properties> {
         centerTitle: true,
         elevation: 0,
         scrolledUnderElevation: 0,
-        title: Text("Two step Verification",
+        title: const Text("Two step Verification",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
       ),
       body: Padding(
@@ -27,56 +27,54 @@ class _Two_Step_PropertiesState extends State<Two_Step_Properties> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 10),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 1,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black26),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: SwitchListTile(
-                        subtitle: Text(
-                            ("Secure your account with \ntwo-step verification")),
-                        value: two_step,
-                        onChanged: (value) {
-                          two_step = value;
-                          setState(() {});
-                        }),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 10),
+                Container(
+                  width: MediaQuery.of(context).size.width * 1,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black26),
+                    borderRadius: BorderRadius.circular(15),
                   ),
-                  SizedBox(height: 10),
-                  ListTile(
-                    leading: CircleAvatar(
-                      radius: 20,
-                      child: Icon(
-                        Icons.lock,
-                        color: Colors.blueAccent,
-                      ),
-                      backgroundColor: Colors.blue.shade50,
+                  child: SwitchListTile(
+                      subtitle: const Text(
+                          ("Secure your account with \ntwo-step verification")),
+                      value: two_step,
+                      onChanged: (value) {
+                        two_step = value;
+                        setState(() {});
+                      }),
+                ),
+                const SizedBox(height: 10),
+                ListTile(
+                  leading: CircleAvatar(
+                    radius: 20,
+                    backgroundColor: Colors.blue.shade50,
+                    child: const Icon(
+                      Icons.lock,
+                      color: Colors.blueAccent,
                     ),
-                    subtitle: Text(
-                        "Two step verification provides Additional \nsecurity by asking for a verification code \neverytime you log in another device."),
                   ),
-                  SizedBox(height: 10),
-                  ListTile(
-                    leading: CircleAvatar(
-                      radius: 20,
-                      child: Icon(
-                        Icons.phone_android,
-                        color: Colors.blueAccent,
-                      ),
-                      backgroundColor: Colors.blue.shade50,
+                  subtitle: const Text(
+                      "Two step verification provides Additional \nsecurity by asking for a verification code \neverytime you log in another device."),
+                ),
+                const SizedBox(height: 10),
+                ListTile(
+                  leading: CircleAvatar(
+                    radius: 20,
+                    backgroundColor: Colors.blue.shade50,
+                    child: const Icon(
+                      Icons.phone_android,
+                      color: Colors.blueAccent,
                     ),
-                    subtitle: Text(
-                        "Adding phone number or using an \nauthenticator will help keep your account \nsafe from hart"),
                   ),
-                ],
-              ),
+                  subtitle: const Text(
+                      "Adding phone number or using an \nauthenticator will help keep your account \nsafe from hart"),
+                ),
+              ],
             ),
             Center(
               child: ElevatedButton(
@@ -87,7 +85,7 @@ class _Two_Step_PropertiesState extends State<Two_Step_Properties> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => Two_Step_2(),
+                          builder: (context) => const Two_Step_2(),
                         ));
                   },
                   child: const Text(

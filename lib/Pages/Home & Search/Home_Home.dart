@@ -16,11 +16,11 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int myindex=0;
   List <Widget> widgetlist =  [
-    Home_Screen(),
-    Chats_List(),
-    Applied(),
-    Saved(),
-    profile(),
+    const Home_Screen(),
+    const Chats_List(),
+    const Applied(),
+    const Saved(),
+    const profile(),
   ];
 
   @override
@@ -45,7 +45,7 @@ class _HomeState extends State<Home> {
           unselectedFontSize: 15,
           unselectedItemColor: Colors.black54,
           iconSize: 20,
-          items: [
+          items: const [
             BottomNavigationBarItem(icon:Icon(Icons.home_filled),label: "Home"),
             BottomNavigationBarItem(icon: Icon(Icons.message),label: "Messages"),
             BottomNavigationBarItem(icon: Icon(Icons.shopping_bag_rounded),label: "Applied"),

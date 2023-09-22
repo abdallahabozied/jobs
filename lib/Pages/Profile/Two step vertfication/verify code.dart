@@ -19,7 +19,7 @@ class _Verify_codeState extends State<Verify_code> {
         centerTitle: true,
         elevation: 0,
         scrolledUnderElevation: 0,
-        title: Text("Two step Verification",
+        title: const Text("Two step Verification",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
       ),
       body: Padding(
@@ -28,102 +28,100 @@ class _Verify_codeState extends State<Verify_code> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 10),
-                  Text("Enter the 6 digit code"),
-                  SizedBox(height: 5),
-                  Text(
-                      "Please confirm your account by entering the \nauthorization code sent to ****_****_$lastfourdigits"),
-                  SizedBox(height: 5),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(3),
-                              border: Border.all(width: 2)),
-                          width: 50,
-                          height: 50,
-                          child: TextField(
-                            decoration: InputDecoration(
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 10),
+                const Text("Enter the 6 digit code"),
+                const SizedBox(height: 5),
+                Text(
+                    "Please confirm your account by entering the \nauthorization code sent to ****_****_$lastfourdigits"),
+                const SizedBox(height: 5),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(3),
+                            border: Border.all(width: 2)),
+                        width: 50,
+                        height: 50,
+                        child: const TextField(
+                          decoration: InputDecoration(
 
-                                floatingLabelAlignment:
-                                    FloatingLabelAlignment.center),
-                          )),
-                      SizedBox(width: 3),
-                      Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(3),
-                              border: Border.all(width: 2)),
-                          width: 50,
-                          height: 50,
-                          child: TextField(
-                            decoration: InputDecoration(
-                                floatingLabelAlignment:
-                                    FloatingLabelAlignment.center),
-                          )),
-                      SizedBox(width: 3),
-                      Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(3),
-                              border: Border.all(width: 2)),
-                          width: 50,
-                          height: 50,
-                          child: TextField(
+                              floatingLabelAlignment:
+                                  FloatingLabelAlignment.center),
+                        )),
+                    const SizedBox(width: 3),
+                    Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(3),
+                            border: Border.all(width: 2)),
+                        width: 50,
+                        height: 50,
+                        child: const TextField(
+                          decoration: InputDecoration(
+                              floatingLabelAlignment:
+                                  FloatingLabelAlignment.center),
+                        )),
+                    const SizedBox(width: 3),
+                    Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(3),
+                            border: Border.all(width: 2)),
+                        width: 50,
+                        height: 50,
+                        child: const TextField(
 
-                            decoration: InputDecoration(
-                                floatingLabelAlignment:
-                                    FloatingLabelAlignment.center),
-                          )),
-                      SizedBox(width: 3),
-                      Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(3),
-                              border: Border.all(width: 2)),
-                          width: 50,
-                          height: 50,
-                          child: TextField(
+                          decoration: InputDecoration(
+                              floatingLabelAlignment:
+                                  FloatingLabelAlignment.center),
+                        )),
+                    const SizedBox(width: 3),
+                    Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(3),
+                            border: Border.all(width: 2)),
+                        width: 50,
+                        height: 50,
+                        child: const TextField(
 
-                            decoration: InputDecoration(
-                                floatingLabelAlignment:
-                                    FloatingLabelAlignment.center),
-                          )),
-                      SizedBox(width: 3),
-                      Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(3),
-                              border: Border.all(width: 2)),
-                          width: 50,
-                          height: 50,
-                          child: TextField(
+                          decoration: InputDecoration(
+                              floatingLabelAlignment:
+                                  FloatingLabelAlignment.center),
+                        )),
+                    const SizedBox(width: 3),
+                    Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(3),
+                            border: Border.all(width: 2)),
+                        width: 50,
+                        height: 50,
+                        child: const TextField(
 
-                            decoration: InputDecoration(
-                                floatingLabelAlignment:
-                                    FloatingLabelAlignment.center),
-                          )),
-                      SizedBox(width: 3),
-                      Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(3),
-                              border: Border.all(width: 2)),
-                          width: 50,
-                          height: 50,
-                          child: TextField(
+                          decoration: InputDecoration(
+                              floatingLabelAlignment:
+                                  FloatingLabelAlignment.center),
+                        )),
+                    const SizedBox(width: 3),
+                    Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(3),
+                            border: Border.all(width: 2)),
+                        width: 50,
+                        height: 50,
+                        child: const TextField(
 
-                            decoration: InputDecoration(
-                                floatingLabelAlignment:
-                                    FloatingLabelAlignment.center),
-                          )),
-                      SizedBox(width: 3),
-                    ],
-                  )
-                ],
-              ),
+                          decoration: InputDecoration(
+                              floatingLabelAlignment:
+                                  FloatingLabelAlignment.center),
+                        )),
+                    const SizedBox(width: 3),
+                  ],
+                )
+              ],
             ),
             Center(
               child: ElevatedButton(
@@ -132,7 +130,7 @@ class _Verify_codeState extends State<Verify_code> {
                       minimumSize: const Size(600, 50)),
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Sign_In()));
+                        MaterialPageRoute(builder: (context) => const Sign_In()));
                   },
                   child: const Text(
                     "Next ",

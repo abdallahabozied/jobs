@@ -9,7 +9,7 @@ class Edit_Phone_Number extends StatefulWidget {
 }
 
 class _Edit_Phone_NumberState extends State<Edit_Phone_Number> {
-  TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
   bool use_phone_to_reset = false;
   @override
   Widget build(BuildContext context) {
@@ -18,23 +18,23 @@ class _Edit_Phone_NumberState extends State<Edit_Phone_Number> {
           centerTitle: true,
           elevation: 0,
           scrolledUnderElevation: 0,
-          title: Text("Phone Number",
+          title: const Text("Phone Number",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         ),
         body: Padding(
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           child:Form(
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      SizedBox(
                         width: MediaQuery.of(context).size.width * 1.0,
                        // height: MediaQuery.of(context).size.height * 0.2,
                         child: Column(
                           children: [
-                            Text("  No.Handphone"),
-                            SizedBox(height: 5),
+                            const Text("  No.Handphone"),
+                            const SizedBox(height: 5),
                             IntlPhoneField(
                               initialCountryCode: "+20",
                               initialValue: "+20",
@@ -60,8 +60,8 @@ class _Edit_Phone_NumberState extends State<Edit_Phone_Number> {
                               keyboardType: TextInputType.phone,
                               autovalidateMode: AutovalidateMode.onUserInteraction,
                             ),
-                            SizedBox(height: 5),
-                            SwitchListTile(title:Text(("Use the phone number to reset your password")) ,value: use_phone_to_reset, onChanged:(value){
+                            const SizedBox(height: 5),
+                            SwitchListTile(title:const Text(("Use the phone number to reset your password")) ,value: use_phone_to_reset, onChanged:(value){
                               setState(() {
                                 use_phone_to_reset = value;
                               });

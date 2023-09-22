@@ -12,7 +12,7 @@ class _Search_Bottom_SheetState extends State<Search_Bottom_Sheet> {
   final TextEditingController _jobtitlecontroler = TextEditingController();
   final TextEditingController _locationcontroler = TextEditingController();
   final TextEditingController _salarycontroler = TextEditingController();
-  static List<Job_Type?> _job_types = [
+  static final List<Job_Type?> _job_types = [
     Job_Type(id: 1, name: "FullTime"),
     Job_Type(id: 2, name: "Remote"),
     Job_Type(id: 3, name: "Contract"),
@@ -23,7 +23,7 @@ class _Search_Bottom_SheetState extends State<Search_Bottom_Sheet> {
 
   final _items = _job_types.map((_job_types) => MultiSelectItem<Job_Type>(_job_types!, _job_types.name!))
       .toList();
-  List<Intested_joblocation?> _selected_jobs = [];
+  final List<Intested_joblocation?> _selected_jobs = [];
 
   @override
   Widget build(BuildContext context) {

@@ -10,9 +10,9 @@ class Change_Password extends StatefulWidget {
 }
 
 class _Change_PasswordState extends State<Change_Password> {
-  TextEditingController _currentpasswordcontroler = TextEditingController();
-  TextEditingController _newpasswordcontroler = TextEditingController();
-  TextEditingController _confirmpasswordcontroler = TextEditingController();
+  final TextEditingController _currentpasswordcontroler = TextEditingController();
+  final TextEditingController _newpasswordcontroler = TextEditingController();
+  final TextEditingController _confirmpasswordcontroler = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,24 +20,24 @@ class _Change_PasswordState extends State<Change_Password> {
           centerTitle: true,
           elevation: 0,
           scrolledUnderElevation: 0,
-          title: Text("Change Password",
+          title: const Text("Change Password",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         ),
         body: Padding(
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           child: Form(
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
+                  SizedBox(
                     width: MediaQuery.of(context).size.width * 1.0,
                     height: MediaQuery.of(context).size.height * 0.5,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Current Password"),
+                        const Text("Current Password"),
                         const SizedBox(height: 3),
                         TextFormField(
                             obscureText: true,
@@ -74,7 +74,7 @@ class _Change_PasswordState extends State<Change_Password> {
                             }),
                         const SizedBox(height: 5),
 
-                        Text("New Password"),
+                        const Text("New Password"),
                         const SizedBox(height: 3),
                         TextFormField(
                             obscureText: true,
@@ -112,7 +112,7 @@ class _Change_PasswordState extends State<Change_Password> {
                               return null;
                             }),
                         const SizedBox(height: 5),
-                        Text("Confirm New Password"),
+                        const Text("Confirm New Password"),
                         const SizedBox(height: 3),
                         TextFormField(
                             obscureText: true,
@@ -158,11 +158,11 @@ class _Change_PasswordState extends State<Change_Password> {
                             minimumSize: const Size(600, 50)),
                         onPressed: () async{
                           if(await varHTTP.HTTPConnections().updatePassword(_newpasswordcontroler.text) == true){
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("password updated Sccccessfully")));
-                         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home()));
+                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("password updated Sccccessfully")));
+                         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Home()));
                           }
                           else{
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Failed to update password ")));
+                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Failed to update password ")));
                           }
 
                         },

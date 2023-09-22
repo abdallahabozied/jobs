@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jobsque/Model/Job.dart';
-import 'package:jobsque/Model/jobpost.dart';
-import 'package:jobsque/Network/HTTP.dart';
 import 'package:jobsque/Pages/Home%20&%20Search/recent%20job.dart';
-import 'package:provider/provider.dart';
 import '../../Network/HTTP.dart' as varHTTP;
+import 'package:shimmer/shimmer.dart';
 
 class Applied extends StatefulWidget {
   const Applied({super.key});
@@ -23,11 +20,11 @@ class _AppliedState extends State<Applied> {
 
   @override
   Widget build(BuildContext context) {
-    var prov = Provider.of<Jobs>(context, listen: true);
+    // var prov = Provider.of<Jobs>(context, listen: true);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Applied"),
+        title: const Text("Applied"),
       ),
       body: FutureBuilder(
         future: httpConnections.GetAppliedjobs(),
@@ -39,13 +36,13 @@ class _AppliedState extends State<Applied> {
               children: [
                 Container(
                   height: 20,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.grey,
                   ),
                   child: Center(
                     child: Text(
                       "${snapshot.data?.length} Applied Jobs",
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                 ),
@@ -62,7 +59,7 @@ class _AppliedState extends State<Applied> {
                                       .fetchjob(snapshot.data?[i]["jobs_id"]),
                                   builder: (context, snapshot2) {
                                     return ListTile(
-                                      leading: Container(
+                                      leading: SizedBox(
                                           width: 30,
                                           height: 30,
                                           child: Image.network(errorBuilder:
@@ -103,17 +100,75 @@ class _AppliedState extends State<Applied> {
             );
           } else
             return Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircularProgressIndicator(),
-                  Text("Applied jobs is loading")
-                ],
+              child: Shimmer.fromColors(
+               baseColor: Colors.black.withOpacity(1),
+                highlightColor: Colors.black54,
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: ListView.builder(itemCount: 5,itemBuilder: (context, index) {
+                    return const Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
+                          children: [
+                            Skelton(height: 120, width: 120),
+                            SizedBox(width: 16),
+                            Expanded(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Skelton(
+                                      width: 80,
+                                    ),
+                                    SizedBox(height: 8),
+                                    Skelton(),
+                                    SizedBox(height: 8),
+                                    Skelton(),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Expanded(child: Skelton()),
+                                        SizedBox(width: 16),
+                                        Expanded(child: Skelton())
+                                      ],
+                                    )
+                                  ],
+                                ))
+                          ],
+                        ),
+                        SizedBox(height: 16)
+                      ],
+                    );
+                  },),
+                ),
               ),
             );
         },
       ),
+    );
+  }
+}
+
+class Skelton extends StatelessWidget {
+  const Skelton({super.key, this.height, this.width});
+
+  final double? height;
+
+  final double? width;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: height,
+      width: width,
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+          color: Colors.black.withOpacity(0.04),
+          borderRadius: const BorderRadius.all(Radius.circular(16))),
     );
   }
 }

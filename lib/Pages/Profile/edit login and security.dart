@@ -20,28 +20,28 @@ class _account_accessState extends State<account_access> {
         centerTitle: true,
         elevation: 0,
         scrolledUnderElevation: 0,
-        title: Text("Login and Security",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
+        title: const Text("Login and Security",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold)),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Container(
             width: MediaQuery.of(context).size.width * 1,
             height: 30,
             decoration: BoxDecoration(color: Colors.grey.shade200),
-            padding: EdgeInsets.only(left: 15),
-            child: Text("Account access",
+            padding: const EdgeInsets.only(left: 15),
+            child: const Text("Account access",
                 style: TextStyle(fontSize: 20, color: Colors.black)),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           InkWell(
             onTap: (){
-               Navigator.push(context, MaterialPageRoute(builder: (context) => email_edit()));
+               Navigator.push(context, MaterialPageRoute(builder: (context) => const email_edit()));
             },
             child: ListTile(
-              title: Text("Email Address"),
+              title: const Text("Email Address"),
               trailing: SizedBox(
                 width: 200,
                 child: Row(
@@ -49,8 +49,8 @@ class _account_accessState extends State<account_access> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
 
-                    Text(varHTTP.email,style: TextStyle(color: Colors.black38,fontSize: 10),),
-                    Icon(Icons.arrow_forward_rounded),
+                    Text(varHTTP.email,style: const TextStyle(color: Colors.black38,fontSize: 10),),
+                    const Icon(Icons.arrow_forward_rounded),
                   ],
                 ),
               ),
@@ -59,9 +59,9 @@ class _account_accessState extends State<account_access> {
           Divider(color:Colors.grey.shade200,indent: 20,endIndent: 20,),
           InkWell(
             onTap: (){
-               Navigator.push(context, MaterialPageRoute(builder: (context) => Edit_Phone_Number()));
+               Navigator.push(context, MaterialPageRoute(builder: (context) => const Edit_Phone_Number()));
             },
-            child: ListTile(
+            child: const ListTile(
               title: Text("Phone Number"),
               trailing: Icon(Icons.arrow_forward_rounded),
             ),
@@ -69,9 +69,9 @@ class _account_accessState extends State<account_access> {
           Divider(color:Colors.grey.shade200,indent: 20,endIndent: 20,),
           InkWell(
             onTap: (){
-               Navigator.push(context, MaterialPageRoute(builder: (context) => Change_Password()));
+               Navigator.push(context, MaterialPageRoute(builder: (context) => const Change_Password()));
             },
-            child: ListTile(
+            child: const ListTile(
               title: Text("Change Password"),
               trailing: Icon(Icons.arrow_forward_rounded),
             ),
@@ -79,9 +79,9 @@ class _account_accessState extends State<account_access> {
           Divider(color:Colors.grey.shade200,indent: 20,endIndent: 20,),
           InkWell(
             onTap: (){
-               Navigator.push(context, MaterialPageRoute(builder: (context) => Two_Step_Properties()));
+               Navigator.push(context, MaterialPageRoute(builder: (context) => const Two_Step_Properties()));
             },
-            child: ListTile(
+            child: const ListTile(
               title: Text("Two Step verification"),
               trailing: SizedBox(
                 width: 120,
@@ -101,7 +101,7 @@ class _account_accessState extends State<account_access> {
             onTap: (){
               // Navigator.push(context, MaterialPageRoute(builder: (context) => notification_properties()));
             },
-            child: ListTile(
+            child: const ListTile(
               title: Text("Face ID"),
               trailing: Icon(Icons.arrow_forward_rounded),
             ),
